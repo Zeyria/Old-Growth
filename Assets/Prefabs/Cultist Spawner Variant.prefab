@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8739165164433177941
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4871782318468746919, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: enemiesAndSpawnChance.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4871782318468746919, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: enemiesAndSpawnChance.Array.data[0].nt
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4871782318468746919, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: enemiesAndSpawnChance.Array.data[2].nt
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4871782318468746919, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: enemiesAndSpawnChance.Array.data[0].obj
+      value: 
+      objectReference: {fileID: 3891561453423641472, guid: df0219f24211b9b49b263029a55293d7, type: 3}
+    - target: {fileID: 4871782318468746919, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: enemiesAndSpawnChance.Array.data[1].obj
+      value: 
+      objectReference: {fileID: 3656971060349169285, guid: f35381ec22f34e04ab09fd715c28d3bc, type: 3}
+    - target: {fileID: 4871782318468746919, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: enemiesAndSpawnChance.Array.data[2].obj
+      value: 
+      objectReference: {fileID: 77879022199031816, guid: 5301bc7e48002974bb1d2ba1dc1bc18a, type: 3}
+    - target: {fileID: 7295760782697191066, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: m_Name
+      value: Cultist Spawner Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295760782697191068, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295760782697191068, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.526338
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295760782697191068, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.36876938
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295760782697191068, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295760782697191068, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295760782697191068, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295760782697191068, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295760782697191068, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295760782697191068, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295760782697191068, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295760782697191068, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295760782697191069, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: m_Color.b
+      value: 0.4014609
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295760782697191069, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: m_Color.g
+      value: 0.3721965
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295760782697191069, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6415094
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}

@@ -1,0 +1,61 @@
+minium range, chase bug - Kinda fixed?
+artifact mask bug
+you can select units under menus
+fog of war hp hover
+AIs spawn location is a bit off
+sprite mask isn't being turned on when enemy comes out of FoW
+
+
+show that something is blocking your path
+orb guards
+name confirmation
+custom name save
+numbers on action icons
+make at least on enemy on screen on load in
+knight raise shield action
+move ui like XCOM so you can do larger movements all at once
+enemy units have one less ap the first time you see them
+Orb looses HP every summon - eye stalks are stronger
+needs some hidden secrets
+text come from the left
+line of sight check
+map boundries
+
+stunning visual feedback
+chunk variety
+resolution scaling for ultrawide
+add an animation to the campfire interaction
+
+v.036 changelog
+
+Content:
+-Added artifact pulses, a mechanic to 
+ encorage going a little faster during missions
+
+Audio:
+-Added a UI click sound
+
+Balance:
+-Starting unit limit 4->5
+-Lowered the sight range of all enemy units by 1
+-Cultist Forester stun attack damage Mult .5 -> .75
+
+Visuals:
+-Added lighting effects to units and interactables
+-Added an animation to the orb artifact
+-Extinguishing the fire during an interaction 
+ now reflects that in the game
+-New title screen
+-Moved the objective text
+
+QoL:
+-Unit selection has been improved
+-Name and HP is now shown on hover
+
+ Bugfixes:
+-Fixed a bug that allowed you to act during the AI's turn
+-Cultist Forester's stun attack now properly removes AP
+-Hitting a button in an interaction while the text is 
+ typing out no longer jumbles the 2 texts together
+-Summons placed on half-tiles are now lowered down to the floor
+-Survival rounds now properly spawn units
