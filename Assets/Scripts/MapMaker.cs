@@ -74,7 +74,8 @@ public class MapMaker : MonoBehaviour
     {
         if (skipProcGen)
         {
-            BoundsInt boundsInt = mapHolderF.transform.GetComponent<Tilemap>().cellBounds;
+            BoundsInt boundsInt = mapHolderF.GetComponent<Tilemap>().cellBounds;
+
             foreach (var tile in boundsInt.allPositionsWithin)
             {
                 if (mapHolderF.transform.GetComponent<Tilemap>().GetTile(tile) != null)
@@ -167,10 +168,10 @@ public class MapMaker : MonoBehaviour
         }
         System.Random prng = new System.Random(tempseed.GetHashCode());
 
-        mapfill = new int[(int)MapSize+1, (int)MapSize+1];
-        for (int x = 0; x < (int)MapSize+1; x++)
+        mapfill = new int[(int)MapSize + 1, (int)MapSize + 1];
+        for (int x = 0; x < (int)MapSize + 1; x++)
         {
-            for (int y = 0; y < (int)MapSize+1; y++)
+            for (int y = 0; y < (int)MapSize + 1; y++)
             {
                 mapfill[x, y] = 1;
             }
@@ -235,8 +236,8 @@ public class MapMaker : MonoBehaviour
             {
                 if (mapfill[x, y] == 1 && FillCount(x, y, mapfill) < 7)
                 {
-                    float distanceCalc = MathF.Sqrt(Mathf.Pow(0 - x, 2) + Mathf.Pow(0 -y, 2));
-                    float distanceCalc2 = MathF.Sqrt(Mathf.Pow(10 - x, 2) + Mathf.Pow(10 -y, 2));
+                    float distanceCalc = MathF.Sqrt(Mathf.Pow(0 - x, 2) + Mathf.Pow(0 - y, 2));
+                    float distanceCalc2 = MathF.Sqrt(Mathf.Pow(10 - x, 2) + Mathf.Pow(10 - y, 2));
                     if ((distanceCalc < distance00) || distance00 == 9999)
                     {
                         distance00 = distanceCalc;
@@ -263,7 +264,7 @@ public class MapMaker : MonoBehaviour
                 //Debug.Log("loop" + x + y + " " + type);
                 if (type != 0)
                 {
-                    if(type == 1)
+                    if (type == 1)
                     {
                         GameObject spawnChunk = ones[prng.Next(0, ones.Capacity)];
                         GameObject chunk = Instantiate(spawnChunk, ComFunc.GridToWorldSpace(x, y), this.transform.rotation, grid.transform).gameObject;
@@ -294,11 +295,10 @@ public class MapMaker : MonoBehaviour
         {
             Destroy(grid.transform.GetChild(c).gameObject);
         }
-
         BoundsInt boundsInt = mapHolderF.transform.GetComponent<Tilemap>().cellBounds;
         foreach (var tile in boundsInt.allPositionsWithin)
         {
-            if (mapHolderF.transform.GetComponent<Tilemap>().GetTile(tile) != null)
+            if (mapHolderF.transform.GetComponent<Tilemap>().GetTile(tile) != null && mapHolderF.transform.GetComponent<Tilemap>().GetTile(tile) != borderTile)
             {
                 //Debug.Log(tile.x +" "+ tile.y);
                 unitCon.pathfinding.grid[tile.x, tile.y].isWalkable = true;

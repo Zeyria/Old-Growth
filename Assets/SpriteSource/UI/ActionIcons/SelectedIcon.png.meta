@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a554cda281f26c740a644430abc755af
+guid: f733cdc862b2b0240a8a26a11da32c95
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -127,91 +127,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Knight_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 28
-        height: 36
-      alignment: 9
-      pivot: {x: 0.6785714, y: 0.1388889}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8df181bc0a52981448a97a305e75affb
-      internalID: 1372578601
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knight_1
-      rect:
-        serializedVersion: 2
-        x: 28
-        y: 0
-        width: 28
-        height: 36
-      alignment: 9
-      pivot: {x: 0.6785714, y: 0.1388889}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b0a34e2e8681c54c82e81cc10098acf
-      internalID: 1481750093
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knight_2
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 0
-        width: 28
-        height: 36
-      alignment: 9
-      pivot: {x: 0.6785714, y: 0.1388889}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5d756e9e309ac864faa3c48c93e2e3f4
-      internalID: -793229960
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knight_3
-      rect:
-        serializedVersion: 2
-        x: 84
-        y: 0
-        width: 28
-        height: 36
-      alignment: 9
-      pivot: {x: 0.6785714, y: 0.1388889}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 22a3d756421e6c746a8d12f4c275870b
-      internalID: 557053708
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -221,14 +137,8 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures:
-    - texture: {fileID: 2800000, guid: 93ff9ebbb0599ba4c88fb90526e8116e, type: 3}
-      name: _NormalMap
-    nameFileIdTable:
-      Knight_2: -793229960
-      Knight_3: 557053708
-      Knight_0: 1372578601
-      Knight_1: 1481750093
+    secondaryTextures: []
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

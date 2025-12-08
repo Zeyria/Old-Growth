@@ -4129,7 +4129,7 @@ MonoBehaviour:
   - {fileID: 412832624}
   - {fileID: 706212417}
   - {fileID: 1684590136}
-  SceneName: IntroCutScene
+  SceneName: Town
   fade: {fileID: 1943572454}
   time: 0
 --- !u!114 &1162123549

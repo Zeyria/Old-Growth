@@ -88,7 +88,7 @@ public class GameUIManager : MonoBehaviour
                 if (activeIcon == 1) { iconText.text = action1Description; }
                 string action2Description = ReplaceKeyWordsInString(unitStats.action2.description, unitStats, unitStats.action2);
                 if (activeIcon == 2) { iconText.text = action2Description; }
-                if (activeIcon == 3) { iconText.text = "Interact with an object within <color=green>2</color> tiles. AP cost depends on interaction type."; }
+                if (activeIcon == 3) { iconText.text = "Interact with an object within <color=green>2</color> tiles."; }
 
                 if (unitStats.isEnemy)
                 {
