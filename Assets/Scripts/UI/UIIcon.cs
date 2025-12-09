@@ -9,6 +9,7 @@ public class UIIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public GameObject textBox;
     public GameObject selected;
     public GameUIManager gameUIManager;
+    public bool acting;
     public void OnPointerEnter(PointerEventData eventData)
     {
         textBox.SetActive(true);
@@ -17,8 +18,20 @@ public class UIIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        textBox.SetActive(false);
-        selected.SetActive(false);
-        gameUIManager.activeIcon = -1;
+        if (!acting)
+        {
+            textBox.SetActive(false);
+            selected.SetActive(false);
+            gameUIManager.activeIcon = -1;
+        }
+    }
+    private void Update()
+    {
+        if (acting)
+        {
+            textBox.SetActive(true);
+            selected.SetActive(true);
+            gameUIManager.activeIcon = transform.GetSiblingIndex();
+        }
     }
 }

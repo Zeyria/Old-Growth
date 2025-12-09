@@ -17,24 +17,45 @@ public class InteractButton : MonoBehaviour
 	}
 	private void Update()
 	{
-		if (!unitcon.action1)
+		if (unitcon.unitToMove == null) { return; }
+		if (!unitcon.interacting)
 		{
-			image.color = new Color32(74, 60, 74, 255);
-			yourButton.transform.GetChild(2).GetComponent<TMP_Text>().color = new Color32(230, 234, 238, 255);
+			image.color = Color.white;
+
+			if (transform.GetChild(3).GetComponent<UIIcon>().acting == true)
+			{
+				transform.GetChild(3).GetChild(0).gameObject.SetActive(false);
+				transform.GetChild(3).GetComponent<UIIcon>().acting = false;
+				transform.GetChild(4).gameObject.SetActive(false);
+			}
 		}
-		if (transform.parent.parent.GetComponent<UnitStats>().actionPointCurrent < 3)
+		else
 		{
-			image.color = new Color32(0, 0, 0, 0);
-			yourButton.transform.GetChild(2).GetComponent<TMP_Text>().color = new Color32(200, 204, 208, 255);
+			transform.GetChild(3).GetChild(0).gameObject.SetActive(true);
+			transform.GetChild(3).GetComponent<UIIcon>().acting = true;
+			transform.GetChild(4).gameObject.SetActive(true);
+			image.color = Color.yellow;
+		}
+		if (unitcon.unitToMove.GetComponent<UnitStats>().actionPointCurrent < 2)
+		{
+			image.color = new Color32(255, 255, 255, 50);
 		}
 	}
 
 	void TaskOnClick()
 	{
-		if (transform.parent.parent.GetComponent<UnitStats>().actionPointCurrent >= 3)
+		if (transform.GetChild(3).GetComponent<UIIcon>().acting == false)
 		{
-			unitcon.interacting = true;
-			image.color = new Color32(80, 54, 80, 255);
+			if (unitcon.unitToMove.GetComponent<UnitStats>().actionPointCurrent >= 2)
+			{
+				unitcon.interacting = true;
+				image.color = Color.yellow;
+				transform.GetChild(3).GetComponent<UIIcon>().acting = true;
+			}
+		}
+		else
+		{
+			unitcon.ClearActions();
 		}
 	}
 }

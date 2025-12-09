@@ -171,7 +171,7 @@ public class UnitControler : MonoBehaviour
             {
                 averageVec += new Vector2(unit.transform.position.x, unit.transform.position.y);
             }
-            averageVec = new Vector2(averageVec.x / allyUnits.Count, averageVec.y / allyUnits.Count);
+            averageVec = new Vector3(averageVec.x / allyUnits.Count, averageVec.y / allyUnits.Count, -10);
             cameraM.transform.position = averageVec;
         }
 
@@ -181,10 +181,10 @@ public class UnitControler : MonoBehaviour
         }
         if(unitToMove != null)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1) && !unitToMove.GetComponent<UnitStats>().isEnemy && unitToMove.GetComponent<UnitStats>().actionPointCurrent >= 1) { moving = true; Instantiate(selectSound); }
-            if (Input.GetKeyDown(KeyCode.Alpha2) && !unitToMove.GetComponent<UnitStats>().isEnemy && unitToMove.GetComponent<UnitStats>().actionPointCurrent >= unitToMove.GetComponent<UnitStats>().action1.AP) { action1 = true; Instantiate(selectSound); }
-            if (Input.GetKeyDown(KeyCode.Alpha3) && !unitToMove.GetComponent<UnitStats>().isEnemy && unitToMove.GetComponent<UnitStats>().actionPointCurrent >= unitToMove.GetComponent<UnitStats>().action2.AP) { action2 = true; Instantiate(selectSound); }
-            if (Input.GetKeyDown(KeyCode.Alpha4) && !unitToMove.GetComponent<UnitStats>().isEnemy && unitToMove.GetComponent<UnitStats>().actionPointCurrent >= 2) { interacting = true; Instantiate(selectSound); }
+            if (Input.GetKeyDown(KeyCode.Alpha1) && !unitToMove.GetComponent<UnitStats>().isEnemy && unitToMove.GetComponent<UnitStats>().actionPointCurrent >= 1) { if (moving) { ClearActions(); Instantiate(selectSound); } else { ClearActions(); moving = true; Instantiate(selectSound); } }
+            if (Input.GetKeyDown(KeyCode.Alpha2) && !unitToMove.GetComponent<UnitStats>().isEnemy && unitToMove.GetComponent<UnitStats>().actionPointCurrent >= unitToMove.GetComponent<UnitStats>().action1.AP) { if (action1) { ClearActions(); Instantiate(selectSound); } else { ClearActions(); action1 = true; Instantiate(selectSound); } }
+            if (Input.GetKeyDown(KeyCode.Alpha3) && !unitToMove.GetComponent<UnitStats>().isEnemy && unitToMove.GetComponent<UnitStats>().actionPointCurrent >= unitToMove.GetComponent<UnitStats>().action2.AP) { if (action2) { ClearActions(); Instantiate(selectSound); } else { ClearActions(); action2 = true; Instantiate(selectSound); } }
+            if (Input.GetKeyDown(KeyCode.Alpha4) && !unitToMove.GetComponent<UnitStats>().isEnemy && unitToMove.GetComponent<UnitStats>().actionPointCurrent >= 2) { if (interacting) { ClearActions(); Instantiate(selectSound); } else { ClearActions(); interacting = true; Instantiate(selectSound); } }
         }
         //Highlights
         if ((action1 && highlight != 0) || (action2 && highlight != 0) || (interacting && highlight != 0) || (moving && highlight != 0))
@@ -247,33 +247,37 @@ public class UnitControler : MonoBehaviour
                     }
                 }
             }
-            else if (moving)
+            else if (moving && !overUI)
             {
                 MoveUnit();
                 moving = false;
                 highlight = 1;
                 Instantiate(selectSound);
             }
-            else if (action1)
+            else if (action1 && !overUI)
             {
                 Action(1);
                 action1 = false;
                 highlight = 1;
                 Instantiate(selectSound);
             }
-            else if (action2)
+            else if (action2 && !overUI)
             {
                 Action(2);
                 action2 = false;
                 highlight = 1;
                 Instantiate(selectSound);
             }
-            else if (interacting)
+            else if (interacting && !overUI)
             {
                 Interact();
                 interacting = false;
                 highlight = 1;
                 Instantiate(selectSound);
+            }
+            else if (overUI)
+            {
+                return;
             }
             else
             {
@@ -348,6 +352,15 @@ public class UnitControler : MonoBehaviour
         {
             overUI = false;
         }
+    }
+    public void ClearActions()
+    {
+        moving = false;
+        action1 = false;
+        action2 = false;
+        interacting = false;
+        ClearHighlights();
+        highlight = 2;
     }
     private void LateUpdate()
     {
