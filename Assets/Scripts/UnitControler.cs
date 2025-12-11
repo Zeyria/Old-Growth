@@ -17,15 +17,15 @@ public class UnitControler : MonoBehaviour
     public TileBase halfTile;
     public Color fog;
     public Color fogSeen;
-    public GameObject selectT;
-    public GameObject selectR;
-    public GameObject selectBL;
-    public GameObject selectBR;
-    public GameObject selectL;
     public GameObject stepSound;
     public GameObject corpse;
     public GameObject gameOver;
     public GameObject gameOverFadeIn;
+    public GameObject select1;
+    public GameObject select2;
+    public GameObject select3;
+    public GameObject select4;
+    public GameObject patternFill;
     //public GameObject gameWin;
     public RawImage portraitImage;
     public GameObject UIHolder;
@@ -192,8 +192,8 @@ public class UnitControler : MonoBehaviour
             if (unitToMove != null)
             {
                 unitToMove.transform.GetChild(0).gameObject.SetActive(false);
-                if (action1) { Highlights(unitToMove.GetComponent<UnitStats>().action1.range, unitToMove, false, unitToMove.GetComponent<UnitStats>().action1.minRange); }
-                if (action2) { Highlights(unitToMove.GetComponent<UnitStats>().action2.range, unitToMove, false, unitToMove.GetComponent<UnitStats>().action2.minRange); }
+                if (action1) { Highlights(unitToMove.GetComponent<UnitStats>().action1.range, unitToMove, false, unitToMove.GetComponent<UnitStats>().action1.minRange, unitToMove.GetComponent<UnitStats>().action1.targetingType); }
+                if (action2) { Highlights(unitToMove.GetComponent<UnitStats>().action2.range, unitToMove, false, unitToMove.GetComponent<UnitStats>().action2.minRange, unitToMove.GetComponent<UnitStats>().action2.targetingType); }
                 if (interacting) 
                 { 
                     Highlights(3, unitToMove, false);
@@ -361,6 +361,10 @@ public class UnitControler : MonoBehaviour
         interacting = false;
         ClearHighlights();
         highlight = 2;
+        if(unitToMove != null)
+        {
+            unitToMove.transform.GetChild(0).gameObject.SetActive(true);
+        }
     }
     private void LateUpdate()
     {
@@ -503,7 +507,24 @@ public class UnitControler : MonoBehaviour
             GameObject animation = action.animationPrefab;
             GameObject sound = action.soundPrefab;
 
-            if(action.targetingType == 0) //Enemies targeting
+            if(action.targetingType == 0) //Open Tile targeting
+            {
+                if (unitToMove != null && selectCursor.activeInHierarchy)
+                {
+                    unitToMove.transform.GetChild(0).gameObject.SetActive(true);
+                    List<AStarNode> path = temp.FindPath(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitToMove.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitToMove.transform.position).y),
+                        Mathf.RoundToInt(ComFunc.WorldToTileSpace(selectCursor.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(selectCursor.transform.position).y));
+                    if (path != null && path.Count <= action.range)
+                    {
+                        if (path[path.Count - 1].isWalkable)
+                        {
+                            unitToMove.GetComponent<UnitStats>().actionPointCurrent -= action.AP;
+                            StartCoroutine(CheckEffects(unitToMove, action, targetTile: path[path.Count - 1]));
+                        }
+                    }
+                }
+            }
+            else if(action.targetingType == 1) //Enemies targeting
             {
                 GameObject unitToAttack = null;
                 if (unitToAttack == null)
@@ -524,7 +545,7 @@ public class UnitControler : MonoBehaviour
                             {
                                 if (path.Count <= range && path.Count >= minRange)
                                 {
-                                    int damage = Mathf.RoundToInt(unitToMove.GetComponent<UnitStats>().attack * damageMult) - Random.Range(-1, 2); 
+                                    int damage = Mathf.RoundToInt(unitToMove.GetComponent<UnitStats>().attack * damageMult) - Random.Range(-1, 2);
                                     unitToMove.GetComponent<UnitStats>().actionPointCurrent -= action.AP;
                                     cameraSS.start = true;
                                     unitToMove.transform.GetChild(0).gameObject.SetActive(true);
@@ -556,11 +577,11 @@ public class UnitControler : MonoBehaviour
                     }
                 }
             }
-            else if(action.targetingType == 1) //Ally targeting
+            else if(action.targetingType == 2) //Ally targeting
             {
 
             }
-            else if(action.targetingType == 2)//Open tile targeting
+            else if (action.targetingType == 3) //All targeting
             {
                 if (unitToMove != null && selectCursor.activeInHierarchy)
                 {
@@ -576,6 +597,7 @@ public class UnitControler : MonoBehaviour
             }
         }
         action1 = false;
+        action2 = false;
     }
     void Interact()
     {
@@ -798,7 +820,7 @@ public class UnitControler : MonoBehaviour
             }
         }
     }
-    void Highlights(int stat, GameObject unit, bool needsWalkable, int minStat = 0)
+    void Highlights(int stat, GameObject unit, bool needsWalkable, int minStat = 0, int targetMode = 0) //target 0 - no units, 1 - enemies, 2 - allies, 3 - all
     {
         foreach (GameObject unitA in allyUnits)
         {
@@ -807,18 +829,35 @@ public class UnitControler : MonoBehaviour
                 pathfinding.grid[Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitA.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitA.transform.position).y)].isWalkable = true;
             }
         }
+        foreach (GameObject unitE in enemyUnits)
+        {
+            if (unitE != null)
+            {
+                pathfinding.grid[Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitE.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitE.transform.position).y)].isWalkable = true;
+            }
+        }
         List<GameObject> hits = new List<GameObject>();
         List<Vector2> skips = new List<Vector2>();
         List<AStarNode> path;
+        int[,] highlights;
+        highlights = new int[(int)stat *2 + 1, (int)stat *2 + 1];
         for (int x = -stat; x < stat; x++)
         {
             for (int y = -stat; y < stat; y++)
             {
-                //min range break
+                highlights[x+stat, y+stat] = 0;
+                //Min range break
                 if (x < -minStat && x > minStat) { continue; }
                 if (y < -minStat && y > minStat) { continue; }
-
-                if (Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x < 0 || Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y < 0)
+                //Outside vision break
+                if (floorTiles.GetColor(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y)) != Color.white
+                    && floorTiles.GetColor(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y)) != fogSeen)
+                {
+                    continue;
+                }
+                //Outside map break
+                if (Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x < 0 || Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y < 0 ||
+                    Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x > (int)maker.MapSize * 7 + 2 || Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y > (int)maker.MapSize * 7 + 2)
                 {
                     continue;
                 }
@@ -833,7 +872,6 @@ public class UnitControler : MonoBehaviour
                 }
                 else
                 {
-
                     path = temp.FindPath(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y),
                         Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y);
                 }
@@ -844,10 +882,19 @@ public class UnitControler : MonoBehaviour
                         continue;
                     }
                 }
+                if (path != null)
+                {
+                    if (path.Count > stat)
+                    {
+                        continue;
+                    }
+                }
                 int layerMask = (1 << 6);
                 Vector2 ray = ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x, y).x, ComFunc.TileToGridSpace(x, y).y) + unit.transform.position;
                 RaycastHit2D hit = Physics2D.Raycast(ray, ray, 1, layerMask);
 
+                //Don't add tile ui under units
+                bool skip = true;
                 if (hit.collider != null)
                 {
                     int hitX = Mathf.RoundToInt(ComFunc.WorldToTileSpace(hit.collider.transform.position).x);
@@ -857,8 +904,25 @@ public class UnitControler : MonoBehaviour
                     {
                         if (!hits.Contains(hit.collider.gameObject))
                         {
-                            hits.Add(hit.collider.gameObject);
-                            skips.Add(new Vector2(hitX, hitY));
+                            if(targetMode == 1 || targetMode == 3)
+                            {
+                                if (hit.collider.gameObject.GetComponent<UnitStats>().isEnemy)
+                                {
+                                    skip = false;
+                                }
+                            }
+                            if (targetMode == 2 || targetMode == 3)
+                            {
+                                if (!hit.collider.gameObject.GetComponent<UnitStats>().isEnemy)
+                                {
+                                    skip = false;
+                                }
+                            }
+                            if (skip)
+                            {
+                                hits.Add(hit.collider.gameObject);
+                                skips.Add(new Vector2(hitX, hitY));
+                            }
                         }
                     }
                 }
@@ -870,61 +934,48 @@ public class UnitControler : MonoBehaviour
                         if (pathfinding.grid[Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y].isWalkable
                                 && !skips.Contains(new Vector2 (Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y)))
                         {
-                            List<GameObject> objs = new List<GameObject>();
-                            float offsetX = 0;
-                            float offsetY = 0;
-                            if (floorTiles.GetTile(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y))) == halfTile)
-                            {
-                                offsetY = -.2f;
-                            }
-
-                            if (floorTiles.GetTile(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y)) == halfTile)
-                            {
-                                if (floorTiles.GetTile(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x - 1, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y)) == halfTile
-                                      || floorTiles.GetTile(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x - 1, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y)) == null)
-                                {
-                                    GameObject a = Instantiate(selectL, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x, y).x, ComFunc.TileToGridSpace(x, y).y) - new Vector3(offsetX, .25f + offsetY), gameObject.transform.rotation, gameObject.transform);
-                                    objs.Add(a);
-
-                                    if ((floorTiles.GetTile(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x - 1, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y - 1)) == halfTile
-                                     || floorTiles.GetTile(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x - 1, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y - 1)) == null))
-                                    {
-                                        GameObject b = Instantiate(selectBL, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x, y).x, ComFunc.TileToGridSpace(x, y).y) - new Vector3(offsetX, .25f + offsetY), gameObject.transform.rotation, gameObject.transform);
-                                        objs.Add(b);
-                                    }
-                                }
-                                if (floorTiles.GetTile(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y - 1)) == halfTile
-                                    || floorTiles.GetTile(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y - 1)) == null)
-                                {
-                                    GameObject c = Instantiate(selectR, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x, y).x, ComFunc.TileToGridSpace(x, y).y) - new Vector3(offsetX, .25f + offsetY), gameObject.transform.rotation, gameObject.transform);
-                                    objs.Add(c);
-
-                                    if ((floorTiles.GetTile(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x - 1, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y - 1)) == halfTile
-                                      || floorTiles.GetTile(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x - 1, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y - 1)) == null))
-                                    {
-                                        GameObject d = Instantiate(selectBR, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x, y).x, ComFunc.TileToGridSpace(x, y).y) - new Vector3(offsetX, .25f + offsetY), gameObject.transform.rotation, gameObject.transform);
-                                        objs.Add(d);
-                                    }
-                                }
-                                GameObject e = Instantiate(selectT, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x, y).x, ComFunc.TileToGridSpace(x, y).y) - new Vector3(offsetX, .25f + offsetY), gameObject.transform.rotation, gameObject.transform);
-                                objs.Add(e);
-                            }
-                            else
-                            {
-                                GameObject f = Instantiate(selectT, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x, y).x, ComFunc.TileToGridSpace(x, y).y) - new Vector3(offsetX, offsetY), gameObject.transform.rotation, gameObject.transform);
-                                GameObject g = Instantiate(selectL, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x, y).x, ComFunc.TileToGridSpace(x, y).y) - new Vector3(offsetX, offsetY), gameObject.transform.rotation, gameObject.transform);
-                                GameObject h = Instantiate(selectBL, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x, y).x, ComFunc.TileToGridSpace(x, y).y) - new Vector3(offsetX, offsetY), gameObject.transform.rotation, gameObject.transform);
-                                GameObject i = Instantiate(selectR, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x, y).x, ComFunc.TileToGridSpace(x, y).y) - new Vector3(offsetX, offsetY), gameObject.transform.rotation, gameObject.transform);
-                                GameObject j = Instantiate(selectBR, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x, y).x, ComFunc.TileToGridSpace(x, y).y) - new Vector3(offsetX, offsetY), gameObject.transform.rotation, gameObject.transform);
-
-                                objs.Add(f);
-                                objs.Add(g);
-                                objs.Add(h);
-                                objs.Add(i);
-                                objs.Add(j);
-                            }
+                            highlights[x+stat, y+stat] = 1;
                         }
                     }
+                }
+            }
+        }
+        for (int x = 0; x < stat * 2; x++)
+        {
+            for (int y = 0; y < stat * 2; y++)
+            {
+                Vector3 offset = Vector3.zero;
+                if (x == 0 || y == 0)
+                {
+                    continue;
+                }
+
+                if(highlights[x, y] == 0)
+                {
+                    continue;
+                }
+                if (floorTiles.GetTile(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y))) == halfTile)
+                {
+                    offset = new Vector3(0,.2f,0);
+                }
+
+                Instantiate(patternFill, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x - stat, y - stat).x, ComFunc.TileToGridSpace(x - stat, y - stat).y) + offset, gameObject.transform.rotation, gameObject.transform);
+
+                if (highlights[x + 1, y] == 0)
+                {
+                    Instantiate(select3, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x - stat, y - stat).x, ComFunc.TileToGridSpace(x - stat, y - stat).y) + offset, gameObject.transform.rotation, gameObject.transform);
+                }
+                if (highlights[x, y + 1] == 0)
+                {
+                    Instantiate(select2, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x - stat, y - stat).x, ComFunc.TileToGridSpace(x - stat, y - stat).y) + offset, gameObject.transform.rotation, gameObject.transform);
+                }
+                if (highlights[x - 1, y] == 0)
+                {
+                    Instantiate(select1, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x - stat, y - stat).x, ComFunc.TileToGridSpace(x - stat, y - stat).y) + offset, gameObject.transform.rotation, gameObject.transform);
+                }
+                if (highlights[x, y - 1] == 0)
+                {
+                    Instantiate(select4, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x - stat, y - stat).x, ComFunc.TileToGridSpace(x - stat, y - stat).y) + offset, gameObject.transform.rotation, gameObject.transform);
                 }
             }
         }
@@ -933,6 +984,13 @@ public class UnitControler : MonoBehaviour
             if (unitA != null)
             {
                 pathfinding.grid[Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitA.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitA.transform.position).y)].isWalkable = false;
+            }
+        }
+        foreach (GameObject unitE in enemyUnits)
+        {
+            if (unitE != null)
+            {
+                pathfinding.grid[Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitE.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitE.transform.position).y)].isWalkable = true;
             }
         }
     }
@@ -1110,12 +1168,12 @@ public class UnitControler : MonoBehaviour
                     pathfinding.grid[(int)playerUnitPos.x, (int)playerUnitPos.y].isWalkable = false;
                     if (path != null)
                     {
-                        if (path.Count <= stats.action1.range && stats.action1.targetingType == 0 && path.Count >= stats.action1.minRange)
+                        if (path.Count <= stats.action1.range && stats.action1.targetingType == 1 && path.Count >= stats.action1.minRange)
                         {
                             unitsInRange1.Add(playerUnit);
                             //Debug.Log("Units in range 1");
                         }
-                        if(path.Count <= stats.action2.range && stats.action1.targetingType == 0 && path.Count >= stats.action2.minRange)
+                        if(path.Count <= stats.action2.range && stats.action1.targetingType == 1 && path.Count >= stats.action2.minRange)
                         {
                             unitsInRange2.Add(playerUnit);
                             //Debug.Log("Units in range 2");

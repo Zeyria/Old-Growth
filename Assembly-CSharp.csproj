@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\UI\Interactions\interactionData.cs" />
     <Compile Include="Assets\Scripts\UnitControler.cs" />
     <Compile Include="Assets\Scripts\AStar\AStarNode.cs" />
+    <Compile Include="Assets\UpdateNameOnStart.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\Intro.cs" />
     <Compile Include="Assets\Scripts\UI\UIColorFade.cs" />

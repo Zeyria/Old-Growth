@@ -135,7 +135,7 @@ MonoBehaviour:
   actionPointMax: 3
   actionPointCurrent: 3
   action1:
-    targetingType: 0
+    targetingType: 1
     damageMult: 1
     stun: 0
     summon: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
     AIUseWhenWander: 0
     description: 
   action2:
-    targetingType: 0
+    targetingType: 1
     damageMult: 1
     stun: 0
     summon: 0

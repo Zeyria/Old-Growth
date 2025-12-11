@@ -136,12 +136,12 @@ MonoBehaviour:
   actionPointMax: 3
   actionPointCurrent: 3
   action1:
-    targetingType: 0
+    targetingType: 1
     damageMult: 1
     stun: 0
     summon: 0
-    range: 11
-    minRange: 5
+    range: 10
+    minRange: 4
     AP: 1
     soundPrefab: {fileID: 8377693716206373525, guid: 651efa4c80cf6e648a3f5adfeeced871, type: 3}
     animationPrefab: {fileID: 3022894941759572255, guid: f375cdc6cdc34fd4ea34a835b3bd0028, type: 3}
@@ -150,7 +150,7 @@ MonoBehaviour:
     description: Shoot an arrow dealing DAMAGE damage with a max range of RANGE tiles
       and minium of MINRANGE.
   action2:
-    targetingType: 2
+    targetingType: 3
     damageMult: 0
     stun: 0
     summon: 1

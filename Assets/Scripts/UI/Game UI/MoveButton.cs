@@ -45,6 +45,7 @@ public class MoveButton : MonoBehaviour
 
     void TaskOnClick()
 	{
+		if (unitcon.action1 || unitcon.interacting || unitcon.action2) { unitcon.ClearActions(); }
 		if (transform.GetChild(0).GetComponent<UIIcon>().acting == false)
 		{
 			if (unitcon.unitToMove.GetComponent<UnitStats>().actionPointCurrent >= 1)

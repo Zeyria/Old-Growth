@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0119, y: 0}
-  m_SizeDelta: {x: 20, y: 30}
+  m_AnchoredPosition: {x: 0.0044, y: 0.0074}
+  m_SizeDelta: {x: 25.4342, y: 34.2806}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4222528350883714308
 CanvasRenderer:
@@ -482,7 +482,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4035567001958393257
 CanvasRenderer:
@@ -594,6 +594,7 @@ GameObject:
   - component: {fileID: 1519126763900607556}
   - component: {fileID: 6390753833017312516}
   - component: {fileID: 9195529830904384437}
+  - component: {fileID: 4023082720537321146}
   m_Layer: 5
   m_Name: Hp and Name
   m_TagString: Untagged
@@ -698,3 +699,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 3656147939474918769}
+--- !u!114 &4023082720537321146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5995587555356325218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbc829dc6dc98249b2796e6935dcf97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

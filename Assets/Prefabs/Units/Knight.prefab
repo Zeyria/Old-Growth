@@ -136,7 +136,7 @@ MonoBehaviour:
   actionPointMax: 3
   actionPointCurrent: 3
   action1:
-    targetingType: 0
+    targetingType: 1
     damageMult: 1
     stun: 0
     summon: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
     description: A swift sword slash dealing DAMAGE damage to a unit within RANGE
       tiles.
   action2:
-    targetingType: 0
+    targetingType: 1
     damageMult: 1.25
     stun: 1
     summon: 0

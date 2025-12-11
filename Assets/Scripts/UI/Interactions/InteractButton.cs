@@ -44,6 +44,7 @@ public class InteractButton : MonoBehaviour
 
 	void TaskOnClick()
 	{
+		if (unitcon.moving || unitcon.action1 || unitcon.action2) { unitcon.ClearActions(); }
 		if (transform.GetChild(3).GetComponent<UIIcon>().acting == false)
 		{
 			if (unitcon.unitToMove.GetComponent<UnitStats>().actionPointCurrent >= 2)

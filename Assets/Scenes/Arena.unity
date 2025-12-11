@@ -12902,15 +12902,15 @@ MonoBehaviour:
   halfTile: {fileID: 11400000, guid: b60d2edfd949c6749973a8db87776420, type: 2}
   fog: {r: 0.6509804, g: 0.5686275, b: 0.6, a: 0}
   fogSeen: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
-  selectT: {fileID: 2153364599003649636, guid: 88c09703f79ad284587314ac410361c2, type: 3}
-  selectR: {fileID: 464310081078358769, guid: 048cab31bdd673544957835d5114c0ee, type: 3}
-  selectBL: {fileID: 2779029785628956831, guid: 38959564a557c2f459bd11d4d22c022b, type: 3}
-  selectBR: {fileID: 5412853392484171427, guid: 643f57a3b1bdd5f42ac6999b96e57d65, type: 3}
-  selectL: {fileID: 3375934828722994369, guid: b897dfbfdd30a564294980575cd1abe4, type: 3}
   stepSound: {fileID: 560315073506862976, guid: 570904f4cd1a39d498f00c700e6317d3, type: 3}
   corpse: {fileID: 2607897870981601664, guid: 36d4f8e756aea0a40a6566a8821e953b, type: 3}
   gameOver: {fileID: 1337972813}
   gameOverFadeIn: {fileID: 281287505}
+  select1: {fileID: 2024020501505288301, guid: 948530a2f177e6f4897359b94b238587, type: 3}
+  select2: {fileID: 5850464640734106470, guid: 1af3afb39247ea54e9ece6870cf6e0dd, type: 3}
+  select3: {fileID: 5849082025599097151, guid: 3364a234da491c84f8100cadbcc2fa5c, type: 3}
+  select4: {fileID: 3118205858626830296, guid: 0977095d112ff6746a2f1f53d0439daf, type: 3}
+  patternFill: {fileID: 3106484799631331720, guid: 746af8702e1466843aa689e663f1e7a2, type: 3}
   portraitImage: {fileID: 1614791456}
   UIHolder: {fileID: 850575305}
   debugSeePathfinding: 0

@@ -151,7 +151,7 @@ MonoBehaviour:
   actionPointMax: 3
   actionPointCurrent: 3
   action1:
-    targetingType: 0
+    targetingType: 1
     damageMult: 1
     stun: 0
     summon: 0
@@ -164,7 +164,7 @@ MonoBehaviour:
     AIUseWhenWander: 0
     description: 
   action2:
-    targetingType: 0
+    targetingType: 1
     damageMult: 0
     stun: 0
     summon: 0
@@ -478,7 +478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6996163720849820391, guid: 00b5b4dc769c0154ebfb40c56b53d7e2, type: 3}
       propertyPath: m_InstanceId
-      value: -572586
+      value: -228324
       objectReference: {fileID: 0}
     - target: {fileID: 6996163720849820391, guid: 00b5b4dc769c0154ebfb40c56b53d7e2, type: 3}
       propertyPath: m_ShapePathHash
@@ -648,6 +648,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2392563131519736820}
     m_Modifications:
+    - target: {fileID: 93131420925558099, guid: 548cf9d10acac434b9f945997c823b4a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 40.5818
+      objectReference: {fileID: 0}
+    - target: {fileID: 93131420925558099, guid: 548cf9d10acac434b9f945997c823b4a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 49.1384
+      objectReference: {fileID: 0}
+    - target: {fileID: 93131420925558099, guid: 548cf9d10acac434b9f945997c823b4a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0018
+      objectReference: {fileID: 0}
+    - target: {fileID: 93131420925558099, guid: 548cf9d10acac434b9f945997c823b4a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.0555
+      objectReference: {fileID: 0}
     - target: {fileID: 440418983135597278, guid: 548cf9d10acac434b9f945997c823b4a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -736,6 +752,10 @@ PrefabInstance:
       propertyPath: selectedGameObj
       value: 
       objectReference: {fileID: 6674970695416186571}
+    - target: {fileID: 1519126763900607556, guid: 548cf9d10acac434b9f945997c823b4a, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3656147939376529227, guid: 548cf9d10acac434b9f945997c823b4a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
