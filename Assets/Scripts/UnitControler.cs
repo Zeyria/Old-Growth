@@ -77,7 +77,7 @@ public class UnitControler : MonoBehaviour
         highlight = 1;
         Cursor.SetCursor(cursorTex, new Vector2(1f, 1f), CursorMode.ForceSoftware);
         unitToMove = null;
-        pathfinding = new AStarPathfinding((int)maker.MapSize * 7 + 10, (int)maker.MapSize * 7 + 10);
+        pathfinding = new AStarPathfinding((int)maker.MapSize * 7 + 30, (int)maker.MapSize * 7 + 30);
         if (GameObject.Find("ArmyGrid") != null)
         {
             allyUnitsHolder = GameObject.Find("ArmyGrid").transform.GetChild(0).gameObject;
@@ -88,7 +88,7 @@ public class UnitControler : MonoBehaviour
         StartCoroutine(AfterStart());
 
         //Temp is needed to not pollute the real pathfinding.
-         temp = new AStarPathfinding((int)maker.MapSize * 7 + 10, (int)maker.MapSize * 7 + 10);
+         temp = new AStarPathfinding((int)maker.MapSize * 7 + 30, (int)maker.MapSize * 7 + 30);
         for (int x = 0; x < temp.grid.GetLength(0); x++)
         {
             for (int y = 0; y < temp.grid.GetLength(1); y++)
@@ -643,7 +643,7 @@ public class UnitControler : MonoBehaviour
     public void FogUpdate()
     {
         //Getting a blank slate before checking vision
-        BoundsInt boundsInt = new BoundsInt(Vector3Int.zero, new Vector3Int((int)maker.MapSize * 7, (int)maker.MapSize * 7, 1));
+        BoundsInt boundsInt = new BoundsInt(Vector3Int.zero, new Vector3Int((int)maker.MapSize * 7 + 30, (int)maker.MapSize * 7 + 30, 1));
         Tilemap floor = floorTiles.transform.GetComponent<Tilemap>();
         Tilemap extra = extraTiles.transform.GetComponent<Tilemap>();
 
@@ -690,7 +690,7 @@ public class UnitControler : MonoBehaviour
                         if(x < -sight - 4 && x > sight + 4) { continue; }
                         if (y < -sight - 4 && y > sight + 4) { continue; }
                         if (Mathf.RoundToInt(unitPos.x) + x < 0 || Mathf.RoundToInt(unitPos.y) + y < 0
-                            || x + unitPos.x > (int)maker.MapSize * 7 + 2 || y + unitPos.y > (int)maker.MapSize * 7 + 2) { continue; }
+                            || x + unitPos.x > (int)maker.MapSize * 7 + 30 || y + unitPos.y > (int)maker.MapSize * 7 + 30) { continue; }
                         if (floorTiles.GetColor(new Vector3Int(Mathf.RoundToInt(unitPos.x) + x, Mathf.RoundToInt(unitPos.y) + y)) == fogSeen) { continue; }
 
                         int distance = pathfinding.CalculateDistance(pathfinding.grid[Mathf.RoundToInt(unitPos.x), Mathf.RoundToInt(unitPos.y)], pathfinding.grid[Mathf.RoundToInt(unitPos.x) + x, Mathf.RoundToInt(unitPos.y) + y]);
@@ -722,7 +722,7 @@ public class UnitControler : MonoBehaviour
                     for (int y = -sight + 4; y <= sight - 4; y++)
                     {
                         if (Mathf.RoundToInt(unitPos.x) + x < 0 || Mathf.RoundToInt(unitPos.y) + y < 0
-                            || x + unitPos.x > (int)maker.MapSize * 7 + 2 || y + unitPos.y > (int)maker.MapSize * 7 + 2) { continue; }
+                            || x + unitPos.x > (int)maker.MapSize * 7 + 30 || y + unitPos.y > (int)maker.MapSize * 7 + 30) { continue; }
 
                         int distance = pathfinding.CalculateDistance(pathfinding.grid[Mathf.RoundToInt(unitPos.x), Mathf.RoundToInt(unitPos.y)], pathfinding.grid[Mathf.RoundToInt(unitPos.x) + x, Mathf.RoundToInt(unitPos.y) + y]);
                         if (floorTiles.GetTile(new Vector3Int(Mathf.RoundToInt(unitPos.x) + x, Mathf.RoundToInt(unitPos.y) + y)) != null)
@@ -829,13 +829,6 @@ public class UnitControler : MonoBehaviour
                 pathfinding.grid[Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitA.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitA.transform.position).y)].isWalkable = true;
             }
         }
-        foreach (GameObject unitE in enemyUnits)
-        {
-            if (unitE != null)
-            {
-                pathfinding.grid[Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitE.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitE.transform.position).y)].isWalkable = true;
-            }
-        }
         List<GameObject> hits = new List<GameObject>();
         List<Vector2> skips = new List<Vector2>();
         List<AStarNode> path;
@@ -857,7 +850,7 @@ public class UnitControler : MonoBehaviour
                 }
                 //Outside map break
                 if (Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x < 0 || Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y < 0 ||
-                    Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x > (int)maker.MapSize * 7 + 2 || Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y > (int)maker.MapSize * 7 + 2)
+                    Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x > (int)maker.MapSize * 7 + 30 || Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y > (int)maker.MapSize * 7 + 30)
                 {
                     continue;
                 }
@@ -881,9 +874,6 @@ public class UnitControler : MonoBehaviour
                     {
                         continue;
                     }
-                }
-                if (path != null)
-                {
                     if (path.Count > stat)
                     {
                         continue;
@@ -931,10 +921,20 @@ public class UnitControler : MonoBehaviour
                 {
                     if (path.Count <= stat)
                     {
-                        if (pathfinding.grid[Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y].isWalkable
-                                && !skips.Contains(new Vector2 (Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y)))
+                        if (needsWalkable)
                         {
-                            highlights[x+stat, y+stat] = 1;
+                            if (pathfinding.grid[Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y].isWalkable
+                                && !skips.Contains(new Vector2(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y)))
+                            {
+                                highlights[x + stat, y + stat] = 1;
+                            }
+                        }
+                        else
+                        {
+                            if (!skips.Contains(new Vector2(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y)))
+                            {
+                                highlights[x + stat, y + stat] = 1;
+                            }
                         }
                     }
                 }
@@ -954,10 +954,18 @@ public class UnitControler : MonoBehaviour
                 {
                     continue;
                 }
+                //On a half tile
                 if (floorTiles.GetTile(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y))) == halfTile)
                 {
                     offset = new Vector3(0,.2f,0);
                 }
+                /*
+                //Is a half tile. Off currently until I feel like figuring out the border problems this causes.
+                if (floorTiles.GetTile(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x - stat, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y - stat)) == halfTile)
+                {
+                    offset += new Vector3(0, -.2f, 0);
+                }
+                */
 
                 Instantiate(patternFill, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x - stat, y - stat).x, ComFunc.TileToGridSpace(x - stat, y - stat).y) + offset, gameObject.transform.rotation, gameObject.transform);
 
@@ -984,13 +992,6 @@ public class UnitControler : MonoBehaviour
             if (unitA != null)
             {
                 pathfinding.grid[Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitA.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitA.transform.position).y)].isWalkable = false;
-            }
-        }
-        foreach (GameObject unitE in enemyUnits)
-        {
-            if (unitE != null)
-            {
-                pathfinding.grid[Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitE.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitE.transform.position).y)].isWalkable = true;
             }
         }
     }
@@ -1130,7 +1131,7 @@ public class UnitControler : MonoBehaviour
                 for (int y = -sight + 2; y <= sight - 2; y++)
                 {
                     if (Mathf.RoundToInt(unitPos.x) + x < 0 || Mathf.RoundToInt(unitPos.y) + y < 0
-                        || x + unitPos.x > (int)maker.MapSize * 7 + 2 || y + unitPos.y > (int)maker.MapSize * 7 + 2) { continue; }
+                        || x + unitPos.x > (int)maker.MapSize * 7 + 30 || y + unitPos.y > (int)maker.MapSize * 7 + 30) { continue; }
 
                     path = temp.FindPath(Mathf.RoundToInt(unitPos.x), Mathf.RoundToInt(unitPos.y), Mathf.RoundToInt(unitPos.x) + x, Mathf.RoundToInt(unitPos.y) + y);
                     if (path != null)
@@ -1240,7 +1241,7 @@ public class UnitControler : MonoBehaviour
                                 for (int y = -2; y < 3; y++)
                                 {
                                     if (Mathf.RoundToInt(unitPos.x) + x < 0 || Mathf.RoundToInt(unitPos.y) + y < 0
-                                    || x + unitPos.x > (int)maker.MapSize * 7 + 2 || y + unitPos.y > (int)maker.MapSize * 7 + 2) { continue; }
+                                    || x + unitPos.x > (int)maker.MapSize * 7 + 30 || y + unitPos.y > (int)maker.MapSize * 7 + 30) { continue; }
 
                                     if (pathfinding.grid[Mathf.RoundToInt(unitToAttackPos.x) + x, Mathf.RoundToInt(unitToAttackPos.y) + y].isWalkable)
                                     {

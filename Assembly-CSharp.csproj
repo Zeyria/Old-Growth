@@ -90,6 +90,7 @@
     <Compile Include="Assets\Scripts\UI\Menu UI\SFXSlider.cs" />
     <Compile Include="Assets\Scripts\UI\Game UI\FillSelect.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\InteractButton.cs" />
+    <Compile Include="Assets\GridTracker.cs" />
     <Compile Include="Assets\Scripts\MapClass.cs" />
     <Compile Include="Assets\Scripts\UIOnWhenHover.cs" />
     <Compile Include="Assets\Scripts\AStar\AStarPathfinding.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Assets\Scripts\UI\Interactions\CampFire\TakeABite.cs" />
     <Compile Include="Assets\Scripts\SurvivalController.cs" />
     <Compile Include="Assets\Scripts\UI\Game UI\SelectedUI.cs" />
+    <Compile Include="Assets\ClearButton.cs" />
     <Compile Include="Assets\Scripts\UI\Menu UI\ResolutionSwitch.cs" />
     <Compile Include="Assets\Scripts\UI\Game UI\EndTurn.cs" />
     <Compile Include="Assets\Scripts\Common\LoadConfig.cs" />
@@ -114,6 +116,7 @@
     <Compile Include="Assets\Scripts\Common\Config.cs" />
     <Compile Include="Assets\Scripts\Audio\RandomPitchOnSpawn.cs" />
     <Compile Include="Assets\Scripts\Audio\SetMusicVolume.cs" />
+    <Compile Include="Assets\Scripts\UI\Menu UI\EmbarkButton.cs" />
     <Compile Include="Assets\Scripts\ArenaSettings.cs" />
     <Compile Include="Assets\Scripts\UI\Game UI\UnitAP.cs" />
     <Compile Include="Assets\Scripts\MapMaker.cs" />

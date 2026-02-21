@@ -3243,7 +3243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.04, z: -10}
+  m_LocalPosition: {x: 0, y: 16, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12918,6 +12918,7 @@ MonoBehaviour:
   gameWinColliderHolder: {fileID: 0}
   selectSound: {fileID: 4444665441879566186, guid: 47149393f1a84d648b01745b1662231b, type: 3}
   artifactPulse: 1
+  dirtKickup: {fileID: 3724803916397065310, guid: baf5bf6ca100ebe41876e41d2fca134c, type: 3}
   unitToMove: {fileID: 0}
   moving: 0
   action1: 0

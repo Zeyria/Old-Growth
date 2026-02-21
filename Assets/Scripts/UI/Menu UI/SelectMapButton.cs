@@ -14,6 +14,7 @@ public class SelectMapButton : MonoBehaviour
 	{
 		Button btn = yourButton.GetComponent<Button>();
 		btn.onClick.AddListener(TaskOnClick);
+		unitHolder = GameObject.Find("ArmyGrid").transform.GetChild(0).gameObject;
 	}
 	void TaskOnClick()
 	{
@@ -25,6 +26,8 @@ public class SelectMapButton : MonoBehaviour
         {
 			playButton.GetComponent<Button>().enabled = false;
 			playButton.transform.GetChild(2).gameObject.SetActive(true);
+			playButton.transform.GetChild(3).gameObject.SetActive(false);
+			playButton.transform.GetChild(4).gameObject.SetActive(false);
 			playButton.transform.GetChild(0).gameObject.SetActive(false);
 		}
         else
@@ -42,12 +45,16 @@ public class SelectMapButton : MonoBehaviour
 			if(unitHolder.transform.childCount < 3)
             {
 				playButton.GetComponent<Button>().enabled = false;
+				playButton.transform.GetChild(2).gameObject.SetActive(false);
 				playButton.transform.GetChild(3).gameObject.SetActive(true);
+				playButton.transform.GetChild(4).gameObject.SetActive(false);
 				playButton.transform.GetChild(0).gameObject.SetActive(false);
 			}
 			else if (unitHolder.transform.childCount > 7)
             {
 				playButton.GetComponent<Button>().enabled = false;
+				playButton.transform.GetChild(2).gameObject.SetActive(false);
+				playButton.transform.GetChild(3).gameObject.SetActive(false);
 				playButton.transform.GetChild(4).gameObject.SetActive(true);
 				playButton.transform.GetChild(0).gameObject.SetActive(false);
 			}

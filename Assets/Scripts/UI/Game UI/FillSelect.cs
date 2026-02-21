@@ -38,7 +38,6 @@ public class FillSelect : MonoBehaviour
             a.transform.GetChild(3).GetChild(3).GetChild(1).GetComponent<TMP_Text>().text = (stats[3] + unit.GetComponent<UnitStats>().attack).ToString();
             a.transform.GetChild(4).GetChild(1).GetComponent<TMP_Text>().text = unit.GetComponent<UnitStats>().unitName;
 
-            a.transform.GetChild(2).GetComponent<TMP_Text>().text = "x" + availableUnits[i].nt.ToString();
             uiButtons.Add(a);
         }
         filled = new AStarPathfinding(8,8);

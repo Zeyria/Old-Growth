@@ -55,7 +55,7 @@ public class MapMaker : MonoBehaviour
         if (skipProcGen)
         {
             MapSize = (Enum)15;
-            unitCon.pathfinding = new AStarPathfinding((int)MapSize * 7 + 10, (int)MapSize * 7 + 10);
+            unitCon.pathfinding = new AStarPathfinding((int)MapSize * 7 + 30, (int)MapSize * 7 + 30);
         }
     }
     private void Start()
@@ -142,7 +142,7 @@ public class MapMaker : MonoBehaviour
         spawnInt = 0;
         mapHolderE.GetComponent<Tilemap>().ClearAllTiles();
         mapHolderF.GetComponent<Tilemap>().ClearAllTiles();
-        unitCon.pathfinding = new AStarPathfinding((int)MapSize * 7 + 10, (int)MapSize * 7 + 10);
+        unitCon.pathfinding = new AStarPathfinding((int)MapSize * 7 + 30, (int)MapSize * 7 + 30);
         List<GameObject> destroyObjects = new List<GameObject>();
         for (int i = 2; i < map.transform.childCount; i++)
         {
@@ -252,7 +252,7 @@ public class MapMaker : MonoBehaviour
             }
         }
         GameObject Startchunk = Instantiate(startSquare, ComFunc.GridToWorldSpace(spawnPoint.x, spawnPoint.y), this.transform.rotation, grid.transform).gameObject;
-        camera.transform.position = ComFunc.GridToWorldSpace(spawnPoint.x, spawnPoint.y) + new Vector3(0, 4f);
+        camera.transform.position = ComFunc.GridToWorldSpace(spawnPoint.x, spawnPoint.y) + new Vector3(0, 4f) + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(20, 20).x, ComFunc.TileToGridSpace(20, 20).y);
         Combine(Mathf.RoundToInt(spawnPoint.x), Mathf.RoundToInt(spawnPoint.y), Startchunk);
         GameObject objectiveChunk = Instantiate(objectiveSquare, ComFunc.GridToWorldSpace(spawnPoint2.x, spawnPoint2.y), this.transform.rotation, grid.transform).gameObject;
         Combine(Mathf.RoundToInt(spawnPoint2.x), Mathf.RoundToInt(spawnPoint2.y), objectiveChunk);
@@ -320,9 +320,9 @@ public class MapMaker : MonoBehaviour
                 {
                     mapHolderF.GetComponent<Tilemap>().SetTile(new Vector3Int(tile.x, tile.y, 0), borderTile3);
                 }
-                unitCon.pathfinding.grid[tile.x, tile.y].isWalkable = false;
                 mapHolderF.GetComponent<Tilemap>().SetTileFlags(tile, TileFlags.None);
                 mapHolderF.GetComponent<Tilemap>().SetColor(tile, unitCon.fog);
+                unitCon.pathfinding.grid[tile.x, tile.y].isWalkable = false;
             }
         }
         BoundsInt boundsInt2 = mapHolderE.transform.GetComponent<Tilemap>().cellBounds;
@@ -421,15 +421,16 @@ public class MapMaker : MonoBehaviour
     void Combine(int x, int y, GameObject source)
     {
         BoundsInt boundsInt = source.transform.GetChild(0).GetComponent<Tilemap>().cellBounds;
+        Vector3Int offset = new Vector3Int(20, 20, 0);
         foreach (var tile in boundsInt.allPositionsWithin)
         {
             if(source.transform.GetChild(0).GetComponent<Tilemap>().GetTile(tile) != null)
             {
-                mapHolderF.GetComponent<Tilemap>().SetTile(tile + ComFunc.GridToTileSpace(x + 1, y + 1), source.transform.GetChild(0).GetComponent<Tilemap>().GetTile(tile));
+                mapHolderF.GetComponent<Tilemap>().SetTile(tile + ComFunc.GridToTileSpace(x + 1, y + 1) + offset, source.transform.GetChild(0).GetComponent<Tilemap>().GetTile(tile));
             }
             if (source.transform.GetChild(1).GetComponent<Tilemap>().GetTile(tile) != null)
             {
-                mapHolderE.GetComponent<Tilemap>().SetTile(tile + ComFunc.GridToTileSpace(x + 1, y + 1), source.transform.GetChild(1).GetComponent<Tilemap>().GetTile(tile));
+                mapHolderE.GetComponent<Tilemap>().SetTile(tile + ComFunc.GridToTileSpace(x + 1, y + 1) + offset, source.transform.GetChild(1).GetComponent<Tilemap>().GetTile(tile));
             }
         }
         for (int i = 2; i < source.transform.childCount; i=2)
@@ -439,7 +440,7 @@ public class MapMaker : MonoBehaviour
                 DoItLater(source);
                 break;
             }
-            source.transform.GetChild(2).transform.position += ComFunc.GridToWorldSpace(1, 1);
+            source.transform.GetChild(2).transform.position += ComFunc.GridToWorldSpace(1, 1) + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(20,20).x, ComFunc.TileToGridSpace(20, 20).y);
             source.transform.GetChild(2).SetParent(map.transform);
         }
 
@@ -447,7 +448,7 @@ public class MapMaker : MonoBehaviour
     IEnumerator DoItLater(GameObject gameObject)
     {
         yield return new WaitForSeconds(.05f);
-        gameObject.transform.GetChild(2).transform.position += ComFunc.GridToWorldSpace(1, 1);
+        gameObject.transform.GetChild(2).transform.position += ComFunc.GridToWorldSpace(1, 1) + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(20, 20).x, ComFunc.TileToGridSpace(20, 20).y);
         gameObject.transform.GetChild(2).SetParent(map.transform);
     }
 }

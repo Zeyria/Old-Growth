@@ -12,6 +12,7 @@ public class SelectCursor : MonoBehaviour
     private void Start()
     {
         selectCursor = GameObject.Find("select");
+        floorTiles = GameObject.Find("ArmyGrid").transform.GetChild(0).GetChild(0).GetComponent<Tilemap>();
         Time.timeScale = 1;
     }
     private void Update()

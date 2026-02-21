@@ -14,18 +14,17 @@ public class UnitSelectButton : MonoBehaviour
     GameObject unit;
     private void Start()
     {
+        amount = 1;
         i = transform.GetSiblingIndex();
         fill = transform.parent.GetComponent<FillSelect>();
-        string[] temp = transform.GetChild(2).GetComponent<TMP_Text>().text.Split('x');
-        int.TryParse(temp[1], out amount);
-        selectCursor = GameObject.Find("select");
+        selectCursor = GameObject.Find("Tilemap Cursor").transform.GetChild(0).gameObject;
         unit = fill.availableUnits[i].obj;
         button = transform.GetComponent<Button>();
         button.onClick.AddListener(TaskOnClick);
     }
     void TaskOnClick()
     {
-        if (transform.GetChild(2).GetComponent<TMP_Text>().text != "x0")
+        if (amount > 0)
         {
             amount -= 1;
             GameObject gameObject = Instantiate(unit, selectCursor.transform.position + (new Vector3(.5f,0) * (unit.GetComponent<UnitStats>().size - 1)), selectCursor.transform.rotation, selectCursor.transform);
@@ -39,9 +38,5 @@ public class UnitSelectButton : MonoBehaviour
 
             gameObject.GetComponent<UnitStats>().unitName = transform.GetChild(4).transform.GetChild(1).GetComponent<TMP_Text>().text;
         }
-    }
-    private void Update()
-    {
-        transform.GetChild(2).GetComponent<TMP_Text>().text = "x" + amount;
     }
 }

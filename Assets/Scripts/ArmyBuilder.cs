@@ -41,14 +41,14 @@ public class ArmyBuilder : MonoBehaviour
     }
     private void Update()
     {
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Arena") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("LoadGame"))
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Town"))
         {
-            transform.GetChild(0).gameObject.SetActive(false);
-            return;
+            transform.GetChild(0).gameObject.SetActive(true);
         }
         else
         {
-            transform.GetChild(0).gameObject.SetActive(true);
+            transform.GetChild(0).gameObject.SetActive(false);
+            return;
         }
     }
 }
