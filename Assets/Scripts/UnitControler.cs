@@ -325,7 +325,7 @@ public class UnitControler : MonoBehaviour
                 }
             }
         }
-        if (Input.GetMouseButtonDown(1) && playerTurn)
+        if (Input.GetMouseButtonDown(1) && playerTurn && !overUI)
         {
             if (unitToMove != null)
             {

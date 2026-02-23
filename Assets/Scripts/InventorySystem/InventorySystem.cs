@@ -60,6 +60,7 @@ public class InventorySystem : MonoBehaviour
             item.GetComponent<RectTransform>().localPosition = new Vector3((25.5f * (itemStats.width - 1)) + (spawnPos.x * 51), (25.5f * (itemStats.height - 1)) + (spawnPos.y * 51));
             item.transform.localScale = new Vector3(1, 1, 1);
             item.GetComponent<InventoryItem>().notMain = notMain;
+            item.transform.GetChild(0).gameObject.SetActive(false);
         }
         else
         {

@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\UI\Menu UI\VSyncToggle.cs" />
     <Compile Include="Assets\Scripts\Audio\SetMusicVolume.cs" />
     <Compile Include="Assets\Scripts\UIOnWhenHover.cs" />
+    <Compile Include="Assets\Scripts\InventorySystem\Items\FoodItem.cs" />
     <Compile Include="Assets\Scripts\ArenaVariables.cs" />
     <Compile Include="Assets\Scripts\GridTracker.cs" />
     <Compile Include="Assets\Scripts\Common\UnitNameList.cs" />
@@ -101,7 +102,9 @@
     <Compile Include="Assets\Scripts\InventorySystem\InventorySquare.cs" />
     <Compile Include="Assets\Scripts\UI\Game UI\overUITracker.cs" />
     <Compile Include="Assets\Scripts\UI\Menu UI\ExitGameButton.cs" />
+    <Compile Include="Assets\Scripts\InventorySystem\Items\BandageItem.cs" />
     <Compile Include="Assets\Scripts\UI\Game UI\UnitSelectButton.cs" />
+    <Compile Include="Assets\Scripts\InventorySystem\Items\PotionItem.cs" />
     <Compile Include="Assets\Scripts\UI\UISFX.cs" />
     <Compile Include="Assets\Scripts\UI\Menu UI\EmbarkButton.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\InteractionDescription.cs" />

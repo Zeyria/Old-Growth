@@ -11,9 +11,11 @@ public class HealthSlider : MonoBehaviour
     {
         unitstats = this.GetComponentInParent<UnitStats>();
         slider.value = unitstats.hpCurrent;
+        slider.maxValue = unitstats.hpMax;
     }
     private void Update()
     {
         slider.value = unitstats.hpCurrent;
+        slider.maxValue = unitstats.hpMax;
     }
 }

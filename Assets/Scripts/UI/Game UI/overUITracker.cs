@@ -7,7 +7,10 @@ public class overUITracker : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private UnitControler unitCon;
     void Start()
     {
-        unitCon = GameObject.Find("Controller").GetComponent<UnitControler>();
+        if(GameObject.Find("Controller") != null)
+        {
+            unitCon = GameObject.Find("Controller").GetComponent<UnitControler>();
+        }
     }
     public void OnPointerEnter(PointerEventData eventData)
     {

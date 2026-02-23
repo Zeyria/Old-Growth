@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class InventoryItem : MonoBehaviour, IPointerClickHandler
+public class InventoryItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public int width;
     public int height;
@@ -34,6 +34,10 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
             {
                 mainRaycaster = GameObject.Find("MobDropCanvas").GetComponent<GraphicRaycaster>();
             }
+            if (GameObject.Find("MobDropCanvas(Clone)") != null)
+            {
+                mainRaycaster = GameObject.Find("MobDropCanvas(Clone)").GetComponent<GraphicRaycaster>();
+            }
         }
         inventorySystem = transform.parent.gameObject.GetComponent<InventorySystem>();
 
@@ -60,14 +64,28 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
         entry3.callback.AddListener((data) => { EndDragDelegate((PointerEventData)data); });
         trigger.triggers.Add(entry3);
     }
+    public void Update()
+    {
+        if(mainRaycaster == null)
+        {
+            if (GameObject.Find("MobDropCanvas") != null && !notMain)
+            {
+                mainRaycaster = GameObject.Find("MobDropCanvas").GetComponent<GraphicRaycaster>();
+            }
+            if (GameObject.Find("MobDropCanvas(Clone)") != null && !notMain)
+            {
+                mainRaycaster = GameObject.Find("MobDropCanvas(Clone)").GetComponent<GraphicRaycaster>();
+            }
+        }
+    }
     public void OnPointerClick(PointerEventData pointerEventData)
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
             if (notMain)
             {
-                if (GameObject.Find("MainUI").transform.GetChild(0).GetComponent<InventorySystem>().isInventoryFull(this.gameObject, false) == new Vector2Int(100, 100)) { return; }
-                GameObject.Find("MainUI").transform.GetChild(0).GetComponent<InventorySystem>().AddItem(this.gameObject);
+                if (GameObject.Find("Inventory").GetComponent<InventorySystem>().isInventoryFull(this.gameObject, false) == new Vector2Int(100, 100)) { return; }
+                GameObject.Find("Inventory").GetComponent<InventorySystem>().AddItem(this.gameObject);
                 FillSlots(curretPos, 0);
                 notMain = false;
                 Destroy(this.gameObject);
@@ -80,6 +98,18 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
                 notMain = false;
                 Destroy(this.gameObject);
             }
+            else if (GameObject.Find("MobDropCanvas(Clone)") != null)
+            {
+                if (GameObject.Find("MobDropCanvas(Clone)").transform.GetChild(0).GetChild(0).GetComponent<InventorySystem>().isInventoryFull(this.gameObject, false) == new Vector2Int(100, 100)) { return; }
+                GameObject.Find("MobDropCanvas(Clone)").transform.GetChild(0).GetChild(0).GetComponent<InventorySystem>().AddItem(this.gameObject);
+                FillSlots(curretPos, 0);
+                notMain = false;
+                Destroy(this.gameObject);
+            }
+        }
+        if (pointerEventData.button == PointerEventData.InputButton.Right)
+        {
+            ActivateItem();
         }
     }
     public void BeginDragDelegate(PointerEventData data)
@@ -213,5 +243,18 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
                 inventorySystem.SetValue(pos.x + x, pos.y + y, value);
             }
         }
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        transform.GetChild(0).gameObject.SetActive(true);
+        transform.SetAsLastSibling();
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        transform.GetChild(0).gameObject.SetActive(false);
+    }
+    public virtual void ActivateItem()
+    {
+        Debug.Log("Item Activated! This should probably be overridden.");
     }
 }
