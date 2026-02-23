@@ -61,11 +61,11 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.3.9f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\UpdateNameOnStart.cs" />
     <Compile Include="Assets\Scripts\UI\Menu UI\VSyncToggle.cs" />
     <Compile Include="Assets\Scripts\Audio\SetMusicVolume.cs" />
     <Compile Include="Assets\Scripts\UIOnWhenHover.cs" />
     <Compile Include="Assets\Scripts\ArenaVariables.cs" />
+    <Compile Include="Assets\Scripts\GridTracker.cs" />
     <Compile Include="Assets\Scripts\Common\UnitNameList.cs" />
     <Compile Include="Assets\Scripts\UnitControler.cs" />
     <Compile Include="Assets\Scripts\DamageNumbers.cs" />
@@ -79,13 +79,11 @@
     <Compile Include="Assets\Scripts\SurvivalController.cs" />
     <Compile Include="Assets\Scripts\UI\Menu UI\ExitOptionsButton.cs" />
     <Compile Include="Assets\Scripts\UI\UIColorFade.cs" />
-    <Compile Include="Assets\ClearButton.cs" />
     <Compile Include="Assets\Scripts\UI\GameUIManager.cs" />
     <Compile Include="Assets\Scripts\GenerateClearings.cs" />
     <Compile Include="Assets\Scripts\UI\Menu UI\IngameESCMenu.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\OrbArtifact\RetrieveButton.cs" />
     <Compile Include="Assets\Scripts\UI\Menu UI\FullscreenToggle.cs" />
-    <Compile Include="Assets\GridTracker.cs" />
     <Compile Include="Assets\Scripts\UI\Game UI\Action1Button.cs" />
     <Compile Include="Assets\Scripts\Common\PersonalityList.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\CampFire\ExtinguishFire.cs" />
@@ -100,6 +98,7 @@
     <Compile Include="Assets\Scripts\Audio\SetSFXOnStart.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\Intro.cs" />
     <Compile Include="Assets\Scripts\UI\Game UI\EndTurn.cs" />
+    <Compile Include="Assets\Scripts\InventorySystem\InventorySquare.cs" />
     <Compile Include="Assets\Scripts\UI\Game UI\overUITracker.cs" />
     <Compile Include="Assets\Scripts\UI\Menu UI\ExitGameButton.cs" />
     <Compile Include="Assets\Scripts\UI\Game UI\UnitSelectButton.cs" />
@@ -111,9 +110,11 @@
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\UI\Game UI\FillSelect.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\CampFire\TakeABite.cs" />
+    <Compile Include="Assets\Scripts\UpdateNameOnStart.cs" />
     <Compile Include="Assets\Scripts\UI\Game UI\Action2Button.cs" />
     <Compile Include="Assets\Scripts\UI\Game UI\UnitAP.cs" />
     <Compile Include="Assets\Scripts\Common\DestoryAfterSpawn.cs" />
+    <Compile Include="Assets\Scripts\ClearButton.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\OrbArtifact\GiveItBloodButton.cs" />
     <Compile Include="Assets\Scripts\MapClass.cs" />
     <Compile Include="Assets\Scripts\Common\ComFunc.cs" />
@@ -124,12 +125,14 @@
     <Compile Include="Assets\Scripts\CorpseLogic.cs" />
     <Compile Include="Assets\Scripts\ArtifactPulse.cs" />
     <Compile Include="Assets\Scripts\Common\Config.cs" />
+    <Compile Include="Assets\Scripts\InventorySystem\InventoryItem.cs" />
     <Compile Include="Assets\Scripts\ArenaSettings.cs" />
     <Compile Include="Assets\Scripts\UI\Menu UI\SFXSlider.cs" />
     <Compile Include="Assets\Scripts\UI\Menu UI\CreditsButton.cs" />
     <Compile Include="Assets\Scripts\Light2DVaryIntensity.cs" />
     <Compile Include="Assets\Scripts\Audio\RandomPitchOnSpawn.cs" />
     <Compile Include="Assets\Scripts\AStar\Heap.cs" />
+    <Compile Include="Assets\Scripts\InventorySystem\InventorySystem.cs" />
     <Compile Include="Assets\Scripts\UI\Menu UI\SelectMapButton.cs" />
     <Compile Include="Assets\Scripts\ActionClass.cs" />
     <Compile Include="Assets\Scripts\Common\DestoryAfterTime.cs" />
@@ -1297,10 +1300,6 @@
     </Reference>
     <Reference Include="Unity.2D.Tooling.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Tooling.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VSCode.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
