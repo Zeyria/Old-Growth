@@ -28,4 +28,5 @@ public class UnitStats : MonoBehaviour
     public bool isCorpse = false;
     public bool spawnsCorpse = true;
 
+    public List<ObjAndIntClass> dropList;
 }

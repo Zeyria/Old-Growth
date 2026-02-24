@@ -14,7 +14,6 @@ public class UnitControler : MonoBehaviour
     public GameObject selectCursor;
     public Texture2D cursorTex;
     public GameObject cameraM;
-    public TileBase halfTile;
     public Color fog;
     public Color fogSeen;
     public GameObject stepSound;
@@ -34,6 +33,7 @@ public class UnitControler : MonoBehaviour
     public GameObject gameWinColliderHolder;
     public GameObject selectSound;
     public bool artifactPulse = true;
+    public GameObject itemDropMarker;
 
     [HideInInspector]
     public GameObject unitToMove;
@@ -192,11 +192,11 @@ public class UnitControler : MonoBehaviour
             if (unitToMove != null)
             {
                 unitToMove.transform.GetChild(0).gameObject.SetActive(false);
-                if (action1) { Highlights(unitToMove.GetComponent<UnitStats>().action1.range, unitToMove, false, unitToMove.GetComponent<UnitStats>().action1.minRange, unitToMove.GetComponent<UnitStats>().action1.targetingType); }
-                if (action2) { Highlights(unitToMove.GetComponent<UnitStats>().action2.range, unitToMove, false, unitToMove.GetComponent<UnitStats>().action2.minRange, unitToMove.GetComponent<UnitStats>().action2.targetingType); }
+                if (action1) { Highlights(unitToMove.GetComponent<UnitStats>().action1.range, unitToMove.transform.position, false, unitToMove.GetComponent<UnitStats>().action1.minRange, unitToMove.GetComponent<UnitStats>().action1.targetingType); }
+                if (action2) { Highlights(unitToMove.GetComponent<UnitStats>().action2.range, unitToMove.transform.position, false, unitToMove.GetComponent<UnitStats>().action2.minRange, unitToMove.GetComponent<UnitStats>().action2.targetingType); }
                 if (interacting) 
                 { 
-                    Highlights(3, unitToMove, false);
+                    Highlights(3, unitToMove.transform.position, false);
                     for (int i = 0; i < transform.parent.GetChild(1).childCount; i++)
                     {
                         if(transform.parent.GetChild(1).GetChild(i).GetComponent<Interactable>() != null)
@@ -211,7 +211,7 @@ public class UnitControler : MonoBehaviour
                 }
                 if (moving)
                 {
-                    Highlights(unitToMove.GetComponent<UnitStats>().speed, unitToMove, true);
+                    Highlights(unitToMove.GetComponent<UnitStats>().speed, unitToMove.transform.position, true);
                     pathfinding.grid[Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitToMove.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitToMove.transform.position).y)].isWalkable = false;
                 }
                 highlight = 0;
@@ -550,7 +550,7 @@ public class UnitControler : MonoBehaviour
                                     cameraSS.start = true;
                                     unitToMove.transform.GetChild(0).gameObject.SetActive(true);
                                     unitToAttack.GetComponent<UnitStats>().hpCurrent -= damage;
-                                    if (unitToAttack.GetComponent<UnitStats>().hpCurrent <= 0)
+                                    if (unitToAttack.GetComponent<UnitStats>().hpCurrent <= 0) //Killed unit
                                     {
                                         if (!unitToAttack.GetComponent<UnitStats>().isCorpse && unitToAttack.GetComponent<UnitStats>().spawnsCorpse)
                                         {
@@ -561,6 +561,33 @@ public class UnitControler : MonoBehaviour
                                         {
                                             pathfinding.grid[Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitToAttack.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitToAttack.transform.position).y)].isWalkable = true;
                                         }
+                                        if (unitToAttack.GetComponent<UnitStats>().dropList != null)
+                                        {
+                                            List<GameObject> drops = new List<GameObject>();
+                                            foreach (ObjAndIntClass drop in unitToAttack.GetComponent<UnitStats>().dropList)
+                                            {
+                                                if (Random.Range(0, 101) < drop.nt) //drop chance is an int representing a percentage to drop.
+                                                {
+                                                    drops.Add(drop.obj);
+                                                }
+                                            }
+                                            if (drops.Count != 0)
+                                            {
+                                                GameObject dropMarker = Instantiate(itemDropMarker, unitToAttack.transform.position, unitToAttack.transform.rotation);
+                                                Highlights(2, unitToAttack.transform.position, false, 0, 0, dropMarker, true);
+                                                for (int i = 0; i < dropMarker.transform.childCount; i++)
+                                                {
+                                                    dropMarker.transform.GetChild(i).GetComponent<SpriteRenderer>().color = Color.orange;
+                                                    dropMarker.transform.GetChild(i).GetComponent<SpriteRenderer>().sortingOrder = 1;
+                                                    dropMarker.GetComponent<DropMarker>().drops = drops;
+                                                    if (dropMarker.transform.GetChild(i).gameObject.name == "patternFill(Clone)")
+                                                    {
+                                                        dropMarker.transform.GetChild(i).GetComponent<SpriteRenderer>().color = new Color(Color.orange.r, Color.orange.g, Color.orange.b, .4f);
+                                                    }
+                                                }
+                                            }
+                                        }
+
                                         Destroy(unitToAttack);
                                     }
                                     else
@@ -820,7 +847,7 @@ public class UnitControler : MonoBehaviour
             }
         }
     }
-    void Highlights(int stat, GameObject unit, bool needsWalkable, int minStat = 0, int targetMode = 0) //target 0 - no units, 1 - enemies, 2 - allies, 3 - all
+    void Highlights(int stat, Vector3 unitPos, bool needsWalkable, int minStat = 0, int targetMode = 0, GameObject altParent = null, bool underUnits = false) //target 0 - no units, 1 - enemies, 2 - allies, 3 - all
     {
         foreach (GameObject unitA in allyUnits)
         {
@@ -843,30 +870,33 @@ public class UnitControler : MonoBehaviour
                 if (x < -minStat && x > minStat) { continue; }
                 if (y < -minStat && y > minStat) { continue; }
                 //Outside vision break
-                if (floorTiles.GetColor(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y)) != Color.white
-                    && floorTiles.GetColor(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y)) != fogSeen)
+                if (floorTiles.GetColor(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).y) + y)) != Color.white
+                    && floorTiles.GetColor(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).y) + y)) != fogSeen)
                 {
                     continue;
                 }
                 //Outside map break
-                if (Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x < 0 || Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y < 0 ||
-                    Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x > (int)maker.MapSize * 7 + 30 || Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y > (int)maker.MapSize * 7 + 30)
+                if (Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).x) + x < 0 || Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).y) + y < 0 ||
+                    Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).x) + x > (int)maker.MapSize * 7 + 30 || Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).y) + y > (int)maker.MapSize * 7 + 30)
                 {
                     continue;
                 }
-                if (x == 0 && y == 0)
+                if (!underUnits)
                 {
-                    continue;
+                    if (x == 0 && y == 0)
+                    {
+                        continue;
+                    }
                 }
                 if (needsWalkable)
                 {
-                    path = pathfinding.FindPath(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y),
-                        Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y);
+                    path = pathfinding.FindPath(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).y),
+                        Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).y) + y);
                 }
                 else
                 {
-                    path = temp.FindPath(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y),
-                        Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y);
+                    path = temp.FindPath(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).y),
+                        Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).y) + y);
                 }
                 if(path != null)
                 {
@@ -880,38 +910,41 @@ public class UnitControler : MonoBehaviour
                     }
                 }
                 int layerMask = (1 << 6);
-                Vector2 ray = ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x, y).x, ComFunc.TileToGridSpace(x, y).y) + unit.transform.position;
+                Vector2 ray = ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x, y).x, ComFunc.TileToGridSpace(x, y).y) + unitPos;
                 RaycastHit2D hit = Physics2D.Raycast(ray, ray, 1, layerMask);
 
                 //Don't add tile ui under units
-                bool skip = true;
-                if (hit.collider != null)
+                if (!underUnits)
                 {
-                    int hitX = Mathf.RoundToInt(ComFunc.WorldToTileSpace(hit.collider.transform.position).x);
-                    int hitY = Mathf.RoundToInt(ComFunc.WorldToTileSpace(hit.collider.transform.position).y);
-
-                    if (temp.FindPath(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y), hitX, hitY).Count <= stat)
+                    bool skip = true;
+                    if (hit.collider != null)
                     {
-                        if (!hits.Contains(hit.collider.gameObject))
+                        int hitX = Mathf.RoundToInt(ComFunc.WorldToTileSpace(hit.collider.transform.position).x);
+                        int hitY = Mathf.RoundToInt(ComFunc.WorldToTileSpace(hit.collider.transform.position).y);
+
+                        if (temp.FindPath(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).y), hitX, hitY).Count <= stat)
                         {
-                            if(targetMode == 1 || targetMode == 3)
+                            if (!hits.Contains(hit.collider.gameObject))
                             {
-                                if (hit.collider.gameObject.GetComponent<UnitStats>().isEnemy)
+                                if (targetMode == 1 || targetMode == 3)
                                 {
-                                    skip = false;
+                                    if (hit.collider.gameObject.GetComponent<UnitStats>().isEnemy)
+                                    {
+                                        skip = false;
+                                    }
                                 }
-                            }
-                            if (targetMode == 2 || targetMode == 3)
-                            {
-                                if (!hit.collider.gameObject.GetComponent<UnitStats>().isEnemy)
+                                if (targetMode == 2 || targetMode == 3)
                                 {
-                                    skip = false;
+                                    if (!hit.collider.gameObject.GetComponent<UnitStats>().isEnemy)
+                                    {
+                                        skip = false;
+                                    }
                                 }
-                            }
-                            if (skip)
-                            {
-                                hits.Add(hit.collider.gameObject);
-                                skips.Add(new Vector2(hitX, hitY));
+                                if (skip)
+                                {
+                                    hits.Add(hit.collider.gameObject);
+                                    skips.Add(new Vector2(hitX, hitY));
+                                }
                             }
                         }
                     }
@@ -923,15 +956,15 @@ public class UnitControler : MonoBehaviour
                     {
                         if (needsWalkable)
                         {
-                            if (pathfinding.grid[Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y].isWalkable
-                                && !skips.Contains(new Vector2(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y)))
+                            if (pathfinding.grid[Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).y) + y].isWalkable
+                                && !skips.Contains(new Vector2(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).y) + y)))
                             {
                                 highlights[x + stat, y + stat] = 1;
                             }
                         }
                         else
                         {
-                            if (!skips.Contains(new Vector2(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y)))
+                            if (!skips.Contains(new Vector2(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).x) + x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitPos).y) + y)))
                             {
                                 highlights[x + stat, y + stat] = 1;
                             }
@@ -944,46 +977,41 @@ public class UnitControler : MonoBehaviour
         {
             for (int y = 0; y < stat * 2; y++)
             {
-                Vector3 offset = Vector3.zero;
-                if (x == 0 || y == 0)
+                if (!underUnits)
                 {
-                    continue;
+                    if (x == 0 || y == 0)
+                    {
+                        continue;
+                    }
                 }
 
                 if(highlights[x, y] == 0)
                 {
                     continue;
                 }
-                //On a half tile
-                if (floorTiles.GetTile(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y))) == halfTile)
-                {
-                    offset = new Vector3(0,.2f,0);
-                }
-                /*
-                //Is a half tile. Off currently until I feel like figuring out the border problems this causes.
-                if (floorTiles.GetTile(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).x) + x - stat, Mathf.RoundToInt(ComFunc.WorldToTileSpace(unit.transform.position).y) + y - stat)) == halfTile)
-                {
-                    offset += new Vector3(0, -.2f, 0);
-                }
-                */
 
-                Instantiate(patternFill, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x - stat, y - stat).x, ComFunc.TileToGridSpace(x - stat, y - stat).y) + offset, gameObject.transform.rotation, gameObject.transform);
+                Transform parent = gameObject.transform;
+                if(altParent != null)
+                {
+                    parent = altParent.transform;
+                }
+                Instantiate(patternFill, unitPos + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x - stat, y - stat).x, ComFunc.TileToGridSpace(x - stat, y - stat).y), gameObject.transform.rotation, parent);
 
                 if (highlights[x + 1, y] == 0)
                 {
-                    Instantiate(select3, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x - stat, y - stat).x, ComFunc.TileToGridSpace(x - stat, y - stat).y) + offset, gameObject.transform.rotation, gameObject.transform);
+                    Instantiate(select3, unitPos + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x - stat, y - stat).x, ComFunc.TileToGridSpace(x - stat, y - stat).y), gameObject.transform.rotation, parent);
                 }
                 if (highlights[x, y + 1] == 0)
                 {
-                    Instantiate(select2, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x - stat, y - stat).x, ComFunc.TileToGridSpace(x - stat, y - stat).y) + offset, gameObject.transform.rotation, gameObject.transform);
+                    Instantiate(select2, unitPos + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x - stat, y - stat).x, ComFunc.TileToGridSpace(x - stat, y - stat).y), gameObject.transform.rotation, parent);
                 }
                 if (highlights[x - 1, y] == 0)
                 {
-                    Instantiate(select1, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x - stat, y - stat).x, ComFunc.TileToGridSpace(x - stat, y - stat).y) + offset, gameObject.transform.rotation, gameObject.transform);
+                    Instantiate(select1, unitPos + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x - stat, y - stat).x, ComFunc.TileToGridSpace(x - stat, y - stat).y), gameObject.transform.rotation, parent);
                 }
                 if (highlights[x, y - 1] == 0)
                 {
-                    Instantiate(select4, unit.transform.position + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x - stat, y - stat).x, ComFunc.TileToGridSpace(x - stat, y - stat).y) + offset, gameObject.transform.rotation, gameObject.transform);
+                    Instantiate(select4, unitPos + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(x - stat, y - stat).x, ComFunc.TileToGridSpace(x - stat, y - stat).y), gameObject.transform.rotation, parent);
                 }
             }
         }
@@ -1046,11 +1074,6 @@ public class UnitControler : MonoBehaviour
         foreach(RaycastHit2D hit in hits)
         {
             Vector3Int hitPos = new Vector3Int((int)ComFunc.WorldToTileSpace(hit.collider.transform.position).x, (int)ComFunc.WorldToTileSpace(hit.collider.transform.position).y);
-            if (floorTiles.GetTile(tilePos) == halfTile)
-            {
-                //Debug.Log("HalfTile");
-                hitPos = new Vector3Int((int)ComFunc.WorldToTileSpace(hit.collider.transform.position).x, Mathf.RoundToInt(ComFunc.WorldToTileSpace(hit.collider.transform.position + new Vector3(0, .25f)).y));
-            }
 
             //Debug.Log(hitPos + "   " + tilePos);
             if (hitPos == tilePos || returnObj == null)
@@ -1071,10 +1094,6 @@ public class UnitControler : MonoBehaviour
             Vector2 vec2 = ComFunc.TileToGridSpace(aStarNode.y, aStarNode.x);
             vec2 = new Vector3((vec2.y * -3.5f) + (vec2.x * 3.5f), (vec2.x * 1.75f + (vec2.y * 1.75f)) + .25f, 0);
 
-            if (floorTiles.GetTile(new Vector3Int(aStarNode.x, aStarNode.y)) == halfTile)
-            {
-                vec2.y = vec2.y - .20f;
-            }
             if (unit.GetComponent<UnitStats>().size != 1)
             {
                 vec2.x = vec2.x + (.5f * (unit.GetComponent<UnitStats>().size - 1));
@@ -1443,10 +1462,6 @@ public class UnitControler : MonoBehaviour
             {
                 GameObject effect = Instantiate(action.animationPrefab, ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(targetTile.x, targetTile.y).x, ComFunc.TileToGridSpace(targetTile.x, targetTile.y).y) + new Vector3(0, .25f), transform.rotation, transform.parent.GetChild(1));
                 Instantiate(action.soundPrefab, ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(targetTile.x, targetTile.y).x, ComFunc.TileToGridSpace(targetTile.x, targetTile.y).y), transform.rotation);
-                if (floorTiles.GetTile(new Vector3Int(targetTile.x, targetTile.y)) == halfTile)
-                {
-                    effect.transform.position -= new Vector3(0,.25f);
-                }
                 if (castingUnit.GetComponent<UnitStats>().isEnemy)
                 {
                     enemyUnits.Add(effect);

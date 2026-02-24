@@ -71,9 +71,11 @@
     <Compile Include="Assets\Scripts\UnitControler.cs" />
     <Compile Include="Assets\Scripts\DamageNumbers.cs" />
     <Compile Include="Assets\Scripts\AStar\AStarNode.cs" />
+    <Compile Include="Assets\Scripts\InventorySystem\DropMarker.cs" />
     <Compile Include="Assets\Scripts\UI\Menu UI\ResolutionSwitch.cs" />
     <Compile Include="Assets\Scripts\SelectCursor.cs" />
     <Compile Include="Assets\Scripts\UI\Game UI\SelectedUI.cs" />
+    <Compile Include="Assets\Scripts\InventorySystem\CloseDropWindow.cs" />
     <Compile Include="Assets\Scripts\Clearing.cs" />
     <Compile Include="Assets\Scripts\UI\Menu UI\MusicSlider.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
@@ -94,6 +96,7 @@
     <Compile Include="Assets\Scripts\UI\Game UI\MoveButton.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\InteractButton.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\LeaveInteraction.cs" />
+    <Compile Include="Assets\Scripts\UI\OpenURL.cs" />
     <Compile Include="Assets\Scripts\ScreenShake.cs" />
     <Compile Include="Assets\Scripts\MapMaker.cs" />
     <Compile Include="Assets\Scripts\Audio\SetSFXOnStart.cs" />

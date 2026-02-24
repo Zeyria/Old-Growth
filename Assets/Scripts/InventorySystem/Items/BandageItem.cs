@@ -15,6 +15,11 @@ public class BandageItem : InventoryItem
         {
             int missingHP = unitCon.unitToMove.GetComponent<UnitStats>().hpMax - unitCon.unitToMove.GetComponent<UnitStats>().hpCurrent;
             missingHP = Mathf.Clamp(missingHP, 0, 5); //Clamps to heal ammount
+            if(missingHP <= 0)
+            {
+                NoActivate();
+                return;
+            }
             unitCon.unitToMove.GetComponent<UnitStats>().hpCurrent += missingHP;
 
             GameObject a = Instantiate(damageNum, unitCon.unitToMove.transform.position + new Vector3(0, .25f), unitCon.unitToMove.transform.rotation);

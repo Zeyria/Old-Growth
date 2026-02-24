@@ -52,6 +52,10 @@ public class FillSelect : MonoBehaviour
     }
     private void Update()
     {
+        if(SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Town"))
+        {
+            return;
+        }
         if (floorTiles == null)
         {
             floorTiles = GameObject.Find("ArmyGrid").transform.GetChild(0).GetChild(0).GetComponent<Tilemap>();
@@ -111,7 +115,6 @@ public class FillSelect : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            //Comeback and fix this sometime, make units lock their square so no overlap. DONE!
             //Debug.Log(Mathf.RoundToInt(ComFunc.WorldToTileSpace(selectCursor.transform.position).x + 7) + " " + Mathf.RoundToInt(ComFunc.WorldToTileSpace(selectCursor.transform.position).y + 6));
             if (selectCursor.transform.childCount > 0 && filled.grid[Mathf.RoundToInt(ComFunc.WorldToTileSpace(selectCursor.transform.position).x + 7),Mathf.RoundToInt(ComFunc.WorldToTileSpace(selectCursor.transform.position).y + 6)].isWalkable)
             {
