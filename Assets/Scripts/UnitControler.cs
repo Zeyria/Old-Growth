@@ -155,7 +155,7 @@ public class UnitControler : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        if (!drag)
+        if (!drag && maker.cameraControl)
         {
             cameraM.transform.position = new Vector3(cameraM.transform.position.x + (20 * moveHorizontal * Time.deltaTime), cameraM.transform.position.y + (20 * moveVertical * Time.deltaTime), -10);
         }
@@ -164,7 +164,7 @@ public class UnitControler : MonoBehaviour
             cameraM.GetComponent<Camera>().orthographicSize -= Input.mouseScrollDelta.y;
             cameraM.GetComponent<Camera>().orthographicSize = Mathf.Clamp(cameraM.GetComponent<Camera>().orthographicSize, 3, 10);
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && maker.cameraControl)
         {
             Vector2 averageVec = new Vector2();
             foreach (GameObject unit in allyUnits)
@@ -1064,11 +1064,11 @@ public class UnitControler : MonoBehaviour
             }
         }
     }
-    GameObject GetUnitAtTile(Vector3Int tilePos)
+    public GameObject GetUnitAtTile(Vector3Int tilePos)
     {
         int layerMask = (1 << 6);
         Vector2 ray = ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(tilePos.x, tilePos.y).x, ComFunc.TileToGridSpace(tilePos.x, tilePos.y).y) + new Vector3(0,.25f);
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(ray, new Vector2(.5f,.5f), 0, ray, 1, layerMask);
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(ray, new Vector2(.25f,.25f), 0, ray, 1, layerMask);
 
         GameObject returnObj = null;
         foreach(RaycastHit2D hit in hits)

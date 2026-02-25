@@ -36,6 +36,15 @@ public class MapMaker : MonoBehaviour
     private int localAttempts;
     private int globalAttempts;
     private int spawnInt = 0;
+
+    // Number of frames in which to completely interpolate between the positions
+    float waitFrames = .75f;
+    float interpolationFramesCount = 1.25f;
+    float elapsedFrames = 0;
+
+    Vector3 cameraStart;
+    Vector3 cameraEnd;
+    public bool cameraControl;
     public enum Enum
     {
        MapSizeSmall = 5,
@@ -60,6 +69,8 @@ public class MapMaker : MonoBehaviour
     }
     private void Start()
     {
+        interpolationFramesCount = (int)MapSize * .25f;
+        cameraControl = false;
         if(ArenaSettings.activeMapSettings != null)
         {
             MapSize = (Enum)ArenaSettings.activeMapSettings.MapSize;
@@ -126,16 +137,33 @@ public class MapMaker : MonoBehaviour
             MakeMap();
             globalAttempts++;
         }
-
     }
     private void Update()
     {
-        /* For Testing
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (cameraControl)
         {
-            DoItAll();
+            return;
         }
-        */
+        if(waitFrames > 0)
+        {
+            waitFrames -= (1 * Time.deltaTime);
+            return;
+        }
+        float interpolationRatio = (float)elapsedFrames / interpolationFramesCount;
+
+        if (!cameraControl)
+        {
+            // Interpolate position of the moving cube, based on the ratio of elapsed frames
+            camera.transform.position = Vector3.Lerp(cameraStart, cameraEnd, interpolationRatio);
+        }
+        if(elapsedFrames > interpolationFramesCount)
+        {
+            unitCon.allyUnits.Remove(GameObject.Find("Objective Vision"));
+            Destroy(GameObject.Find("Objective Vision"));
+            cameraControl = true;
+
+        }
+        elapsedFrames += (1 * Time.deltaTime);
     }
     void ClearMap()
     {
@@ -252,9 +280,11 @@ public class MapMaker : MonoBehaviour
             }
         }
         GameObject Startchunk = Instantiate(startSquare, ComFunc.GridToWorldSpace(spawnPoint.x, spawnPoint.y), this.transform.rotation, grid.transform).gameObject;
-        camera.transform.position = ComFunc.GridToWorldSpace(spawnPoint.x, spawnPoint.y) + new Vector3(0, 4f) + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(20, 20).x, ComFunc.TileToGridSpace(20, 20).y);
         Combine(Mathf.RoundToInt(spawnPoint.x), Mathf.RoundToInt(spawnPoint.y), Startchunk);
         GameObject objectiveChunk = Instantiate(objectiveSquare, ComFunc.GridToWorldSpace(spawnPoint2.x, spawnPoint2.y), this.transform.rotation, grid.transform).gameObject;
+        camera.transform.position = ComFunc.GridToWorldSpace(spawnPoint2.x, spawnPoint2.y) + new Vector3(-1, 1.5f, -10) + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(20, 20).x, ComFunc.TileToGridSpace(20, 20).y);
+        cameraStart = ComFunc.GridToWorldSpace(spawnPoint2.x, spawnPoint2.y) + new Vector3(-1, 1.5f, -10) + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(20, 20).x, ComFunc.TileToGridSpace(20, 20).y);
+        cameraEnd = ComFunc.GridToWorldSpace(spawnPoint.x, spawnPoint.y) + new Vector3(0, 2f, -10) + ComFunc.GridToWorldSpace(ComFunc.TileToGridSpace(20, 20).x, ComFunc.TileToGridSpace(20, 20).y);
         Combine(Mathf.RoundToInt(spawnPoint2.x), Mathf.RoundToInt(spawnPoint2.y), objectiveChunk);
         for (int x = 0; x < (int)MapSize; x++)
         {
