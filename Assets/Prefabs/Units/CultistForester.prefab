@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Cultist Forester
   unitClass: 
-  hpMax: 10
+  hpMax: 12
   hpCurrent: 0
   speed: 8
   attack: 4

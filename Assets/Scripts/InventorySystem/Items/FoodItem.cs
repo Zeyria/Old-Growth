@@ -18,6 +18,7 @@ public class FoodItem : InventoryItem
         }
         foreach(GameObject ally in unitCon.allyUnits)
         {
+            if(ally == null) { continue; }
             int missingHP = ally.GetComponent<UnitStats>().hpMax - ally.GetComponent<UnitStats>().hpCurrent;
             missingHP = Mathf.Clamp(missingHP, 0, 3); //Clamps to heal ammount
             ally.GetComponent<UnitStats>().hpCurrent += missingHP;

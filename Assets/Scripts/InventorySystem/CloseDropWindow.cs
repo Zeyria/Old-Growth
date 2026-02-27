@@ -8,10 +8,13 @@ public class CloseDropWindow : MonoBehaviour, IPointerClickHandler
     public GameObject dropMarker;
     public void OnPointerClick(PointerEventData pointerEventData)
     {
-        Time.timeScale = 1;
         if(dropMarker != null)
         {
             Destroy(dropMarker);
+        }
+        if(GameObject.Find("Controller") != null)
+        {
+            GameObject.Find("Controller").GetComponent<UnitControler>().overUI = false;
         }
         Destroy(transform.root.gameObject);
     }

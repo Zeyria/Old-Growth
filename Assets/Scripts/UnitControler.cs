@@ -169,7 +169,10 @@ public class UnitControler : MonoBehaviour
             Vector2 averageVec = new Vector2();
             foreach (GameObject unit in allyUnits)
             {
-                averageVec += new Vector2(unit.transform.position.x, unit.transform.position.y);
+                if(unit != null)
+                {
+                    averageVec += new Vector2(unit.transform.position.x, unit.transform.position.y);
+                }
             }
             averageVec = new Vector3(averageVec.x / allyUnits.Count, averageVec.y / allyUnits.Count, -10);
             cameraM.transform.position = averageVec;
@@ -786,7 +789,7 @@ public class UnitControler : MonoBehaviour
         }
         foreach(GameObject unit in enemyUnits)
         {
-            if(unit != null)
+            if(unit != null && unit.GetComponent<UnitStats>() != null)
             {
                 if(unit.GetComponent<SpriteRenderer>() != null)
                 {
@@ -1465,6 +1468,7 @@ public class UnitControler : MonoBehaviour
                 if (castingUnit.GetComponent<UnitStats>().isEnemy)
                 {
                     enemyUnits.Add(effect);
+                    pathfinding.grid[targetTile.x, targetTile.y].isWalkable = false;
                     effect.GetComponent<UnitStats>().isEnemy = true;
                 }
                 else
@@ -1477,7 +1481,7 @@ public class UnitControler : MonoBehaviour
         }
         yield return new WaitForSeconds(.05f);
     }
-    IEnumerator CheckPlayerUnits()
+    public IEnumerator CheckPlayerUnits()
     {
         yield return new WaitForSeconds(.25f);
 

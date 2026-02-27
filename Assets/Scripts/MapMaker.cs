@@ -64,7 +64,7 @@ public class MapMaker : MonoBehaviour
         if (skipProcGen)
         {
             MapSize = (Enum)15;
-            unitCon.pathfinding = new AStarPathfinding((int)MapSize * 7 + 30, (int)MapSize * 7 + 30);
+            unitCon.pathfinding = new AStarPathfinding((int)MapSize * 7 + 40, (int)MapSize * 7 + 40);
         }
     }
     private void Start()
@@ -160,6 +160,7 @@ public class MapMaker : MonoBehaviour
         {
             unitCon.allyUnits.Remove(GameObject.Find("Objective Vision"));
             Destroy(GameObject.Find("Objective Vision"));
+            StartCoroutine(unitCon.CheckPlayerUnits());
             cameraControl = true;
 
         }
@@ -170,7 +171,7 @@ public class MapMaker : MonoBehaviour
         spawnInt = 0;
         mapHolderE.GetComponent<Tilemap>().ClearAllTiles();
         mapHolderF.GetComponent<Tilemap>().ClearAllTiles();
-        unitCon.pathfinding = new AStarPathfinding((int)MapSize * 7 + 30, (int)MapSize * 7 + 30);
+        unitCon.pathfinding = new AStarPathfinding((int)MapSize * 7 + 40, (int)MapSize * 7 + 40);
         List<GameObject> destroyObjects = new List<GameObject>();
         for (int i = 2; i < map.transform.childCount; i++)
         {

@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Cultist Ranger
   unitClass: 
-  hpMax: 5
+  hpMax: 7
   hpCurrent: 0
   speed: 9
   attack: 3

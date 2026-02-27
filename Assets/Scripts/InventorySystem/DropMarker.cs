@@ -25,7 +25,6 @@ public class DropMarker : MonoBehaviour
             a.transform.GetChild(0).GetChild(0).GetComponent<InventorySystem>().AddItem(drop);
         }
         a.transform.GetChild(0).GetChild(1).GetComponent<CloseDropWindow>().dropMarker = this.gameObject;
-        Time.timeScale = 0;
     }
     void CheckForPlayerUnit()
     {
@@ -51,7 +50,7 @@ public class DropMarker : MonoBehaviour
         {
             if(unit.GetComponent<UnitStats>().isEnemy == false && unit.GetComponent<UnitStats>().isCorpse == false)
             {
-                Debug.Log("StandingOnTile");
+                //Debug.Log("StandingOnTile");
                 MakeDropInventory();
             }
         }

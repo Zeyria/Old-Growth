@@ -38,12 +38,17 @@ public class ArmyBuilder : MonoBehaviour
             gameObject.DontDestroyOnLoad();
             DDTracker.hasAG = true;
         }
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    private void Update()
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Town"))
         {
             transform.GetChild(0).gameObject.SetActive(true);
+            for (int i = 2; i < transform.GetChild(0).childCount; i++)
+            {
+                Destroy(transform.GetChild(0).GetChild(i).gameObject);
+            }
         }
         else
         {

@@ -171,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Afflicted Wolf
   unitClass: 
-  hpMax: 8
+  hpMax: 10
   hpCurrent: 0
   speed: 10
   attack: 3

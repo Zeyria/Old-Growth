@@ -15,7 +15,6 @@ public class FillSelect : MonoBehaviour
     bool skipframe = true;
     private List<GameObject> uiButtons;
     private AStarPathfinding filled;
-    public Tile halfTile;
     void Awake()
     {
         uiButtons = new List<GameObject>();
@@ -24,7 +23,7 @@ public class FillSelect : MonoBehaviour
             GameObject unit = availableUnits[i].obj;
             unit.GetComponent<UnitStats>().unitName = UnitNameList.firstNames[Random.Range(0, UnitNameList.firstNames.Length)] + " " + UnitNameList.lastNames[Random.Range(0, UnitNameList.lastNames.Length)];
             GameObject a = Instantiate(selectUI, this.transform);
-            a.GetComponent<RectTransform>().localPosition -= new Vector3(0, i * 225);
+            //a.GetComponent<RectTransform>().localPosition -= new Vector3(0, i * 225);
             a.transform.GetChild(1).GetChild(1).GetComponent<Image>().sprite = Sprite.Create(unit.GetComponent<UnitStats>().portrait, new Rect(0,0, 32, 32), new Vector2(.5f,.5f));
             a.transform.GetChild(1).GetComponent<RectTransform>().sizeDelta = new Vector2(24, 24);
             //This is so ugly and probably slow but it only runs a few times in a small scene so its fine
@@ -85,49 +84,6 @@ public class FillSelect : MonoBehaviour
             }
             skipframe = !skipframe;
             return;
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (selectCursor.transform.childCount > 0)
-            {
-                Destroy(selectCursor.transform.GetChild(0).gameObject);
-            }
-            else
-            {
-                int layerObject = 1;
-                Vector2 ray = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-                RaycastHit2D hit = Physics2D.Raycast(ray, ray, layerObject);
-
-                if (hit.collider != null)
-                {
-                    for (int x = 0; x <= availableUnits.Count - 1; x++)
-                    {
-                        if(hit.collider.gameObject.name == gameObject.transform.GetChild(x).transform.GetChild(4).GetChild(1).GetComponent<TMP_Text>().text)
-                        {
-                            transform.GetChild(x).GetComponent<UnitSelectButton>().amount += 1;
-                        }
-                    }
-                        Destroy(hit.collider.gameObject);
-                    filled.grid[Mathf.RoundToInt(ComFunc.WorldToTileSpace(selectCursor.transform.position).x + 7), Mathf.RoundToInt(ComFunc.WorldToTileSpace(selectCursor.transform.position).y + 6)].isWalkable = true;
-                }
-            }
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            //Debug.Log(Mathf.RoundToInt(ComFunc.WorldToTileSpace(selectCursor.transform.position).x + 7) + " " + Mathf.RoundToInt(ComFunc.WorldToTileSpace(selectCursor.transform.position).y + 6));
-            if (selectCursor.transform.childCount > 0 && filled.grid[Mathf.RoundToInt(ComFunc.WorldToTileSpace(selectCursor.transform.position).x + 7),Mathf.RoundToInt(ComFunc.WorldToTileSpace(selectCursor.transform.position).y + 6)].isWalkable)
-            {
-                filled.grid[Mathf.RoundToInt(ComFunc.WorldToTileSpace(selectCursor.transform.position).x + 7), Mathf.RoundToInt(ComFunc.WorldToTileSpace(selectCursor.transform.position).y + 6)].isWalkable = false;
-                selectCursor.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-                selectCursor.transform.GetChild(0).GetComponent<UnitStats>().isEnemy = false;
-
-                if( floorTiles.GetTile(new Vector3Int(Mathf.RoundToInt(ComFunc.WorldToTileSpace(selectCursor.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(selectCursor.transform.position).y))) == halfTile)
-                {
-                    selectCursor.transform.GetChild(0).transform.position -= new Vector3(0, .25f, 0);
-                }
-                selectCursor.transform.GetChild(0).SetParent(floorTiles.transform.parent);
-            }
         }
     }
 }
