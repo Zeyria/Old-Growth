@@ -7190,7 +7190,7 @@ Tilemap:
       - {fileID: -1443981764, guid: 2a692a7794abc8247a1c1e1c545e9a3f, type: 3}
       - {fileID: -334998270, guid: 2a692a7794abc8247a1c1e1c545e9a3f, type: 3}
       - {fileID: -1443981764, guid: 2a692a7794abc8247a1c1e1c545e9a3f, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -13218,7 +13218,7 @@ MonoBehaviour:
   damageNumber: {fileID: 6195347164261911650, guid: ec32cd40c63750a44b56aef00003bcef, type: 3}
   gameWinColliderHolder: {fileID: 0}
   selectSound: {fileID: 4444665441879566186, guid: 47149393f1a84d648b01745b1662231b, type: 3}
-  artifactPulse: 1
+  artifactPulse: 0
   itemDropMarker: {fileID: 5344273445596243601, guid: 7fbaa6d74645bbb49be78ee08127bdd0, type: 3}
   unitToMove: {fileID: 0}
   moving: 0
@@ -13250,7 +13250,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585187209}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3d7c0e96d4968b459fc5ccfd013d79e, type: 3}
   m_Name: 
@@ -18707,7 +18707,7 @@ Tilemap:
       - {fileID: -1443981764, guid: 2a692a7794abc8247a1c1e1c545e9a3f, type: 3}
       - {fileID: -334998270, guid: 2a692a7794abc8247a1c1e1c545e9a3f, type: 3}
       - {fileID: -1443981764, guid: 2a692a7794abc8247a1c1e1c545e9a3f, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 6, y: -3, z: 0}
@@ -19554,11 +19554,47 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3156033872027501801, guid: 14c96498bd60f1b40966ce73764a3d96, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863218850519388596, guid: 14c96498bd60f1b40966ce73764a3d96, type: 3}
+      propertyPath: draggable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863218850519388596, guid: 14c96498bd60f1b40966ce73764a3d96, type: 3}
+      propertyPath: addOnSpawn.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6682155667977832163, guid: 14c96498bd60f1b40966ce73764a3d96, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3156033871853971773}
   m_SourcePrefab: {fileID: 100100000, guid: 14c96498bd60f1b40966ce73764a3d96, type: 3}
+--- !u!1 &3156033871853971772 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6682155667977832163, guid: 14c96498bd60f1b40966ce73764a3d96, type: 3}
+  m_PrefabInstance: {fileID: 3156033871853971771}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3156033871853971773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3156033871853971772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 455467eca4340fc4db59baa186671607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryTownToArena
+  load: 1
+  item1: {fileID: 5061459926661911446, guid: 63ab199d8ff415b45a16de7b652fe9cb, type: 3}
+  item2: {fileID: 7812843233097670830, guid: f61d0a80be3838b4bab9cab6762ce643, type: 3}
+  item3: {fileID: 7117675135144420691, guid: 9c030ab81aa51064e8a5644482776269, type: 3}
 --- !u!1001 &3467992439580977354
 PrefabInstance:
   m_ObjectHideFlags: 0

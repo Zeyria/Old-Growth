@@ -9,6 +9,7 @@ public class ActionClass
     public int targetingType; // 0- Enemy 1- Ally 2- Open
     public float damageMult;
     public bool stun;
+    public bool slow;
     public bool summon;
     public int range;
     public int minRange;

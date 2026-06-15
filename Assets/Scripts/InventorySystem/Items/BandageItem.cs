@@ -4,12 +4,21 @@ using TMPro;
 public class BandageItem : InventoryItem
 {
     public GameObject damageNum;
+    public BandageItem()
+    {
+        itemID = 2;
+    }
     public override void ActivateItem()
     {
         UnitControler unitCon = null;
         if (GameObject.Find("Controller") != null)
         {
             unitCon = GameObject.Find("Controller").GetComponent<UnitControler>();
+        }
+        else
+        {
+            NoActivate();
+            return;
         }
         if (unitCon.unitToMove != null)
         {

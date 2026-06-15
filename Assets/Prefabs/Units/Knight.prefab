@@ -148,6 +148,7 @@ MonoBehaviour:
     targetingType: 1
     damageMult: 1
     stun: 0
+    slow: 0
     summon: 0
     range: 3
     minRange: 0
@@ -162,6 +163,7 @@ MonoBehaviour:
     targetingType: 1
     damageMult: 1.25
     stun: 1
+    slow: 0
     summon: 0
     range: 3
     minRange: 0
@@ -177,6 +179,9 @@ MonoBehaviour:
   isCorpse: 0
   spawnsCorpse: 1
   dropList: []
+  startGear:
+  - obj: {fileID: 5061459926661911446, guid: 63ab199d8ff415b45a16de7b652fe9cb, type: 3}
+    nt: 1
 --- !u!70 &5392058920235775333
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

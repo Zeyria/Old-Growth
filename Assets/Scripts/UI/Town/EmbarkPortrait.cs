@@ -8,10 +8,7 @@ public class EmbarkPortrait : MonoBehaviour, IPointerClickHandler
     public FillSelect fillSelect;
     public void OnPointerClick(PointerEventData pointerEventData)
     {
-        if (pointerEventData.button == PointerEventData.InputButton.Right)
-        {
-            ClearSlot();
-        }
+        ClearSlot();
     }
     public void ClearSlot()
     {

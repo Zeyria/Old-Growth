@@ -9,7 +9,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     public int height;
 
     public Vector2Int curretPos;
-
+    public bool canDrag = false;
     Vector3 offset;
     Vector3 originalPos;
     public GraphicRaycaster m_Raycaster;
@@ -19,6 +19,8 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     Vector2Int gridOffset;
     public bool notMain = false;
     GraphicRaycaster mainRaycaster;
+
+    public int itemID;
 
     void Start()
     {
@@ -114,6 +116,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     }
     public void BeginDragDelegate(PointerEventData data)
     {
+        if (!canDrag) { return; }
         Vector3 point = Input.mousePosition;
         offset = point - gameObject.GetComponent<RectTransform>().position;
         originalPos = transform.localPosition;
@@ -146,11 +149,13 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     }
     public void OnDragDelegate(PointerEventData data)
     {
+        if (!canDrag) { return; }
         Vector3 point = Input.mousePosition;
         gameObject.GetComponent<RectTransform>().position = point - offset;
     }
     public void EndDragDelegate(PointerEventData data)
     {
+        if (!canDrag) { return; }
         transform.root.GetComponent<Canvas>().sortingOrder = 0;
         offset = Vector3.zero;
 

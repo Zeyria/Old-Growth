@@ -29,4 +29,5 @@ public class UnitStats : MonoBehaviour
     public bool spawnsCorpse = true;
 
     public List<ObjAndIntClass> dropList;
+    public List<ObjAndIntClass> startGear;
 }

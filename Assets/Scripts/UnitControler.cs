@@ -1456,7 +1456,11 @@ public class UnitControler : MonoBehaviour
         {
             if (action.stun)
             {
-                targetUnit.GetComponent<UnitStats>().actionPointCurrent -= 3;
+                targetUnit.GetComponent<UnitStats>().actionPointCurrent = 0;
+            }
+            if (action.slow)
+            {
+                targetUnit.GetComponent<UnitStats>().actionPointCurrent -= 1;
             }
         }
         if(targetTile != null)

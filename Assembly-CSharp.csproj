@@ -67,9 +67,9 @@
     <Compile Include="Assets\Scripts\InventorySystem\Items\FoodItem.cs" />
     <Compile Include="Assets\Scripts\ArenaVariables.cs" />
     <Compile Include="Assets\Scripts\GridTracker.cs" />
+    <Compile Include="Assets\Scripts\UI\InventoryTownToArena.cs" />
     <Compile Include="Assets\Scripts\Common\UnitNameList.cs" />
     <Compile Include="Assets\Scripts\UnitControler.cs" />
-    <Compile Include="Assets\Scripts\UI\EmbarkPortrait.cs" />
     <Compile Include="Assets\Scripts\DamageNumbers.cs" />
     <Compile Include="Assets\Scripts\AStar\AStarNode.cs" />
     <Compile Include="Assets\Scripts\InventorySystem\DropMarker.cs" />
@@ -84,7 +84,6 @@
     <Compile Include="Assets\Scripts\UI\Menu UI\ExitOptionsButton.cs" />
     <Compile Include="Assets\Scripts\UI\UIColorFade.cs" />
     <Compile Include="Assets\Scripts\UI\GameUIManager.cs" />
-    <Compile Include="Assets\Scripts\UI\UITownHover.cs" />
     <Compile Include="Assets\Scripts\GenerateClearings.cs" />
     <Compile Include="Assets\Scripts\UI\Menu UI\IngameESCMenu.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\OrbArtifact\RetrieveButton.cs" />
@@ -111,7 +110,6 @@
     <Compile Include="Assets\Scripts\UI\Game UI\UnitSelectButton.cs" />
     <Compile Include="Assets\Scripts\InventorySystem\Items\PotionItem.cs" />
     <Compile Include="Assets\Scripts\UI\UISFX.cs" />
-    <Compile Include="Assets\Scripts\UI\Menu UI\EmbarkButton.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\InteractionDescription.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\interactionData.cs" />
     <Compile Include="Assets\Scripts\ArmyBuilder.cs" />
@@ -123,6 +121,7 @@
     <Compile Include="Assets\Scripts\UI\Game UI\UnitAP.cs" />
     <Compile Include="Assets\Scripts\Common\DestoryAfterSpawn.cs" />
     <Compile Include="Assets\Scripts\ClearButton.cs" />
+    <Compile Include="Assets\Scripts\UI\Town\TownResources.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\OrbArtifact\GiveItBloodButton.cs" />
     <Compile Include="Assets\Scripts\MapClass.cs" />
     <Compile Include="Assets\Scripts\Common\ComFunc.cs" />
@@ -133,6 +132,8 @@
     <Compile Include="Assets\Scripts\CorpseLogic.cs" />
     <Compile Include="Assets\Scripts\ArtifactPulse.cs" />
     <Compile Include="Assets\Scripts\Common\Config.cs" />
+    <Compile Include="Assets\Scripts\UI\Town\UITownHover.cs" />
+    <Compile Include="Assets\Scripts\UI\Town\EmbarkButton.cs" />
     <Compile Include="Assets\Scripts\InventorySystem\InventoryItem.cs" />
     <Compile Include="Assets\Scripts\ArenaSettings.cs" />
     <Compile Include="Assets\Scripts\UI\Menu UI\SFXSlider.cs" />
@@ -146,6 +147,7 @@
     <Compile Include="Assets\Scripts\Common\DestoryAfterTime.cs" />
     <Compile Include="Assets\Scripts\Common\LoadConfig.cs" />
     <Compile Include="Assets\Scripts\AStar\AStarPathfinding.cs" />
+    <Compile Include="Assets\Scripts\UI\Town\EmbarkPortrait.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

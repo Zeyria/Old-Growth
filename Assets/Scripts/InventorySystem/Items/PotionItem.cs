@@ -4,6 +4,10 @@ using TMPro;
 public class PotionItem : InventoryItem
 {
     public GameObject damageNum;
+    public PotionItem()
+    {
+        itemID = 3;
+    }
     public override void ActivateItem()
     {
         UnitControler unitCon = null;
@@ -11,7 +15,12 @@ public class PotionItem : InventoryItem
         {
             unitCon = GameObject.Find("Controller").GetComponent<UnitControler>();
         }
-        if(unitCon.unitToMove != null)
+        else
+        {
+            NoActivate();
+            return;
+        }
+        if (unitCon.unitToMove != null)
         {
             if (unitCon.unitToMove.GetComponent<UnitStats>().actionPointCurrent < unitCon.unitToMove.GetComponent<UnitStats>().actionPointMax)
             {
@@ -26,10 +35,6 @@ public class PotionItem : InventoryItem
             {
                 NoActivate();
             }
-        }
-        else
-        {
-            NoActivate();
         }
     }
     private void NoActivate()

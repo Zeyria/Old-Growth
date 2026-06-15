@@ -4,6 +4,10 @@ using TMPro;
 public class FoodItem : InventoryItem
 {
     public GameObject damageNum;
+    public FoodItem()
+    {
+        itemID = 1;
+    }
     public override void ActivateItem()
     {
         UnitControler unitCon = null;

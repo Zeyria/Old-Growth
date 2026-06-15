@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 19e1554c10074fd41826e7b155a7d5cb
+guid: 4b0dc3b064b33ad46a3f8d3136c38c41
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -127,9 +127,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: TownWIP
+  - name: Frame_0
     originalName: 
-    pivot: {x: 0.48120302, y: 0}
+    pivot: {x: 0.5, y: -0.16}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 665
-      height: 360
-    spriteID: 88a84618b107cfa4686a90a65350f2b8
+      width: 17
+      height: 25
+    spriteID: e52a100ca7787a14da2357082fd9ddc7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -148,30 +148,120 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: -0.16}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 37
+      width: 17
+      height: 25
+    spriteID: 17715d318ea82f241aedc3ec6793f894
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 37}
+  - name: Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 70
+      width: 17
+      height: 24
+    spriteID: 14d8b92df7851f645b6f33af59986761
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 70}
+  - name: Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 29
+      y: 4
+      width: 17
+      height: 24
+    spriteID: 767d0d5f99f4c9541864837eb1a57dda
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 29, y: 4}
   spriteSheetImportData: []
   tileSetImportData: []
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 3828238850
+      value0: 2734407710
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: TownWIP
+    name: Apothecary
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: TownWIP
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 0
-        y: 0
-        width: 665
-        height: 360
-      spriteId: 88a84618b107cfa4686a90a65350f2b8
+        x: 1
+        y: 4
+        width: 17
+        height: 25
+      spriteId: e52a100ca7787a14da2357082fd9ddc7
+    - name: Frame_1
+      frameIndex: 1
+      additiveSortOrder: 0
+      cellRect:
+        x: 1
+        y: 4
+        width: 17
+        height: 25
+      spriteId: 17715d318ea82f241aedc3ec6793f894
+    - name: Frame_2
+      frameIndex: 2
+      additiveSortOrder: 0
+      cellRect:
+        x: 1
+        y: 4
+        width: 17
+        height: 24
+      spriteId: 14d8b92df7851f645b6f33af59986761
+    - name: Frame_3
+      frameIndex: 3
+      additiveSortOrder: 0
+      cellRect:
+        x: 1
+        y: 4
+        width: 17
+        height: 24
+      spriteId: 767d0d5f99f4c9541864837eb1a57dda
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -181,5 +271,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 640, y: 360}
-  previousTextureSize: {x: 1024, y: 512}
+  canvasSize: {x: 19, y: 35}
+  previousTextureSize: {x: 64, y: 128}

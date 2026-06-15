@@ -7,6 +7,7 @@ public class InventorySystem : MonoBehaviour
     public int[,] inventoryGrid;
     public int height;
     public int width;
+    public bool draggable;
 
     public GameObject invSquareGO;
     public GameObject[,] invSquareGOArray;
@@ -61,10 +62,30 @@ public class InventorySystem : MonoBehaviour
             item.transform.localScale = new Vector3(1, 1, 1);
             item.GetComponent<InventoryItem>().notMain = notMain;
             item.transform.GetChild(0).gameObject.SetActive(false);
+            item.GetComponent<InventoryItem>().canDrag = draggable;
         }
         else
         {
             Debug.Log("Inventory Full");
+        }
+    }
+    public void RemoveItem(GameObject item)
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if(item.name + "(Clone)" == transform.GetChild(i).name && transform.GetChild(i).gameObject.activeInHierarchy)
+            {
+                for (int ix = 0; ix < transform.GetChild(i).GetComponent<InventoryItem>().width; ix++)
+                {
+                    for (int iy = 0; iy < transform.GetChild(i).GetComponent<InventoryItem>().height; iy++)
+                    {
+                        SetValue(transform.GetChild(i).GetComponent<InventoryItem>().curretPos.x + ix, transform.GetChild(i).GetComponent<InventoryItem>().curretPos.y + iy, 0);
+                    }
+                }
+                transform.GetChild(i).gameObject.SetActive(false);
+                Destroy(transform.GetChild(i).gameObject);
+                break;
+            }
         }
     }
     public Vector2Int isInventoryFull(GameObject gameObject, bool fillSlots)

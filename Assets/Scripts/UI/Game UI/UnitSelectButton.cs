@@ -17,6 +17,7 @@ public class UnitSelectButton : MonoBehaviour, IPointerClickHandler
     public GameObject armyGrid;
     public static int[] slotTracker;
     int currentSlot; // 10 is unfilled
+    public GameObject inventory;
     private void Start()
     {
         currentSlot = 10;
@@ -24,8 +25,8 @@ public class UnitSelectButton : MonoBehaviour, IPointerClickHandler
         slots = new GameObject[4];
         slotsPortraits = new GameObject[4];
         amount = 1;
-        i = transform.GetSiblingIndex();
         fill = transform.parent.GetComponent<FillSelect>();
+        i = transform.GetSiblingIndex();
         unit = fill.availableUnits[i].obj;
         slots[0] = (GameObject.Find("Slot 1"));
         slots[1] = (GameObject.Find("Slot 2"));
@@ -40,13 +41,24 @@ public class UnitSelectButton : MonoBehaviour, IPointerClickHandler
         slotTracker[2] = 0;
         slotTracker[3] = 0;
         armyGrid = GameObject.Find("ArmyGrid");
+        inventory = GameObject.Find("Inventory");
     }
     public void OnPointerClick(PointerEventData pointerEventData)
     {
+
         if (currentSlot != 10)
         {
             slotsPortraits[currentSlot].GetComponent<EmbarkPortrait>().ClearSlot();
             currentSlot = 10;
+
+            for (int i = 0; i < unit.GetComponent<UnitStats>().startGear.Count; i++)
+            {
+                for (int x = 0; x < unit.GetComponent<UnitStats>().startGear[i].nt; x++)
+                {
+                    inventory.GetComponent<InventorySystem>().RemoveItem(unit.GetComponent<UnitStats>().startGear[i].obj);
+                }
+            }
+            SetStartingItems();
             return;
         }
         if (amount > 0)
@@ -101,7 +113,26 @@ public class UnitSelectButton : MonoBehaviour, IPointerClickHandler
                 gameObject.transform.GetComponent<UnitStats>().isEnemy = false;
                 activeSlotPortrait.GetComponent<RawImage>().texture = gameObject.GetComponent<UnitStats>().portrait;
                 activeSlotPortrait.GetComponent<RawImage>().color = Color.white;
+                //inv
+                for (int i = 0; i < gameObject.GetComponent<UnitStats>().startGear.Count; i++)
+                {
+                    for (int x = 0; x < gameObject.GetComponent<UnitStats>().startGear[i].nt; x++)
+                    {
+                        inventory.GetComponent<InventorySystem>().AddItem(gameObject.GetComponent<UnitStats>().startGear[i].obj);
+                    }
+                }
+                SetStartingItems();
             }
+        }
+    }
+    public void SetStartingItems()
+    {
+        InventoryTownToArena.startingItems.Clear();
+        for (int i = 0; i < inventory.transform.childCount; i++)
+        {
+            if (inventory.transform.GetChild(i).name == "Food(Clone)") { InventoryTownToArena.startingItems.Add(1); }
+            else if (inventory.transform.GetChild(i).name == "Bandages(Clone)") { InventoryTownToArena.startingItems.Add(2); }
+            else if (inventory.transform.GetChild(i).name == "Potion(Clone)") { InventoryTownToArena.startingItems.Add(3); }
         }
     }
 }

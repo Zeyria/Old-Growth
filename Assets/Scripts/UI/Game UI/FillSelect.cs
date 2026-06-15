@@ -85,5 +85,14 @@ public class FillSelect : MonoBehaviour
             skipframe = !skipframe;
             return;
         }
+
+        if(this.transform.childCount != availableUnits.Count)
+        {
+            for (int i = 0; i <= transform.childCount - 1; i++)
+            {
+                Destroy(transform.GetChild(i).gameObject);
+            }
+            Awake();
+        }
     }
 }
