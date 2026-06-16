@@ -1155,6 +1155,9 @@ public class UnitControler : MonoBehaviour
                     if (Mathf.RoundToInt(unitPos.x) + x < 0 || Mathf.RoundToInt(unitPos.y) + y < 0
                         || x + unitPos.x > (int)maker.MapSize * 7 + 30 || y + unitPos.y > (int)maker.MapSize * 7 + 30) { continue; }
 
+                    if (Mathf.RoundToInt(unitPos.x) < 0 || Mathf.RoundToInt(unitPos.y) < 0
+                        || unitPos.x > (int)maker.MapSize * 7 + 30 || unitPos.y > (int)maker.MapSize * 7 + 30) { continue; }
+
                     path = temp.FindPath(Mathf.RoundToInt(unitPos.x), Mathf.RoundToInt(unitPos.y), Mathf.RoundToInt(unitPos.x) + x, Mathf.RoundToInt(unitPos.y) + y);
                     if (path != null)
                     {

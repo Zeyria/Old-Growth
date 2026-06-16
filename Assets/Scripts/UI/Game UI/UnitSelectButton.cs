@@ -18,10 +18,23 @@ public class UnitSelectButton : MonoBehaviour, IPointerClickHandler
     public static int[] slotTracker;
     int currentSlot; // 10 is unfilled
     public GameObject inventory;
+    public bool transfer;
+    public GameObject transferTo;
     private void Start()
     {
+        transfer = transform.parent.GetComponent<FillSelect>().transfer;
+        transferTo = transform.parent.GetComponent<FillSelect>().transferTo;
         currentSlot = 10;
         slotTracker = new int[4];
+        slotTracker[0] = 0;
+        slotTracker[1] = 0;
+        slotTracker[2] = 0;
+        slotTracker[3] = 0;
+        if (transfer) { return; }
+        SetUp();
+    }
+    void SetUp()
+    {
         slots = new GameObject[4];
         slotsPortraits = new GameObject[4];
         amount = 1;
@@ -36,15 +49,34 @@ public class UnitSelectButton : MonoBehaviour, IPointerClickHandler
         slotsPortraits[1] = (GameObject.Find("Slot 2 Portrait"));
         slotsPortraits[2] = (GameObject.Find("Slot 3 Portrait"));
         slotsPortraits[3] = (GameObject.Find("Slot 4 Portrait"));
-        slotTracker[0] = 0;
-        slotTracker[1] = 0;
-        slotTracker[2] = 0;
-        slotTracker[3] = 0;
         armyGrid = GameObject.Find("ArmyGrid");
         inventory = GameObject.Find("Inventory");
     }
+    void Update()
+    {
+        if(transform.parent != null)
+        {
+            transfer = transform.parent.GetComponent<FillSelect>().transfer;
+            transferTo = transform.parent.GetComponent<FillSelect>().transferTo;
+            SetUp();
+        }
+    }
     public void OnPointerClick(PointerEventData pointerEventData)
     {
+        if (transfer && currentSlot == 10)
+        {
+            transferTo.GetComponent<FillSelect>().availableUnits.Add(transform.parent.GetComponent<FillSelect>().availableUnits[transform.GetSiblingIndex()]);
+            transform.parent.GetComponent<FillSelect>().availableUnits.RemoveAt(transform.GetSiblingIndex());
+            transferTo.GetComponent<FillSelect>().uiButtons.Add(transform.parent.transform.GetChild(transform.GetSiblingIndex()).gameObject);
+            transform.parent.GetComponent<FillSelect>().uiButtons.RemoveAt(transform.GetSiblingIndex());
+            this.transform.SetParent(transferTo.transform);
+            transferTo = transform.parent.GetComponent<FillSelect>().transferTo;
+            return;
+        }
+        else if (transfer)
+        {
+            return;
+        }
 
         if (currentSlot != 10)
         {

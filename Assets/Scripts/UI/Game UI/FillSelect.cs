@@ -13,10 +13,14 @@ public class FillSelect : MonoBehaviour
     public GameObject selectCursor;
     public Tilemap floorTiles;
     bool skipframe = true;
-    private List<GameObject> uiButtons;
+    public List<GameObject> uiButtons;
     private AStarPathfinding filled;
+    public bool transfer;
+    public GameObject transferTo;
+    public bool notMain;
     void Awake()
     {
+        if (notMain) { return; }
         uiButtons = new List<GameObject>();
         for (int i = 0; i <= availableUnits.Count - 1; i++)
         {
@@ -36,6 +40,9 @@ public class FillSelect : MonoBehaviour
             a.transform.GetChild(3).GetChild(2).GetChild(1).GetComponent<TMP_Text>().text = (stats[2] + unit.GetComponent<UnitStats>().sightRange).ToString();
             a.transform.GetChild(3).GetChild(3).GetChild(1).GetComponent<TMP_Text>().text = (stats[3] + unit.GetComponent<UnitStats>().attack).ToString();
             a.transform.GetChild(4).GetChild(1).GetComponent<TMP_Text>().text = unit.GetComponent<UnitStats>().unitName;
+
+            a.GetComponent<UnitSelectButton>().transfer = transfer;
+            a.GetComponent<UnitSelectButton>().transferTo = transferTo;
 
             uiButtons.Add(a);
         }
@@ -85,7 +92,7 @@ public class FillSelect : MonoBehaviour
             skipframe = !skipframe;
             return;
         }
-
+        /* not sure what this did?
         if(this.transform.childCount != availableUnits.Count)
         {
             for (int i = 0; i <= transform.childCount - 1; i++)
@@ -94,5 +101,6 @@ public class FillSelect : MonoBehaviour
             }
             Awake();
         }
+        */
     }
 }

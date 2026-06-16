@@ -96,6 +96,7 @@
     <Compile Include="Assets\Scripts\UI\Menu UI\OptionsButton.cs" />
     <Compile Include="Assets\Scripts\UI\Game UI\MoveButton.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\InteractButton.cs" />
+    <Compile Include="Assets\Scripts\Common\TurnOffAfterTime.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\LeaveInteraction.cs" />
     <Compile Include="Assets\Scripts\UI\OpenURL.cs" />
     <Compile Include="Assets\Scripts\ScreenShake.cs" />

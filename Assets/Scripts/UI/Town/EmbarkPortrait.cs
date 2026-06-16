@@ -2,14 +2,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
-public class EmbarkPortrait : MonoBehaviour, IPointerClickHandler
+public class EmbarkPortrait : MonoBehaviour
 {
     public int slotNum;
     public FillSelect fillSelect;
-    public void OnPointerClick(PointerEventData pointerEventData)
-    {
-        ClearSlot();
-    }
     public void ClearSlot()
     {
         UnitSelectButton.slotTracker[slotNum] = 0;
