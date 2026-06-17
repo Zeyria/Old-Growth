@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\UI\Menu UI\VSyncToggle.cs" />
     <Compile Include="Assets\Scripts\Audio\SetMusicVolume.cs" />
+    <Compile Include="Assets\Scripts\SetKidScale.cs" />
     <Compile Include="Assets\Scripts\UIOnWhenHover.cs" />
     <Compile Include="Assets\Scripts\InventorySystem\Items\FoodItem.cs" />
     <Compile Include="Assets\Scripts\ArenaVariables.cs" />

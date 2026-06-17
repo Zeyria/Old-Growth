@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UnitStats : MonoBehaviour
 {
+    public bool generated;
     public string unitName;
     public string unitClass;
 
@@ -14,6 +15,7 @@ public class UnitStats : MonoBehaviour
     public int attack;
     public int sightRange;
     public int size;
+    public int personality = -1;
 
     public int actionPointMax;
     //[HideInInspector]

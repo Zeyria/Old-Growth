@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60085929536f34d4eb2fbe24ff80500e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generated: 0
   unitName: Mayviel Unafraid
   unitClass: Archer
   hpMax: 8
@@ -142,6 +143,7 @@ MonoBehaviour:
   attack: 3
   sightRange: 11
   size: 1
+  personality: -1
   actionPointMax: 3
   actionPointCurrent: 3
   action1:

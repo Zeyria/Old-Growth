@@ -19,11 +19,11 @@ public class GridTracker : MonoBehaviour
         }
         if (menu.activeInHierarchy)
         {
-            grid.SetActive(true);
+            grid.transform.GetChild(0).gameObject.SetActive(true);
         }
         else
         {
-            grid.SetActive(false);
+            grid.transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 }

@@ -131,7 +131,6 @@ public class UnitSelectButton : MonoBehaviour, IPointerClickHandler
                 amount -= 1;
                 GameObject gameObject = Instantiate(unit, activeSlot.transform.position + (new Vector3(.5f, 0) * (unit.GetComponent<UnitStats>().size - 1)), armyGrid.transform.rotation, armyGrid.transform.GetChild(0));
 
-                gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, .6f);
                 gameObject.name = transform.GetChild(4).transform.GetChild(1).GetComponent<TMP_Text>().text;
                 this.transform.GetChild(6).gameObject.SetActive(true);
 
@@ -140,8 +139,10 @@ public class UnitSelectButton : MonoBehaviour, IPointerClickHandler
                 gameObject.GetComponent<UnitStats>().sightRange = int.Parse(transform.GetChild(3).transform.GetChild(2).transform.GetChild(1).GetComponent<TMP_Text>().text);
                 gameObject.GetComponent<UnitStats>().attack = int.Parse(transform.GetChild(3).transform.GetChild(3).transform.GetChild(1).GetComponent<TMP_Text>().text);
 
+                unit = fill.availableUnits[transform.GetSiblingIndex()].obj;
+                gameObject.GetComponent<UnitStats>().personality = unit.GetComponent<UnitStats>().personality;
+
                 gameObject.GetComponent<UnitStats>().unitName = transform.GetChild(4).transform.GetChild(1).GetComponent<TMP_Text>().text;
-                gameObject.transform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                 gameObject.transform.GetComponent<UnitStats>().isEnemy = false;
                 activeSlotPortrait.GetComponent<RawImage>().texture = gameObject.GetComponent<UnitStats>().portrait;
                 activeSlotPortrait.GetComponent<RawImage>().color = Color.white;

@@ -134,7 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60085929536f34d4eb2fbe24ff80500e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Damien Gerotis
+  generated: 0
+  unitName: Xinah Ballsgate
   unitClass: Apothecary
   hpMax: 7
   hpCurrent: 0
@@ -142,6 +143,7 @@ MonoBehaviour:
   attack: 2
   sightRange: 10
   size: 1
+  personality: -1
   actionPointMax: 3
   actionPointCurrent: 3
   action1:
@@ -169,7 +171,7 @@ MonoBehaviour:
     minRange: 0
     AP: 2
     soundPrefab: {fileID: 8377693716206373525, guid: 651efa4c80cf6e648a3f5adfeeced871, type: 3}
-    animationPrefab: {fileID: 3022894941759572255, guid: f375cdc6cdc34fd4ea34a835b3bd0028, type: 3}
+    animationPrefab: {fileID: 975444796769934153, guid: 47b911850340cca4799f03aff19ae563, type: 3}
     iconSprite: {fileID: 5509758069719216628, guid: 7b28afc642120ac4888745de5be13e55, type: 3}
     AIUseWhenWander: 0
     description: Throw a potion dealing DAMAGE damage with a max range of RANGE tiles.

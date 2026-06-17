@@ -42,7 +42,15 @@ public class SelectMapButton : MonoBehaviour
 		}
 		if(unitHolder != null && playButton.transform.GetChild(2).gameObject.activeInHierarchy == false)
         {
-			if(unitHolder.transform.childCount < 3)
+			int c = 0;
+            for (int i = 0; i < unitHolder.transform.childCount; i++)
+            {
+                if (unitHolder.transform.GetChild(i).gameObject.activeInHierarchy)
+                {
+					c++;
+                }
+            }
+			if(c < 3)
             {
 				playButton.GetComponent<Button>().enabled = false;
 				playButton.transform.GetChild(2).gameObject.SetActive(false);
@@ -50,7 +58,7 @@ public class SelectMapButton : MonoBehaviour
 				playButton.transform.GetChild(4).gameObject.SetActive(false);
 				playButton.transform.GetChild(0).gameObject.SetActive(false);
 			}
-			else if (unitHolder.transform.childCount > 7)
+			else if (c > 7)
             {
 				playButton.GetComponent<Button>().enabled = false;
 				playButton.transform.GetChild(2).gameObject.SetActive(false);

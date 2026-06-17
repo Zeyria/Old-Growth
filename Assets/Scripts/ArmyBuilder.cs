@@ -47,7 +47,7 @@ public class ArmyBuilder : MonoBehaviour
             transform.GetChild(0).gameObject.SetActive(true);
             for (int i = 2; i < transform.GetChild(0).childCount; i++)
             {
-                Destroy(transform.GetChild(0).GetChild(i).gameObject);
+                //Destroy(transform.GetChild(0).GetChild(i).gameObject);
             }
         }
         else

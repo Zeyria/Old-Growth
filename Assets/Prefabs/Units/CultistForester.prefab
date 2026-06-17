@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60085929536f34d4eb2fbe24ff80500e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generated: 0
   unitName: Cultist Forester
   unitClass: 
   hpMax: 12
@@ -141,12 +142,14 @@ MonoBehaviour:
   attack: 4
   sightRange: 9
   size: 1
+  personality: -1
   actionPointMax: 3
   actionPointCurrent: 3
   action1:
     targetingType: 1
     damageMult: 1
     stun: 0
+    slow: 0
     summon: 0
     range: 3
     minRange: 0
@@ -160,6 +163,7 @@ MonoBehaviour:
     targetingType: 1
     damageMult: 0.75
     stun: 1
+    slow: 0
     summon: 0
     range: 3
     minRange: 0
@@ -180,6 +184,7 @@ MonoBehaviour:
     nt: 13
   - obj: {fileID: 7812843233097670830, guid: f61d0a80be3838b4bab9cab6762ce643, type: 3}
     nt: 13
+  startGear: []
 --- !u!70 &2536825896797559209
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
