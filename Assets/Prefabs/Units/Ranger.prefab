@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8013488277096788902}
   - component: {fileID: 8013488277096788897}
   m_Layer: 6
-  m_Name: Archer
+  m_Name: Ranger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,7 +90,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 1507890491, guid: a30609ef2cde2c54596c17ff2b978556, type: 3}
+  m_Sprite: {fileID: -5081659279774951377, guid: e646fb7d4bf8caf488166579ee80ffd3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -110,7 +110,7 @@ Animator:
   m_GameObject: {fileID: 8013488277096788896}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a4da3e66a57bf384db14c5ac5652fe1f, type: 2}
+  m_Controller: {fileID: 9100000, guid: fa5cdb1f9192a124da22ca822e2821db, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generated: 0
   unitName: Mayviel Unafraid
-  unitClass: Archer
+  unitClass: Ranger
   hpMax: 8
   hpCurrent: 0
   speed: 8
@@ -175,7 +175,7 @@ MonoBehaviour:
     iconSprite: {fileID: 21300000, guid: 8b61222b59e564b4db041a6a473ac7e0, type: 3}
     AIUseWhenWander: 0
     description: Choose a point within RANGE tiles and gain vision around it.
-  portrait: {fileID: 2800000, guid: 3eed957af2aa071439ad10fc6b8ee468, type: 3}
+  portrait: {fileID: 2800000, guid: 4ebfc81e4f0aa074dbbbf5375fdb318a, type: 3}
   isEnemy: 1
   isCorpse: 0
   spawnsCorpse: 1
