@@ -62,7 +62,7 @@ public class FillSelect : MonoBehaviour
             unit.GetComponent<UnitStats>().generated = true;
 
         }
-        a.transform.GetChild(5).GetChild(1).GetComponent<TMP_Text>().text = "Personality: " + PersonalityList.Personalites[pers].stri;
+        a.transform.GetChild(5).GetChild(1).GetComponent<TMP_Text>().text = PersonalityList.Personalites[pers].stri + " " + unit.GetComponent<UnitStats>().unitClass;
         a.transform.GetChild(3).GetChild(0).GetChild(1).GetComponent<TMP_Text>().text = (stats[0] + unit.GetComponent<UnitStats>().hpMax).ToString();
         a.transform.GetChild(3).GetChild(1).GetChild(1).GetComponent<TMP_Text>().text = (stats[1] + unit.GetComponent<UnitStats>().speed).ToString();
         a.transform.GetChild(3).GetChild(2).GetChild(1).GetComponent<TMP_Text>().text = (stats[2] + unit.GetComponent<UnitStats>().sightRange).ToString();

@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 918f514874b254547a6f826471a3a5b7
+guid: d46ef85c9cca471488d866e3a3469db6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4814339662153837863
-    second: Ranger - Normals_0
+      213: 5903905991286055481
+    second: Mercenary_0
   - first:
-      213: -1723738830559889356
-    second: Ranger - Normals_1
+      213: -2717688822470235341
+    second: Mercenary_1
   - first:
-      213: 35461245664923046
-    second: Ranger - Normals_2
+      213: -4002248859864714991
+    second: Mercenary_2
   - first:
-      213: 894667956283778499
-    second: Ranger - Normals_3
+      213: -5517257270002997874
+    second: Mercenary_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
-    sRGBTexture: 0
+    sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
@@ -64,9 +64,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 1
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -122,89 +122,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ranger - Normals_0
+      name: Mercenary_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 21
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 37
+      alignment: 9
+      pivot: {x: 0.42857143, y: 0.1891892}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9d21f31b597003db0800000000000000
-      internalID: -4814339662153837863
+      spriteID: 932e7e50833eee150800000000000000
+      internalID: 5903905991286055481
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ranger - Normals_1
+      name: Mercenary_1
       rect:
         serializedVersion: 2
-        x: 22
+        x: 21
         y: 0
         width: 21
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 37
+      alignment: 9
+      pivot: {x: 0.42857143, y: 0.1891892}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4383ee69aac0418e0800000000000000
-      internalID: -1723738830559889356
+      spriteID: 33bac963a64d84ad0800000000000000
+      internalID: -2717688822470235341
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ranger - Normals_2
+      name: Mercenary_2
       rect:
         serializedVersion: 2
-        x: 44
+        x: 42
         y: 0
         width: 21
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 37
+      alignment: 9
+      pivot: {x: 0.42857143, y: 0.1891892}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6ad8627a0dbfd7000800000000000000
-      internalID: 35461245664923046
+      spriteID: 1113d05edd72578c0800000000000000
+      internalID: -4002248859864714991
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ranger - Normals_3
+      name: Mercenary_3
       rect:
         serializedVersion: 2
-        x: 66
+        x: 63
         y: 0
         width: 21
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 37
+      alignment: 9
+      pivot: {x: 0.42857143, y: 0.1891892}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3c5283e14cf7a6c00800000000000000
-      internalID: 894667956283778499
+      spriteID: e85a70f9eb3ce63b0800000000000000
+      internalID: -5517257270002997874
       vertices: []
       indices: 
       edges: []
@@ -213,20 +213,24 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9222a5418815a6844abef7540b19475c
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: fdddf41468c049d45acec56f2f299007, type: 3}
+      name: _NormalMap
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":21.0,"y":37.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Ranger - Normals_0: -4814339662153837863
-      Ranger - Normals_1: -1723738830559889356
-      Ranger - Normals_2: 35461245664923046
-      Ranger - Normals_3: 894667956283778499
+      Mercenary_0: 5903905991286055481
+      Mercenary_1: -2717688822470235341
+      Mercenary_2: -4002248859864714991
+      Mercenary_3: -5517257270002997874
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
