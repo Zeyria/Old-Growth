@@ -5,5 +5,6 @@ public class TownResources
 {
     public static List<GameObject> roster;
     public static int week;
+    public static int gold;
 
 }

@@ -111,6 +111,7 @@ public class FillSelect : MonoBehaviour
                 Debug.Log(transform.childCount);
                 for (int i = 0; i < transform.childCount; i++)
                 {
+                    if(i +2 >= floorTiles.transform.parent.childCount) { continue; }
                     UISet(floorTiles.transform.parent.GetChild(i + 2).gameObject, transform.GetChild(i).gameObject);
                 }
                 for (int i = 0; i < transform.parent.parent.GetChild(2).childCount; i++)

@@ -166,6 +166,7 @@ public class UnitSelectButton : MonoBehaviour, IPointerClickHandler
             if (inventory.transform.GetChild(i).name == "Food(Clone)") { InventoryTownToArena.startingItems.Add(1); }
             else if (inventory.transform.GetChild(i).name == "Bandages(Clone)") { InventoryTownToArena.startingItems.Add(2); }
             else if (inventory.transform.GetChild(i).name == "Potion(Clone)") { InventoryTownToArena.startingItems.Add(3); }
+            else if (inventory.transform.GetChild(i).name == "Mushroom(Clone)") { InventoryTownToArena.startingItems.Add(4); }
         }
     }
 }
