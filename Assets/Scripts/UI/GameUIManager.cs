@@ -18,6 +18,7 @@ public class GameUIManager : MonoBehaviour
     public Sprite movingIcon;
     public Sprite interactingIcon;
     public TMP_Text iconText;
+    public Color defaultColor;
 
     public int activeIcon = -1;
 
@@ -41,7 +42,11 @@ public class GameUIManager : MonoBehaviour
             attackStat.text = unitToMove.GetComponent<UnitStats>().attack.ToString();
             speedStat.text = unitToMove.GetComponent<UnitStats>().speed.ToString();
             sightStat.text = unitToMove.GetComponent<UnitStats>().sightRange.ToString();
-            hpStat.text = unitToMove.GetComponent<UnitStats>().hpCurrent.ToString() + "/" + unitToMove.GetComponent<UnitStats>().hpMax.ToString();
+            hpStat.text = (unitToMove.GetComponent<UnitStats>().hpCurrent + unitToMove.GetComponent<UnitStats>().tempHp).ToString() + "/" + unitToMove.GetComponent<UnitStats>().hpMax.ToString();
+            if(unitToMove.GetComponent<UnitStats>().tempHp != 0)
+            {
+                hpStat.color = Color.cornflowerBlue;
+            }
             unitName.interactable = true;
 
             icons.SetActive(true);
@@ -61,6 +66,7 @@ public class GameUIManager : MonoBehaviour
                 speedStat.text = "?";
                 sightStat.text = "?";
                 hpStat.text = "?/?";
+                hpStat.color = defaultColor;
                 unitName.interactable = false;
             }
         }
@@ -74,6 +80,7 @@ public class GameUIManager : MonoBehaviour
             speedStat.text = "";
             sightStat.text = "";
             hpStat.text = "";
+            hpStat.color = defaultColor;
             unitName.interactable = false;
 
             icons.SetActive(false);
@@ -127,6 +134,7 @@ public class GameUIManager : MonoBehaviour
         string newString = original.Replace("DAMAGE", "<color=red>" + (Mathf.RoundToInt(unitStats.attack * action.damageMult)- 1) + " - " + (Mathf.RoundToInt(unitStats.attack * action.damageMult) + 1) + "</color>");
         newString = newString.Replace("MINRANGE", "<color=green>" + (action.minRange - 1) + "</color>");
         newString = newString.Replace("RANGE", "<color=green>" + (action.range - 1) + "</color>");
+        newString = newString.Replace("TEMP", "<color=#6495ED>" + (Mathf.RoundToInt(unitStats.attack * action.damageMult) - 1) + " - " + (Mathf.RoundToInt(unitStats.attack * action.damageMult) + 1) + "</color>");
 
 
         return newString;

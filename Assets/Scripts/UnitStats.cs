@@ -11,6 +11,7 @@ public class UnitStats : MonoBehaviour
     public int hpMax;
     //[HideInInspector]
     public int hpCurrent;
+    public int tempHp;
     public int speed;
     public int attack;
     public int sightRange;

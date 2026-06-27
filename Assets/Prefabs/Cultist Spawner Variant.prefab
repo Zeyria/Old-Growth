@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4871782318468746919, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
       propertyPath: enemiesAndSpawnChance.Array.data[2].nt
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4871782318468746919, guid: 6f8fbe07e253f7c428a4f1158df120be, type: 3}
       propertyPath: enemiesAndSpawnChance.Array.data[0].obj

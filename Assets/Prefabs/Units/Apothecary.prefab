@@ -157,6 +157,7 @@ MonoBehaviour:
     AP: 1
     soundPrefab: {fileID: 7212450526708733782, guid: 94b3816bae3a4914994ec60d2139dfbd, type: 3}
     animationPrefab: {fileID: 3730874796777466967, guid: 19f2ef65a28196b4e9d092e52bc39ec1, type: 3}
+    lastingEffectPrefab: {fileID: 0}
     iconSprite: {fileID: 8412175355006591581, guid: b3c87d0c027f4e644b97c0d10eb54f46, type: 3}
     AIUseWhenWander: 0
     description: Do a quick stab dealing DAMAGE damage with a max range of RANGE
@@ -172,10 +173,11 @@ MonoBehaviour:
     AP: 2
     soundPrefab: {fileID: 8377693716206373525, guid: 651efa4c80cf6e648a3f5adfeeced871, type: 3}
     animationPrefab: {fileID: 975444796769934153, guid: 47b911850340cca4799f03aff19ae563, type: 3}
+    lastingEffectPrefab: {fileID: 7190414061678368030, guid: ab7f5ac62fc9b204b889d51468fc51ad, type: 3}
     iconSprite: {fileID: 5509758069719216628, guid: 7b28afc642120ac4888745de5be13e55, type: 3}
     AIUseWhenWander: 0
     description: Throw a potion dealing DAMAGE damage with a max range of RANGE tiles.
-      Slows by 1 AP.
+      Slows..
   portrait: {fileID: 2800000, guid: eb944d54632b73f459a5aa97bbb295ca, type: 3}
   isEnemy: 1
   isCorpse: 0
@@ -561,11 +563,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9049513989019097061, guid: e3238c8a639684d4a82865108bccb333, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.059
+      value: 0.062
       objectReference: {fileID: 0}
     - target: {fileID: 9049513989019097061, guid: e3238c8a639684d4a82865108bccb333, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.38
+      value: 0.3437
       objectReference: {fileID: 0}
     - target: {fileID: 9049513989019097061, guid: e3238c8a639684d4a82865108bccb333, type: 3}
       propertyPath: m_LocalPosition.z

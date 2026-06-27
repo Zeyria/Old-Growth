@@ -192,6 +192,7 @@ MonoBehaviour:
     AP: 1
     soundPrefab: {fileID: 3730874796777466967, guid: 19f2ef65a28196b4e9d092e52bc39ec1, type: 3}
     animationPrefab: {fileID: 7212450526708733782, guid: 94b3816bae3a4914994ec60d2139dfbd, type: 3}
+    lastingEffectPrefab: {fileID: 0}
     iconSprite: {fileID: 0}
     AIUseWhenWander: 0
     description: 
@@ -206,6 +207,7 @@ MonoBehaviour:
     AP: 1
     soundPrefab: {fileID: 0}
     animationPrefab: {fileID: 0}
+    lastingEffectPrefab: {fileID: 0}
     iconSprite: {fileID: 0}
     AIUseWhenWander: 0
     description: 
@@ -531,6 +533,18 @@ PrefabInstance:
       value: -103306073
       objectReference: {fileID: 0}
     - target: {fileID: 6996163720849820391, guid: 00b5b4dc769c0154ebfb40c56b53d7e2, type: 3}
+      propertyPath: m_ShadowCastingSource
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6996163720849820391, guid: 00b5b4dc769c0154ebfb40c56b53d7e2, type: 3}
+      propertyPath: m_ShadowMesh.m_TrimEdge
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6996163720849820391, guid: 00b5b4dc769c0154ebfb40c56b53d7e2, type: 3}
+      propertyPath: m_PreviousEdgeProcessing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6996163720849820391, guid: 00b5b4dc769c0154ebfb40c56b53d7e2, type: 3}
       propertyPath: m_ShapePath.Array.data[0].x
       value: -0.3759203
       objectReference: {fileID: 0}
@@ -577,6 +591,26 @@ PrefabInstance:
     - target: {fileID: 6996163720849820391, guid: 00b5b4dc769c0154ebfb40c56b53d7e2, type: 3}
       propertyPath: m_ShapePath.Array.data[6].y
       value: -0.06610823
+      objectReference: {fileID: 0}
+    - target: {fileID: 6996163720849820391, guid: 00b5b4dc769c0154ebfb40c56b53d7e2, type: 3}
+      propertyPath: m_PreviousShadowCastingSource
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6996163720849820391, guid: 00b5b4dc769c0154ebfb40c56b53d7e2, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Center.x
+      value: -0.0037868023
+      objectReference: {fileID: 0}
+    - target: {fileID: 6996163720849820391, guid: 00b5b4dc769c0154ebfb40c56b53d7e2, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Center.y
+      value: 0.01741457
+      objectReference: {fileID: 0}
+    - target: {fileID: 6996163720849820391, guid: 00b5b4dc769c0154ebfb40c56b53d7e2, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Extent.x
+      value: 0.3721335
+      objectReference: {fileID: 0}
+    - target: {fileID: 6996163720849820391, guid: 00b5b4dc769c0154ebfb40c56b53d7e2, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Extent.y
+      value: 0.20503473
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -716,7 +750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 93131420925558099, guid: 548cf9d10acac434b9f945997c823b4a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0555
+      value: 0.132
       objectReference: {fileID: 0}
     - target: {fileID: 440418983135597278, guid: 548cf9d10acac434b9f945997c823b4a, type: 3}
       propertyPath: m_Pivot.x
@@ -788,7 +822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 440418983135597278, guid: 548cf9d10acac434b9f945997c823b4a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.54
+      value: 0.233
       objectReference: {fileID: 0}
     - target: {fileID: 440418983135597278, guid: 548cf9d10acac434b9f945997c823b4a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -841,6 +875,10 @@ PrefabInstance:
     - target: {fileID: 7890601816366920187, guid: 548cf9d10acac434b9f945997c823b4a, type: 3}
       propertyPath: m_text
       value: Afflicted Wolf
+      objectReference: {fileID: 0}
+    - target: {fileID: 7890601816366920187, guid: 548cf9d10acac434b9f945997c823b4a, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

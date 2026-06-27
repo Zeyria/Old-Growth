@@ -17,11 +17,11 @@ public class UnitAP : MonoBehaviour
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = on;
         }
-        //Red if enemy, Green if not
+        //Red if enemy, Green if not - new transparent if enemy
         if (transform.GetComponentInParent<UnitStats>().isEnemy)
         {
 
-            gameObject.GetComponent<SpriteRenderer>().color = new Color32(231, 26, 26, 255);
+            gameObject.GetComponent<SpriteRenderer>().color = new Color32(231, 26, 26, 0);
         }
         else
         {

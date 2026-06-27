@@ -16,6 +16,7 @@ public class ActionClass
     public int AP;
     public GameObject soundPrefab;
     public GameObject animationPrefab;
+    public GameObject lastingEffectPrefab;
     public Sprite iconSprite;
     public bool AIUseWhenWander;
     public string description;

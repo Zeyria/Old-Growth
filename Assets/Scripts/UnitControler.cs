@@ -67,6 +67,7 @@ public class UnitControler : MonoBehaviour
     private Vector3 origin;
     private Vector3 difference;
     private bool drag;
+    private bool clearTemp;
 
     private void Awake()
     {
@@ -348,6 +349,14 @@ public class UnitControler : MonoBehaviour
         if (AIsDone >= enemyUnits.Count)
         {
             playerTurn = true;
+            if (clearTemp)
+            {
+                foreach (GameObject gameObject in allyUnits)
+                {
+                    gameObject.GetComponent<UnitStats>().tempHp = 0;
+                }
+                clearTemp = false;
+            }
             FogUpdate();
         }
         DebuggingTools();
@@ -403,6 +412,7 @@ public class UnitControler : MonoBehaviour
     }
     public void ChangeTurn()
     {
+        clearTemp = true;
         playerTurn = !playerTurn;
         if(unitToMove != null)
         {
@@ -418,12 +428,15 @@ public class UnitControler : MonoBehaviour
                 if (!map.transform.GetChild(i).GetComponent<UnitStats>().isEnemy)
                 {
                     map.transform.GetChild(i).GetComponent<UnitStats>().actionPointCurrent = map.transform.GetChild(i).GetComponent<UnitStats>().actionPointMax;
-
                 }
                 if (map.transform.GetChild(i).TryGetComponent<CorpseLogic>(out CorpseLogic corpseLogic))
                 {
                     corpseLogic.RoundTick();
                 }
+            }
+            if (map.transform.GetChild(i).TryGetComponent<EffectVisual>(out EffectVisual effectVisual))
+            {
+                effectVisual.RoundTick();
             }
         }
         GameObject game = GameObject.Find("Game");
@@ -508,6 +521,7 @@ public class UnitControler : MonoBehaviour
             int minRange = action.minRange;
             float damageMult = action.damageMult;
             GameObject animation = action.animationPrefab;
+            GameObject lastingEffect = action.lastingEffectPrefab;
             GameObject sound = action.soundPrefab;
 
             if(action.targetingType == 0) //Open Tile targeting
@@ -552,7 +566,11 @@ public class UnitControler : MonoBehaviour
                                     unitToMove.GetComponent<UnitStats>().actionPointCurrent -= action.AP;
                                     cameraSS.start = true;
                                     unitToMove.transform.GetChild(0).gameObject.SetActive(true);
-                                    unitToAttack.GetComponent<UnitStats>().hpCurrent -= damage;
+                                    unitToAttack.GetComponent<UnitStats>().tempHp -= damage;
+                                    if (unitToAttack.GetComponent<UnitStats>().tempHp <= 0)
+                                    {
+                                        unitToAttack.GetComponent<UnitStats>().hpCurrent -= Mathf.Abs(unitToAttack.GetComponent<UnitStats>().tempHp);
+                                    }
                                     if (unitToAttack.GetComponent<UnitStats>().hpCurrent <= 0) //Killed unit
                                     {
                                         if (!unitToAttack.GetComponent<UnitStats>().isCorpse && unitToAttack.GetComponent<UnitStats>().spawnsCorpse)
@@ -601,6 +619,7 @@ public class UnitControler : MonoBehaviour
                                     b.transform.GetChild(0).GetComponent<TMP_Text>().text = damage.ToString();
                                     Instantiate(animation, unitToAttack.transform.position + new Vector3(0, .25f), unitToAttack.transform.rotation);
                                     Instantiate(sound, unitToAttack.transform.position + new Vector3(0, .25f), unitToAttack.transform.rotation);
+                                    if(lastingEffect != null) { Instantiate(lastingEffect, unitToAttack.transform.GetChild(3).position + new Vector3(0, 0f), unitToAttack.transform.rotation, transform.parent.GetChild(1)); }
                                 }
                             }
                         }
@@ -609,6 +628,42 @@ public class UnitControler : MonoBehaviour
             }
             else if(action.targetingType == 2) //Ally targeting
             {
+                GameObject unitToBuff = null;
+                if(unitToBuff == null)
+                {
+                    GameObject gameObject = GetUnitAtTile(new Vector3Int((int)ComFunc.WorldToTileSpace(selectCursor.transform.position).x, (int)ComFunc.WorldToTileSpace(selectCursor.transform.position).y));
+                    if (!selectCursor.activeInHierarchy)
+                    {
+                        gameObject = GetUnitAtTile(new Vector3Int((int)ComFunc.WorldToTileSpace(Camera.main.ScreenToWorldPoint(Input.mousePosition)).x, (int)ComFunc.WorldToTileSpace(Camera.main.ScreenToWorldPoint(Input.mousePosition)).y));
+                    }
+                    if (gameObject != null)
+                    {
+                        unitToBuff = gameObject;
+                        if (!unitToBuff.GetComponent<UnitStats>().isEnemy)
+                        {
+                            List<AStarNode> path = temp.FindPath(Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitToMove.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitToMove.transform.position).y),
+                Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitToBuff.transform.position).x), Mathf.RoundToInt(ComFunc.WorldToTileSpace(unitToBuff.transform.position).y));
+                            if (path != null)
+                            {
+                                if (path.Count <= range && path.Count >= minRange)
+                                {
+                                    int damage = Mathf.RoundToInt(unitToMove.GetComponent<UnitStats>().attack * damageMult) - Random.Range(-1, 2);
+                                    unitToMove.GetComponent<UnitStats>().actionPointCurrent -= action.AP;
+                                    cameraSS.start = true;
+                                    unitToMove.transform.GetChild(0).gameObject.SetActive(true);
+                                    unitToBuff.GetComponent<UnitStats>().tempHp += damage;
+                                    
+                                    GameObject b = Instantiate(damageNumber, unitToBuff.transform.position + new Vector3(0, .25f), unitToBuff.transform.rotation);
+                                    b.transform.GetChild(0).GetComponent<TMP_Text>().text = damage.ToString();
+                                    b.transform.GetChild(0).GetComponent<TMP_Text>().color = Color.cornflowerBlue;
+                                    Instantiate(animation, unitToBuff.transform.position + new Vector3(0, .25f), unitToBuff.transform.rotation);
+                                    Instantiate(sound, unitToBuff.transform.position + new Vector3(0, .25f), unitToBuff.transform.rotation);
+                                    if (lastingEffect != null) { Instantiate(lastingEffect, unitToBuff.transform.GetChild(3).position + new Vector3(0, 0f), unitToBuff.transform.rotation, transform.parent.GetChild(1)); }
+                                }
+                            }
+                        }
+                    }
+                }
 
             }
             else if (action.targetingType == 3) //All targeting
@@ -1239,7 +1294,11 @@ public class UnitControler : MonoBehaviour
                     {
                         cameraSS.start = true;
                         int damage = Mathf.RoundToInt(stats.attack * action.damageMult) - Random.Range(-1, 2);
-                        unitToAttack.GetComponent<UnitStats>().hpCurrent -= damage;
+                        unitToAttack.GetComponent<UnitStats>().tempHp -= damage;
+                        if(unitToAttack.GetComponent<UnitStats>().tempHp <= 0)
+                        {
+                            unitToAttack.GetComponent<UnitStats>().hpCurrent -= Mathf.Abs(unitToAttack.GetComponent<UnitStats>().tempHp);
+                        }
                         StartCoroutine(CheckEffects(unit, action, unitToAttack));
                         if (unitToAttack.GetComponent<UnitStats>().hpCurrent <= 0)
                         {
@@ -1288,6 +1347,7 @@ public class UnitControler : MonoBehaviour
                             b.transform.GetChild(0).GetComponent<TMP_Text>().text = damage.ToString();
                             Instantiate(action.animationPrefab, unitToAttack.transform.position + new Vector3(0, .25f), unitToAttack.transform.rotation);
                             Instantiate(action.soundPrefab, unitToAttack.transform.position + new Vector3(0, .25f), unitToAttack.transform.rotation);
+                            if (action.lastingEffectPrefab != null) { Instantiate(action.lastingEffectPrefab, unitToAttack.transform.GetChild(3).position + new Vector3(0, 0f), unitToAttack.transform.rotation, transform.parent.GetChild(1)); }
                         }
                         stats.actionPointCurrent -= action.AP;
                         didSomething = true;
@@ -1463,7 +1523,7 @@ public class UnitControler : MonoBehaviour
             }
             if (action.slow)
             {
-                targetUnit.GetComponent<UnitStats>().actionPointCurrent -= 1;
+                targetUnit.GetComponent<UnitStats>().actionPointCurrent -= 2;
             }
         }
         if(targetTile != null)
