@@ -353,7 +353,10 @@ public class UnitControler : MonoBehaviour
             {
                 foreach (GameObject gameObject in allyUnits)
                 {
-                    gameObject.GetComponent<UnitStats>().tempHp = 0;
+                    if(gameObject != null)
+                    {
+                        gameObject.GetComponent<UnitStats>().tempHp = 0;
+                    }
                 }
                 clearTemp = false;
             }
@@ -570,6 +573,7 @@ public class UnitControler : MonoBehaviour
                                     if (unitToAttack.GetComponent<UnitStats>().tempHp <= 0)
                                     {
                                         unitToAttack.GetComponent<UnitStats>().hpCurrent -= Mathf.Abs(unitToAttack.GetComponent<UnitStats>().tempHp);
+                                        unitToAttack.GetComponent<UnitStats>().tempHp = 0;
                                     }
                                     if (unitToAttack.GetComponent<UnitStats>().hpCurrent <= 0) //Killed unit
                                     {
@@ -1298,6 +1302,7 @@ public class UnitControler : MonoBehaviour
                         if(unitToAttack.GetComponent<UnitStats>().tempHp <= 0)
                         {
                             unitToAttack.GetComponent<UnitStats>().hpCurrent -= Mathf.Abs(unitToAttack.GetComponent<UnitStats>().tempHp);
+                            unitToAttack.GetComponent<UnitStats>().tempHp = 0;
                         }
                         StartCoroutine(CheckEffects(unit, action, unitToAttack));
                         if (unitToAttack.GetComponent<UnitStats>().hpCurrent <= 0)

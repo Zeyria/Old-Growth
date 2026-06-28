@@ -18,10 +18,22 @@ public class FillSelect : MonoBehaviour
     public bool transfer;
     public GameObject transferTo;
     public bool notMain;
+    public bool randomRoster;
+    public int randomAmount;
+    public int capacity;
     void Awake()
     {
         if (notMain) { return; }
         uiButtons = new List<GameObject>();
+        if (randomRoster)
+        {
+            List<ObjAndIntClass> randomUnits = new List<ObjAndIntClass>();
+            for (int i = 0; i < randomAmount; i++)
+            {
+                randomUnits.Add(new ObjAndIntClass(availableUnits[Random.Range(0, availableUnits.Count)].obj, 1));
+            }
+            availableUnits = randomUnits;
+        }
         for (int i = 0; i <= availableUnits.Count - 1; i++)
         {
             GameObject unit = Instantiate(availableUnits[i].obj, transform.parent.parent.GetChild(2));
@@ -60,7 +72,6 @@ public class FillSelect : MonoBehaviour
         {
             unit.GetComponent<UnitStats>().unitName = UnitNameList.firstNames[Random.Range(0, UnitNameList.firstNames.Length)] + " " + UnitNameList.lastNames[Random.Range(0, UnitNameList.lastNames.Length)];
             unit.GetComponent<UnitStats>().generated = true;
-
         }
         a.transform.GetChild(5).GetChild(1).GetComponent<TMP_Text>().text = PersonalityList.Personalites[pers].stri + " " + unit.GetComponent<UnitStats>().unitClass;
         a.transform.GetChild(3).GetChild(0).GetChild(1).GetComponent<TMP_Text>().text = (stats[0] + unit.GetComponent<UnitStats>().hpMax).ToString();

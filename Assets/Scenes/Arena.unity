@@ -1120,6 +1120,10 @@ PrefabInstance:
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 2735759749528771689, guid: f4e0017f48d864d438921a61b950f4d0, type: 3}
+      propertyPath: m_ShadowsEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2735759749528771689, guid: f4e0017f48d864d438921a61b950f4d0, type: 3}
       propertyPath: m_PointLightOuterRadius
       value: 4
       objectReference: {fileID: 0}
@@ -3347,6 +3351,10 @@ PrefabInstance:
     - target: {fileID: 2735759749528771689, guid: f4e0017f48d864d438921a61b950f4d0, type: 3}
       propertyPath: m_Intensity
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2735759749528771689, guid: f4e0017f48d864d438921a61b950f4d0, type: 3}
+      propertyPath: m_ShadowsEnabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2735759749528771689, guid: f4e0017f48d864d438921a61b950f4d0, type: 3}
       propertyPath: m_PointLightOuterRadius
@@ -8570,7 +8578,7 @@ Tilemap:
       - {fileID: -1443981764, guid: 2a692a7794abc8247a1c1e1c545e9a3f, type: 3}
       - {fileID: -334998270, guid: 2a692a7794abc8247a1c1e1c545e9a3f, type: 3}
       - {fileID: -1443981764, guid: 2a692a7794abc8247a1c1e1c545e9a3f, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -9264,7 +9272,7 @@ Tilemap:
       - {fileID: -114106482, guid: b549b480815a91a4f8f365b86f65a642, type: 3}
       - {fileID: -1324612202, guid: b549b480815a91a4f8f365b86f65a642, type: 3}
       - {fileID: -762922287, guid: b549b480815a91a4f8f365b86f65a642, type: 3}
-      m_AnimationSpeed: 7.0000005
+      m_AnimationSpeed: 7
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: 3, z: 0}
@@ -10496,7 +10504,7 @@ Tilemap:
       - {fileID: -1443981764, guid: 2a692a7794abc8247a1c1e1c545e9a3f, type: 3}
       - {fileID: -334998270, guid: 2a692a7794abc8247a1c1e1c545e9a3f, type: 3}
       - {fileID: -1443981764, guid: 2a692a7794abc8247a1c1e1c545e9a3f, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -7, y: 5, z: 0}
@@ -14982,7 +14990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!156049354 &1705486507
 Grid:
   m_ObjectHideFlags: 0
@@ -20100,7 +20108,7 @@ Tilemap:
       - {fileID: -114106482, guid: b549b480815a91a4f8f365b86f65a642, type: 3}
       - {fileID: -1324612202, guid: b549b480815a91a4f8f365b86f65a642, type: 3}
       - {fileID: -762922287, guid: b549b480815a91a4f8f365b86f65a642, type: 3}
-      m_AnimationSpeed: 7.0000005
+      m_AnimationSpeed: 7
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -6, y: 6, z: 0}
@@ -20840,7 +20848,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3156033871144847661, guid: 14c96498bd60f1b40966ce73764a3d96, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3156033871484138035, guid: 14c96498bd60f1b40966ce73764a3d96, type: 3}
       propertyPath: unitCon
@@ -20964,7 +20972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3239039502940910320, guid: 14c96498bd60f1b40966ce73764a3d96, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6863218850519388596, guid: 14c96498bd60f1b40966ce73764a3d96, type: 3}
       propertyPath: draggable
@@ -21016,6 +21024,30 @@ PrefabInstance:
       propertyPath: interactableGameObject
       value: 
       objectReference: {fileID: 7410905364910123853, guid: 15c040cb76d3bb346b490c74311a9d65, type: 3}
+    - target: {fileID: 2735759749528771689, guid: f4e0017f48d864d438921a61b950f4d0, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9294118
+      objectReference: {fileID: 0}
+    - target: {fileID: 2735759749528771689, guid: f4e0017f48d864d438921a61b950f4d0, type: 3}
+      propertyPath: m_Color.g
+      value: 0.854902
+      objectReference: {fileID: 0}
+    - target: {fileID: 2735759749528771689, guid: f4e0017f48d864d438921a61b950f4d0, type: 3}
+      propertyPath: m_Color.r
+      value: 0.96470594
+      objectReference: {fileID: 0}
+    - target: {fileID: 2735759749528771689, guid: f4e0017f48d864d438921a61b950f4d0, type: 3}
+      propertyPath: m_Intensity
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2735759749528771689, guid: f4e0017f48d864d438921a61b950f4d0, type: 3}
+      propertyPath: m_ShadowsEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2735759749528771689, guid: f4e0017f48d864d438921a61b950f4d0, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3467992437935923642, guid: f4e0017f48d864d438921a61b950f4d0, type: 3}
       propertyPath: m_Name
       value: Interactable-GameWinArtifact

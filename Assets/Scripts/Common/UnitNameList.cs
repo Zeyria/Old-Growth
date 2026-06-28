@@ -23,8 +23,10 @@ public class UnitNameList : MonoBehaviour
         "Joe", "Pain", "Darkness", "Salmon", "Dirk", "Gorbsby", "Lastblood", "Lyle", "Soren", "Laird", "Forman", "Bishop", "Ketchum", "Burket", "Mercer",
         "Cook", "Lindsey", "Graham", "Crow", "Serpent", "Kaiser", "Richter", "James", "Duskrain", "Temult", "Grillsby", "Chillin", "Gerotis", "Primeas",
         "Felt", "Gallakis", "Frostbane", "Poorman", "Brooks", "Carol", "VonAlba", "Gaulson", "Spaulder", "Oracle", "Prophet", "Mikelson", "Remington", "Lund",
-        "Highbrook", "Lowbrook", "Millermon", "Et.Al", "Firmio", "Addagio", "Addison", "Prime", "Lorde", "Ender", "McMordain", "Luxem", "Walker", "Uren",
+        "Highbrook", "Lowbrook", "Millermon", "Etal", "Firmio", "Addagio", "Addison", "Prime", "Lorde", "Ender", "McMordain", "Luxem", "Walker", "Uren",
         "Treseder", "Rickard", "Montoyo", "Olson", "Oslo", "Polmann", "Carthage", "Corman", "Tremane", "Germaine", "Jericho", "Jingleheimer", "Schmidt", "Ortho",
         "Kidd", "Readings", "Xytolius", "Baudry", "Fitzgerald", "Corinth", "Ballsgate", "Agate", "Rockwall", "Straven", "Raven", "Creedo", "Betrayed", "Lostkin",
         "Cradle", "Anticrock", "Hilliander", "Gustavo", "Batiste", "Garethsen", "Marked", "Unfettered", "Histcradle", "Treefriend"};
+
+    //Removed Et.Al for Etal sorry caleb but it looked weird
 }

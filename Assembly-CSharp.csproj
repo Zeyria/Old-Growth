@@ -114,6 +114,7 @@
     <Compile Include="Assets\Scripts\UI\UISFX.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\InteractionDescription.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\interactionData.cs" />
+    <Compile Include="Assets\Scripts\CapText.cs" />
     <Compile Include="Assets\Scripts\ArmyBuilder.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\UI\Game UI\FillSelect.cs" />

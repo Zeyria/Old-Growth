@@ -65,6 +65,11 @@ public class UnitSelectButton : MonoBehaviour, IPointerClickHandler
     {
         if (transfer && currentSlot == 10)
         {
+            if(transferTo.transform.childCount >= transferTo.GetComponent<FillSelect>().capacity)
+            {
+                return;
+            }
+
             transferTo.GetComponent<FillSelect>().availableUnits.Add(transform.parent.GetComponent<FillSelect>().availableUnits[transform.GetSiblingIndex()]);
             transform.parent.GetComponent<FillSelect>().availableUnits.RemoveAt(transform.GetSiblingIndex());
             transferTo.GetComponent<FillSelect>().uiButtons.Add(transform.parent.transform.GetChild(transform.GetSiblingIndex()).gameObject);
