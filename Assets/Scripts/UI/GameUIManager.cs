@@ -17,6 +17,7 @@ public class GameUIManager : MonoBehaviour
     public Sprite questionIcon;
     public Sprite movingIcon;
     public Sprite interactingIcon;
+    public Sprite lockedIcon;
     public TMP_Text iconText;
     public Color defaultColor;
 
@@ -54,14 +55,19 @@ public class GameUIManager : MonoBehaviour
             if (unitToMove.GetComponent<UnitStats>().action1.iconSprite != null) { icons.transform.GetChild(1).GetComponent<Image>().sprite = unitToMove.GetComponent<UnitStats>().action1.iconSprite; }
             if (unitToMove.GetComponent<UnitStats>().action2.iconSprite != null) { icons.transform.GetChild(2).GetComponent<Image>().sprite = unitToMove.GetComponent<UnitStats>().action2.iconSprite; }
             icons.transform.GetChild(3).GetComponent<Image>().sprite = interactingIcon;
+            for (int x = 5; x < icons.transform.childCount; x++)
+            {
+                icons.transform.GetChild(x).GetComponent<Image>().sprite = lockedIcon;
+            }
 
             if (unitToMove.GetComponent<UnitStats>().isEnemy)
             {
-                for (int x = 0; x < icons.transform.childCount - 1; x++)
+                for (int x = 0; x < icons.transform.childCount; x++)
                 {
+                    if(x == 4) { continue; }
                     icons.transform.GetChild(x).GetComponent<Image>().sprite = questionIcon;
                 }
-                icons.transform.GetChild(3).gameObject.SetActive(false);
+                //icons.transform.GetChild(3).gameObject.SetActive(false);
                 attackStat.text = "?";
                 speedStat.text = "?";
                 sightStat.text = "?";
@@ -96,10 +102,11 @@ public class GameUIManager : MonoBehaviour
                 string action2Description = ReplaceKeyWordsInString(unitStats.action2.description, unitStats, unitStats.action2);
                 if (activeIcon == 2) { iconText.text = action2Description; }
                 if (activeIcon == 3) { iconText.text = "Interact with an object within <color=green>2</color> tiles."; }
+                if (activeIcon > 3) { iconText.text = "Upgrade this unit in town to unlock additional actions."; }
 
                 if (unitStats.isEnemy)
                 {
-                    iconText.text = "Kill or inspect this unit to learn more about it's abilities.";
+                    iconText.text = "Gather more bestiary knowledge to learn more about this unit's abilities.";
                 }
             }
         }

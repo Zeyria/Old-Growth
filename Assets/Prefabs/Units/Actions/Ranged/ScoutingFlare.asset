@@ -16,7 +16,7 @@ MonoBehaviour:
   damageMult: 0
   stun: 0
   slow: 0
-  summon: 0
+  summon: 1
   range: 13
   minRange: 0
   AP: 2
