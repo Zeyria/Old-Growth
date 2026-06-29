@@ -139,6 +139,7 @@ MonoBehaviour:
   hpMax: 8
   hpCurrent: 0
   tempHp: 0
+  tempStr: 0
   speed: 8
   attack: 3
   sightRange: 11
@@ -146,37 +147,8 @@ MonoBehaviour:
   personality: -1
   actionPointMax: 3
   actionPointCurrent: 3
-  action1:
-    targetingType: 1
-    damageMult: 1
-    stun: 0
-    slow: 0
-    summon: 0
-    range: 10
-    minRange: 4
-    AP: 1
-    soundPrefab: {fileID: 8377693716206373525, guid: 651efa4c80cf6e648a3f5adfeeced871, type: 3}
-    animationPrefab: {fileID: 3022894941759572255, guid: f375cdc6cdc34fd4ea34a835b3bd0028, type: 3}
-    lastingEffectPrefab: {fileID: 0}
-    iconSprite: {fileID: 21300000, guid: f9399bc76feb03941b313710990e1b24, type: 3}
-    AIUseWhenWander: 0
-    description: Shoot an arrow dealing DAMAGE damage with a max range of RANGE tiles
-      and minium of MINRANGE.
-  action2:
-    targetingType: 3
-    damageMult: 0
-    stun: 0
-    slow: 0
-    summon: 1
-    range: 13
-    minRange: 0
-    AP: 2
-    soundPrefab: {fileID: 6329857139294842991, guid: f32d70659e31ffe468d609cf4f90494c, type: 3}
-    animationPrefab: {fileID: 4816790633711653686, guid: 65fe7e0a6496ae0418507627e949d217, type: 3}
-    lastingEffectPrefab: {fileID: 0}
-    iconSprite: {fileID: 21300000, guid: 8b61222b59e564b4db041a6a473ac7e0, type: 3}
-    AIUseWhenWander: 0
-    description: Choose a point within RANGE tiles and gain vision around it.
+  action1: {fileID: 11400000, guid: b26379496d24a9c4fa760bdc055d17af, type: 2}
+  action2: {fileID: 11400000, guid: 1216d871b2af3b14cafe34988a005e55, type: 2}
   portrait: {fileID: 2800000, guid: 4ebfc81e4f0aa074dbbbf5375fdb318a, type: 3}
   isEnemy: 1
   isCorpse: 0

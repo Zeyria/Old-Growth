@@ -356,6 +356,8 @@ public class UnitControler : MonoBehaviour
                     if(gameObject != null)
                     {
                         gameObject.GetComponent<UnitStats>().tempHp = 0;
+                        gameObject.GetComponent<UnitStats>().attack -= gameObject.GetComponent<UnitStats>().tempStr;
+                        gameObject.GetComponent<UnitStats>().tempStr = 0;
                     }
                 }
                 clearTemp = false;
@@ -515,7 +517,7 @@ public class UnitControler : MonoBehaviour
     }
     void Action(int actionNum)
     {
-        ActionClass action = null;
+        ActionScriptableObject action = null;
         if (actionNum == 1) { action = unitToMove.GetComponent<UnitStats>().action1; }
         if (actionNum == 2) { action = unitToMove.GetComponent<UnitStats>().action2; }
         if (unitToMove != null)
@@ -1269,7 +1271,7 @@ public class UnitControler : MonoBehaviour
                 {
                     //Debug.Log("Entered Attack Behavior");
                     //  Attack Behavior
-                    ActionClass action = null;
+                    ActionScriptableObject action = null;
                     GameObject unitToAttack = null;
                     if(unitsInRange1.Count > 0 && unitsInRange2.Count > 0 && stats.actionPointCurrent>= stats.action1.AP && stats.actionPointCurrent >= stats.action2.AP)
                     {
@@ -1518,7 +1520,7 @@ public class UnitControler : MonoBehaviour
         AIsDone++;
         stats.actionPointCurrent = stats.actionPointMax;
     }
-    IEnumerator CheckEffects(GameObject castingUnit, ActionClass action, GameObject targetUnit = null, AStarNode targetTile = null)
+    IEnumerator CheckEffects(GameObject castingUnit, ActionScriptableObject action, GameObject targetUnit = null, AStarNode targetTile = null)
     {
         if(targetUnit != null)
         {

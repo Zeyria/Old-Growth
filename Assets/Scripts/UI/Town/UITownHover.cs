@@ -42,8 +42,11 @@ public class UITownHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         if (increaseAlpha)
         {
-            texts[0].color = new Color(1, 1, 1, texts[0].color.a + (alphaSpeed * Time.deltaTime));
-            texts[1].color = new Color(offColor.r, offColor.g, offColor.b, texts[1].color.a + (alphaSpeed * Time.deltaTime));
+            if(texts.Count >= 2)
+            {
+                texts[0].color = new Color(1, 1, 1, texts[0].color.a + (alphaSpeed * Time.deltaTime));
+                texts[1].color = new Color(offColor.r, offColor.g, offColor.b, texts[1].color.a + (alphaSpeed * Time.deltaTime));
+            }
             foreach (Image image in images)
             {
                 image.color = new Color(1, 1, 1, image.color.a + (alphaSpeed * Time.deltaTime));
@@ -51,8 +54,11 @@ public class UITownHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
         else
         {
-            texts[0].color = new Color(1, 1, 1, 0);
-            texts[1].color = new Color(offColor.r, offColor.g, offColor.b, 0);
+            if(texts.Count >= 2)
+            {
+                texts[0].color = new Color(1, 1, 1, 0);
+                texts[1].color = new Color(offColor.r, offColor.g, offColor.b, 0);
+            }
             foreach (Image image in images)
             {
                 image.color = new Color(1, 1, 1, 0);

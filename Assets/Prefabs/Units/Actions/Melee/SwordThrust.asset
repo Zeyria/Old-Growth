@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f96fc0a5633c8a948a6b46b66636d253, type: 3}
+  m_Name: SwordThrust
+  m_EditorClassIdentifier: Assembly-CSharp::ActionScriptableObject
+  targetingType: 1
+  damageMult: 1
+  stun: 0
+  slow: 0
+  summon: 0
+  range: 3
+  minRange: 0
+  AP: 1
+  soundPrefab: {fileID: 3730874796777466967, guid: 19f2ef65a28196b4e9d092e52bc39ec1, type: 3}
+  animationPrefab: {fileID: 7212450526708733782, guid: 94b3816bae3a4914994ec60d2139dfbd, type: 3}
+  lastingEffectPrefab: {fileID: 0}
+  iconSprite: {fileID: -4528849462192273406, guid: 9b3c80fec1932e643b02d656d5e0a82a, type: 3}
+  AIUseWhenWander: 0
+  description: Thrust forward dealing DAMAGE damage to a unit within RANGE tiles.

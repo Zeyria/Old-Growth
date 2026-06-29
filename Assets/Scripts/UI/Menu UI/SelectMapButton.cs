@@ -25,22 +25,22 @@ public class SelectMapButton : MonoBehaviour
         if (!ArenaSettings.hasActiveMap)
         {
 			playButton.GetComponent<Button>().enabled = false;
-			playButton.transform.GetChild(2).gameObject.SetActive(true);
+			playButton.transform.GetChild(1).gameObject.SetActive(true);
+			playButton.transform.GetChild(2).gameObject.SetActive(false);
 			playButton.transform.GetChild(3).gameObject.SetActive(false);
-			playButton.transform.GetChild(4).gameObject.SetActive(false);
 			playButton.transform.GetChild(0).gameObject.SetActive(false);
 		}
         else
         {
 			playButton.GetComponent<Button>().enabled = true;
-			playButton.transform.GetChild(2).gameObject.SetActive(false);
+			playButton.transform.GetChild(1).gameObject.SetActive(false);
 			playButton.transform.GetChild(0).gameObject.SetActive(true);
 		}
 		if (unitHolder == null)
 		{
 			unitHolder = GameObject.Find("ArmyGrid").transform.GetChild(0).gameObject;
 		}
-		if(unitHolder != null && playButton.transform.GetChild(2).gameObject.activeInHierarchy == false)
+		if(unitHolder != null && playButton.transform.GetChild(1).gameObject.activeInHierarchy == false)
         {
 			int c = 0;
             for (int i = 0; i < unitHolder.transform.childCount; i++)
@@ -53,24 +53,24 @@ public class SelectMapButton : MonoBehaviour
 			if(c < 3)
             {
 				playButton.GetComponent<Button>().enabled = false;
-				playButton.transform.GetChild(2).gameObject.SetActive(false);
-				playButton.transform.GetChild(3).gameObject.SetActive(true);
-				playButton.transform.GetChild(4).gameObject.SetActive(false);
+				playButton.transform.GetChild(1).gameObject.SetActive(false);
+				playButton.transform.GetChild(2).gameObject.SetActive(true);
+				playButton.transform.GetChild(3).gameObject.SetActive(false);
 				playButton.transform.GetChild(0).gameObject.SetActive(false);
 			}
 			else if (c > 7)
             {
 				playButton.GetComponent<Button>().enabled = false;
+				playButton.transform.GetChild(1).gameObject.SetActive(false);
 				playButton.transform.GetChild(2).gameObject.SetActive(false);
-				playButton.transform.GetChild(3).gameObject.SetActive(false);
-				playButton.transform.GetChild(4).gameObject.SetActive(true);
+				playButton.transform.GetChild(3).gameObject.SetActive(true);
 				playButton.transform.GetChild(0).gameObject.SetActive(false);
 			}
             else
             {
 				playButton.GetComponent<Button>().enabled = true;
+				playButton.transform.GetChild(2).gameObject.SetActive(false);
 				playButton.transform.GetChild(3).gameObject.SetActive(false);
-				playButton.transform.GetChild(4).gameObject.SetActive(false);
 				playButton.transform.GetChild(0).gameObject.SetActive(true);
 			}
         }

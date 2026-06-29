@@ -9,21 +9,25 @@ public class UnitStats : MonoBehaviour
     public string unitClass;
 
     public int hpMax;
-    //[HideInInspector]
+    [HideInInspector]
     public int hpCurrent;
+    [HideInInspector]
     public int tempHp;
+    [HideInInspector]
+    public int tempStr;
     public int speed;
     public int attack;
     public int sightRange;
     public int size;
+    [HideInInspector]
     public int personality = -1;
 
     public int actionPointMax;
     //[HideInInspector]
     public int actionPointCurrent;
 
-    public ActionClass action1;
-    public ActionClass action2;
+    public ActionScriptableObject action1;
+    public ActionScriptableObject action2;
 
     public Texture2D portrait;
 

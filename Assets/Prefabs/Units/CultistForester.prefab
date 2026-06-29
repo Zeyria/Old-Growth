@@ -139,6 +139,7 @@ MonoBehaviour:
   hpMax: 12
   hpCurrent: 0
   tempHp: 0
+  tempStr: 0
   speed: 8
   attack: 4
   sightRange: 9
@@ -146,36 +147,8 @@ MonoBehaviour:
   personality: -1
   actionPointMax: 3
   actionPointCurrent: 3
-  action1:
-    targetingType: 1
-    damageMult: 1
-    stun: 0
-    slow: 0
-    summon: 0
-    range: 3
-    minRange: 0
-    AP: 1
-    soundPrefab: {fileID: 3730874796777466967, guid: 19f2ef65a28196b4e9d092e52bc39ec1, type: 3}
-    animationPrefab: {fileID: 7212450526708733782, guid: 94b3816bae3a4914994ec60d2139dfbd, type: 3}
-    lastingEffectPrefab: {fileID: 0}
-    iconSprite: {fileID: 0}
-    AIUseWhenWander: 0
-    description: 
-  action2:
-    targetingType: 1
-    damageMult: 0.75
-    stun: 1
-    slow: 0
-    summon: 0
-    range: 3
-    minRange: 0
-    AP: 2
-    soundPrefab: {fileID: 5654939196839419920, guid: a1260acc9f79a9348a170f13b687892c, type: 3}
-    animationPrefab: {fileID: 7212450526708733782, guid: 94b3816bae3a4914994ec60d2139dfbd, type: 3}
-    lastingEffectPrefab: {fileID: 1587865093409361638, guid: ea4f4687ae2c6c14896e3bfae520cd59, type: 3}
-    iconSprite: {fileID: 0}
-    AIUseWhenWander: 0
-    description: 
+  action1: {fileID: 11400000, guid: 9d31051fe09bb9245abc8be7e317fd15, type: 2}
+  action2: {fileID: 11400000, guid: eb7f89d4231a41e418c413746a58f568, type: 2}
   portrait: {fileID: 2800000, guid: 0722d7c84a490c947b12fbde509ce4a4, type: 3}
   isEnemy: 1
   isCorpse: 0

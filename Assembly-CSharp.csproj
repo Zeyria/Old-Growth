@@ -101,6 +101,7 @@
     <Compile Include="Assets\Scripts\UI\Interactions\LeaveInteraction.cs" />
     <Compile Include="Assets\Scripts\UI\OpenURL.cs" />
     <Compile Include="Assets\Scripts\ScreenShake.cs" />
+    <Compile Include="Assets\Scripts\InventorySystem\Items\MushroomItem.cs" />
     <Compile Include="Assets\Scripts\MapMaker.cs" />
     <Compile Include="Assets\Scripts\Audio\SetSFXOnStart.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\Intro.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Assets\Scripts\InventorySystem\Items\PotionItem.cs" />
     <Compile Include="Assets\Scripts\UI\UISFX.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\InteractionDescription.cs" />
+    <Compile Include="Assets\Scripts\ActionScriptableObject.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\interactionData.cs" />
     <Compile Include="Assets\Scripts\CapText.cs" />
     <Compile Include="Assets\Scripts\ArmyBuilder.cs" />
@@ -147,7 +149,6 @@
     <Compile Include="Assets\Scripts\AStar\Heap.cs" />
     <Compile Include="Assets\Scripts\InventorySystem\InventorySystem.cs" />
     <Compile Include="Assets\Scripts\UI\Menu UI\SelectMapButton.cs" />
-    <Compile Include="Assets\Scripts\ActionClass.cs" />
     <Compile Include="Assets\Scripts\Common\DestoryAfterTime.cs" />
     <Compile Include="Assets\Scripts\Common\LoadConfig.cs" />
     <Compile Include="Assets\Scripts\AStar\AStarPathfinding.cs" />

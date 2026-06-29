@@ -139,6 +139,7 @@ MonoBehaviour:
   hpMax: 7
   hpCurrent: 0
   tempHp: 0
+  tempStr: 0
   speed: 8
   attack: 2
   sightRange: 10
@@ -146,38 +147,8 @@ MonoBehaviour:
   personality: -1
   actionPointMax: 3
   actionPointCurrent: 3
-  action1:
-    targetingType: 1
-    damageMult: 1
-    stun: 0
-    slow: 0
-    summon: 0
-    range: 3
-    minRange: 0
-    AP: 1
-    soundPrefab: {fileID: 7212450526708733782, guid: 94b3816bae3a4914994ec60d2139dfbd, type: 3}
-    animationPrefab: {fileID: 3730874796777466967, guid: 19f2ef65a28196b4e9d092e52bc39ec1, type: 3}
-    lastingEffectPrefab: {fileID: 0}
-    iconSprite: {fileID: 8412175355006591581, guid: b3c87d0c027f4e644b97c0d10eb54f46, type: 3}
-    AIUseWhenWander: 0
-    description: Do a quick stab dealing DAMAGE damage with a max range of RANGE
-      tiles.
-  action2:
-    targetingType: 1
-    damageMult: 2
-    stun: 0
-    slow: 1
-    summon: 0
-    range: 5
-    minRange: 0
-    AP: 2
-    soundPrefab: {fileID: 8377693716206373525, guid: 651efa4c80cf6e648a3f5adfeeced871, type: 3}
-    animationPrefab: {fileID: 975444796769934153, guid: 47b911850340cca4799f03aff19ae563, type: 3}
-    lastingEffectPrefab: {fileID: 7190414061678368030, guid: ab7f5ac62fc9b204b889d51468fc51ad, type: 3}
-    iconSprite: {fileID: 5509758069719216628, guid: 7b28afc642120ac4888745de5be13e55, type: 3}
-    AIUseWhenWander: 0
-    description: Throw a potion dealing DAMAGE damage with a max range of RANGE tiles.
-      Slows.
+  action1: {fileID: 11400000, guid: e0494f8c8eb145c48a1e57a20b10cb14, type: 2}
+  action2: {fileID: 11400000, guid: a82607dd88b22d647b628d87bad2c551, type: 2}
   portrait: {fileID: 2800000, guid: eb944d54632b73f459a5aa97bbb295ca, type: 3}
   isEnemy: 1
   isCorpse: 0

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f96fc0a5633c8a948a6b46b66636d253, type: 3}
+  m_Name: RaiseShield
+  m_EditorClassIdentifier: Assembly-CSharp::ActionScriptableObject
+  targetingType: 2
+  damageMult: 1.5
+  stun: 0
+  slow: 0
+  summon: 0
+  range: 2
+  minRange: 0
+  AP: 2
+  soundPrefab: {fileID: 5654939196839419920, guid: a1260acc9f79a9348a170f13b687892c, type: 3}
+  animationPrefab: {fileID: 6661401173581594791, guid: e23b55fe96f17c54a9a686dbb9745494, type: 3}
+  lastingEffectPrefab: {fileID: 0}
+  iconSprite: {fileID: 8244873374623273977, guid: e3a8a172306bbdc4fb13fa6e2a0b4861, type: 3}
+  AIUseWhenWander: 0
+  description: Raise your shield gaining TEMP temporary hit points for this round.

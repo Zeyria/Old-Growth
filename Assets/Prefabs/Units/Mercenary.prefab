@@ -139,6 +139,7 @@ MonoBehaviour:
   hpMax: 9
   hpCurrent: 0
   tempHp: 0
+  tempStr: 0
   speed: 7
   attack: 5
   sightRange: 10
@@ -146,37 +147,8 @@ MonoBehaviour:
   personality: -1
   actionPointMax: 3
   actionPointCurrent: 3
-  action1:
-    targetingType: 1
-    damageMult: 1
-    stun: 0
-    slow: 0
-    summon: 0
-    range: 3
-    minRange: 0
-    AP: 1
-    soundPrefab: {fileID: 3730874796777466967, guid: 19f2ef65a28196b4e9d092e52bc39ec1, type: 3}
-    animationPrefab: {fileID: 7212450526708733782, guid: 94b3816bae3a4914994ec60d2139dfbd, type: 3}
-    lastingEffectPrefab: {fileID: 0}
-    iconSprite: {fileID: -4528849462192273406, guid: 9b3c80fec1932e643b02d656d5e0a82a, type: 3}
-    AIUseWhenWander: 0
-    description: Thrust forward dealing DAMAGE damage to a unit within RANGE tiles.
-  action2:
-    targetingType: 1
-    damageMult: 1.25
-    stun: 1
-    slow: 0
-    summon: 0
-    range: 3
-    minRange: 0
-    AP: 2
-    soundPrefab: {fileID: 5654939196839419920, guid: a1260acc9f79a9348a170f13b687892c, type: 3}
-    animationPrefab: {fileID: 6661401173581594791, guid: e23b55fe96f17c54a9a686dbb9745494, type: 3}
-    lastingEffectPrefab: {fileID: 1587865093409361638, guid: ea4f4687ae2c6c14896e3bfae520cd59, type: 3}
-    iconSprite: {fileID: 21300000, guid: ea047237382311748a42bcfa8a0da949, type: 3}
-    AIUseWhenWander: 0
-    description: A <color=yellow>stunning</color> strike that deals DAMAGE damage
-      to a unit within RANGE tiles.
+  action1: {fileID: 11400000, guid: d8e59603864f71f45a698ed31334425b, type: 2}
+  action2: {fileID: 11400000, guid: eb7f89d4231a41e418c413746a58f568, type: 2}
   portrait: {fileID: 2800000, guid: c146df53fa9d7cf488d4ec22388a7845, type: 3}
   isEnemy: 1
   isCorpse: 0

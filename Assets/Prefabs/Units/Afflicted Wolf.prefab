@@ -175,6 +175,7 @@ MonoBehaviour:
   hpMax: 10
   hpCurrent: 0
   tempHp: 0
+  tempStr: 0
   speed: 10
   attack: 3
   sightRange: 10
@@ -182,36 +183,8 @@ MonoBehaviour:
   personality: -1
   actionPointMax: 3
   actionPointCurrent: 3
-  action1:
-    targetingType: 1
-    damageMult: 1
-    stun: 0
-    slow: 0
-    summon: 0
-    range: 3
-    minRange: 0
-    AP: 1
-    soundPrefab: {fileID: 3730874796777466967, guid: 19f2ef65a28196b4e9d092e52bc39ec1, type: 3}
-    animationPrefab: {fileID: 7212450526708733782, guid: 94b3816bae3a4914994ec60d2139dfbd, type: 3}
-    lastingEffectPrefab: {fileID: 0}
-    iconSprite: {fileID: 0}
-    AIUseWhenWander: 0
-    description: 
-  action2:
-    targetingType: 1
-    damageMult: 0
-    stun: 0
-    slow: 0
-    summon: 0
-    range: 0
-    minRange: 0
-    AP: 1
-    soundPrefab: {fileID: 0}
-    animationPrefab: {fileID: 0}
-    lastingEffectPrefab: {fileID: 0}
-    iconSprite: {fileID: 0}
-    AIUseWhenWander: 0
-    description: 
+  action1: {fileID: 11400000, guid: 9d31051fe09bb9245abc8be7e317fd15, type: 2}
+  action2: {fileID: 11400000, guid: 9d31051fe09bb9245abc8be7e317fd15, type: 2}
   portrait: {fileID: 2800000, guid: 15bc2289c3b04c84693d33238b1708b6, type: 3}
   isEnemy: 1
   isCorpse: 0

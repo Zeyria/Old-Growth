@@ -129,7 +129,7 @@ public class GameUIManager : MonoBehaviour
             }
         }
     }
-    string ReplaceKeyWordsInString(string original, UnitStats unitStats, ActionClass action)
+    string ReplaceKeyWordsInString(string original, UnitStats unitStats, ActionScriptableObject action)
     {
         string newString = original.Replace("DAMAGE", "<color=red>" + (Mathf.RoundToInt(unitStats.attack * action.damageMult)- 1) + " - " + (Mathf.RoundToInt(unitStats.attack * action.damageMult) + 1) + "</color>");
         newString = newString.Replace("MINRANGE", "<color=green>" + (action.minRange - 1) + "</color>");
