@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8ecf1e98cacfcce41b5975da2fd6af91
+guid: 99ceb55bcf4f6c0418090653b5e977ec
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5106863625054728516
-    second: OrbIcon_0
+      213: 1789078552082452171
+    second: WellHighlights_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: OrbIcon_0
+      name: WellHighlights_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 7
-        width: 10
-        height: 13
+        x: 0
+        y: 0
+        width: 97
+        height: 47
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 44130cfd8693fd640800000000000000
-      internalID: 5106863625054728516
+      spriteID: bce0524d67514d810800000000000000
+      internalID: 1789078552082452171
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 66e80fe6ea24d714c82176157583716d
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      OrbIcon_0: 5106863625054728516
+      WellHighlights_0: 1789078552082452171
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
