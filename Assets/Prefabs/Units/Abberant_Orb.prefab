@@ -136,7 +136,7 @@ MonoBehaviour:
   generated: 0
   unitName: Abberant Orb
   unitClass: 
-  hpMax: 22
+  hpMax: 25
   hpCurrent: 0
   tempHp: 0
   tempStr: 0

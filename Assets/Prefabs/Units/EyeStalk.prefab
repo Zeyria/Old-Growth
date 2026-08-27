@@ -173,7 +173,7 @@ MonoBehaviour:
   generated: 0
   unitName: Eye Stalk
   unitClass: 
-  hpMax: 3
+  hpMax: 4
   hpCurrent: 3
   tempHp: 0
   tempStr: 0

@@ -136,7 +136,7 @@ MonoBehaviour:
   generated: 0
   unitName: Crow Serpent
   unitClass: Mercenary
-  hpMax: 9
+  hpMax: 12
   hpCurrent: 0
   tempHp: 0
   tempStr: 0

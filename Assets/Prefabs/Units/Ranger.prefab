@@ -136,7 +136,7 @@ MonoBehaviour:
   generated: 0
   unitName: Mayviel Unafraid
   unitClass: Ranger
-  hpMax: 8
+  hpMax: 10
   hpCurrent: 0
   tempHp: 0
   tempStr: 0

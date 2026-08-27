@@ -172,7 +172,7 @@ MonoBehaviour:
   generated: 0
   unitName: Afflicted Wolf
   unitClass: 
-  hpMax: 10
+  hpMax: 12
   hpCurrent: 0
   tempHp: 0
   tempStr: 0

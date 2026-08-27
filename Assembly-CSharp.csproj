@@ -122,6 +122,7 @@
     <Compile Include="Assets\Scripts\UI\Game UI\FillSelect.cs" />
     <Compile Include="Assets\Scripts\UI\Interactions\CampFire\TakeABite.cs" />
     <Compile Include="Assets\Scripts\UpdateNameOnStart.cs" />
+    <Compile Include="Assets\Scripts\UI\Town\WeekText.cs" />
     <Compile Include="Assets\Scripts\UI\Game UI\Action2Button.cs" />
     <Compile Include="Assets\Scripts\EffectVisual.cs" />
     <Compile Include="Assets\Scripts\UI\Game UI\UnitAP.cs" />

@@ -136,7 +136,7 @@ MonoBehaviour:
   generated: 0
   unitName: Crow Serpent
   unitClass: Knight
-  hpMax: 14
+  hpMax: 17
   hpCurrent: 0
   tempHp: 0
   tempStr: 0

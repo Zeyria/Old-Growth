@@ -30,6 +30,7 @@ public class RetrieveButton : MonoBehaviour
 			otherButton.interactable = false;
 		}
 		yield return new WaitForSeconds(4.5f);
+		TownResources.week++;
 		ArenaSettings.activeMapSettings = null;
 		ArenaSettings.hasActiveMap = false;
 		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneName);
